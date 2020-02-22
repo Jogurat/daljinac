@@ -1,4 +1,4 @@
-GET mongodb://jogurat:lol123@ds243812.mlab.com:43812/heroku_56t24x3l/routes
+GET https://daljinac-test.herokuapp.com/routes
 
 ###
 
