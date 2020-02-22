@@ -9,7 +9,7 @@ GET http://localhost:3000/routes/5e518580b2f17b3564aa1a5a
 
 
 ###
-POST http://localhost:3000/routes
+POST http://localhost:3000/actions
 Content-Type: application/json
 
 {
