@@ -16,5 +16,4 @@ app.use(express.json());
 const actionsRouter = require("./routes/routes");
 app.use("/actions", actionsRouter);
 
-app.listen(.listen(process.env.PORT || 3000)
-, () => console.log("Server started"));
+app.listen(process.env.PORT || 3000, () => console.log("Server started"));
