@@ -1,0 +1,15 @@
+GET mongodb://jogurat:lol123@ds243812.mlab.com:43812/heroku_56t24x3l/routes
+
+###
+
+GET http://localhost:3000/routes/5e518580b2f17b3564aa1a5a
+
+
+###
+POST http://localhost:3000/routes
+Content-Type: application/json
+
+{
+    "deviceID": "5",
+    "actionCode": "123123"
+}
