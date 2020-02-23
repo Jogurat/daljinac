@@ -5,14 +5,24 @@ GET https://daljinac-test.herokuapp.com/routes
 GET http://localhost:3000/actions
 
 ###
-GET http://localhost:3000/routes/5e518580b2f17b3564aa1a5a
+GET http://localhost:3000/actions/5e52ac73571e183becb82236
 
 
 ###
+POST https://daljinac-test.herokuapp.com/actions
+Content-Type: application/json
+
+{
+    "deviceID": "612544",
+    "actionCode": "4444"
+}
+
+###
+
 POST http://localhost:3000/actions
 Content-Type: application/json
 
 {
-    "deviceID": "5",
-    "actionCode": "123123"
+    "deviceID": "612544",
+    "actionCode": "4444"
 }

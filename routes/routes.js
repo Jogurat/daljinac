@@ -15,8 +15,9 @@ router.get("/", async (req, res) => {
 //Get one
 router.get("/:id", async (req, res) => {
   try {
-    const actions = await Action.findById(id);
-    res.json(actions);
+    console.log("Nalazim se u router get by id");
+    const action = await Action.findById(req.params.id);
+    res.json(action);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
