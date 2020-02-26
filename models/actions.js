@@ -5,9 +5,17 @@ const actionsSchema = new mongoose.Schema({
     type: String,
     required: true
   },
-  actionCode: {
+  code: {
     type: Number,
     required: true
+  },
+  bits: {
+    type: [Number],
+    required: true
+  },
+  isProccessed: {
+    type: Boolean,
+    default: false
   }
 });
 
