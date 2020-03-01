@@ -4,6 +4,9 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
+const jwt = require("jsonwebtoken");
+
+const SECRET_KEY = process.env.SECRET_KEY;
 
 mongoose.connect(process.env.MONGODB_URI, {
   useNewUrlParser: true

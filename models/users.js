@@ -14,7 +14,13 @@ const usersSchema = new mongoose.Schema({
   email: {
     type: String,
     required: false
-  }
+  },
+  rooms: [
+    {
+      name: String,
+      deviceID: Number
+    }
+  ]
 });
 
 module.exports = mongoose.model("User", usersSchema);
