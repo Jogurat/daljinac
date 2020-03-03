@@ -39,17 +39,15 @@ router.post("/", (req, res) => {
 });
 
 //LOGIN USER
-router.get("/login", async (req, res) => {
-  const username = req.body.username;
-  let password = req.body.password;
-
+router.post("/login", async (req, res) => {
+  console.log("OVO JE USER " + req.body.data.username);
+  const username = req.body.data.username;
+  let password = req.body.data.password;
   try {
     const user = await User.findOne({ username });
-    //console.log("KORISNIKOV PASS JE: " + user.password);
     bcrypt.compare(password, user.password, (err, result) => {
       if (result) {
         //dobar pass
-        //console.log(user);
         jwt.sign(user.toJSON(), SECRET_KEY, (err, token) => {
           console.log("Pravim token");
           console.log(user.toJSON());
@@ -61,7 +59,7 @@ router.get("/login", async (req, res) => {
       }
     });
   } catch (err) {
-    console.log(err);
+    res.json({ message: err.message }).status(500);
   }
 });
 

@@ -22,16 +22,26 @@ export default {
   }),
   methods: {
     async loginUser() {
-      console.log("Logging in...");
+      //PROMISE
+      // axios
+      //   .post(url, {
+      //     data: { username: this.username, password: this.password }
+      //   })
+      //   .then(function(response) {
+      //     console.log(response);
+      //     let token = response;
+      //     localStorage.setItem("token", token);
+      //   })
+      //   .catch(function(err) {
+      //     console.log("NALAZIM SE U ERR" + err);
+      //   });
       try {
-        let token = await axios.get(url, {
-          username: this.username,
-          password: this.username
+        const token = await axios.post(url, {
+          data: { username: this.username, password: this.password }
         });
-        console.log(token);
         localStorage.setItem("token", token);
       } catch (err) {
-        console.log("ERROR KOD AXIOSA" + err);
+        console.log(err);
       }
     }
   }
