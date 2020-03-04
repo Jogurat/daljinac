@@ -5,7 +5,8 @@ const Action = require("./actions");
 const usersSchema = new mongoose.Schema({
   username: {
     type: String,
-    required: true
+    required: true,
+    unique: true
   },
   password: {
     type: String,

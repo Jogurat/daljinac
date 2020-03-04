@@ -12,6 +12,7 @@
 
 <script>
 import axios from "axios";
+//import router from "../main";
 const url = "http://localhost:3000/users/login";
 
 export default {
@@ -41,6 +42,7 @@ export default {
           password: this.password
         });
         localStorage.setItem("token", token);
+        this.$router.push("/user");
       } catch (err) {
         console.log(err);
       }
@@ -49,4 +51,4 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped></style>

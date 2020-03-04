@@ -17,6 +17,32 @@ router.get("/", async (req, res) => {
   }
 });
 
+//Get user by username
+router.get("/:username", async (req, res) => {
+  try {
+    const user = await User.findOne({ username: req.params.username });
+    if (user !== null) res.json(user);
+    else res.status(404).json({ message: "User not found 404" });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+router.put("/room/:username", async (req, res) => {
+  try {
+    //GOT USER
+    const user = await User.findOne({ username: req.params.username });
+
+    let newRooms = user.rooms;
+    newRooms.push({ name: req.body.name, deviceID: req.body.deviceID });
+    user.rooms = newRooms;
+    await user.save();
+    res.status(202).json(user);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 //Post user
 router.post("/", (req, res) => {
   const username = req.body.username;
