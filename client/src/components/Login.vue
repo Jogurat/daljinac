@@ -37,7 +37,8 @@ export default {
       //   });
       try {
         const token = await axios.post(url, {
-          data: { username: this.username, password: this.password }
+          username: this.username,
+          password: this.password
         });
         localStorage.setItem("token", token);
       } catch (err) {

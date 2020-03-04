@@ -40,9 +40,9 @@ router.post("/", (req, res) => {
 
 //LOGIN USER
 router.post("/login", async (req, res) => {
-  console.log("OVO JE USER " + req.body.data.username);
-  const username = req.body.data.username;
-  let password = req.body.data.password;
+  console.log("OVO JE USER " + req.body.username);
+  const username = req.body.username;
+  let password = req.body.password;
   try {
     const user = await User.findOne({ username });
     bcrypt.compare(password, user.password, (err, result) => {
