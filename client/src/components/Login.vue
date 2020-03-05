@@ -37,10 +37,12 @@ export default {
       //     console.log("NALAZIM SE U ERR" + err);
       //   });
       try {
-        const token = await axios.post(url, {
+        const res = await axios.post(url, {
           username: this.username,
           password: this.password
         });
+        const token = res.data;
+        //console.log("TOKEN U LOGIN " + token);
         localStorage.setItem("token", token);
         this.$router.push("/user");
       } catch (err) {

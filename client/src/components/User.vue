@@ -7,9 +7,10 @@
 </template>
 
 <script>
-import axios from "axios";
+//import axios from "axios";
+import jwt from "jsonwebtoken";
 
-const url = "http://localhost:3000/users/Pera";
+//const url = "http://localhost:3000/users/";
 
 export default {
   name: "User",
@@ -28,10 +29,23 @@ export default {
   //     if (this.user) this.dataReady = true;
   //   }
   mounted: function() {
-    axios.get(url).then(res => {
-      this.user = res.data;
-      this.dataReady = true;
+    const SECRET_KEY = process.env.VUE_APP_SECRET_KEY;
+    console.log("SECRET KEY JE : " + SECRET_KEY);
+    const token = localStorage.getItem("token");
+    //console.log(token);
+    jwt.verify(token, SECRET_KEY, (err, decoded) => {
+      this.username = decoded.username;
+      console.log("DECODED TOKEN " + JSON.stringify(decoded));
+
+      if (err) {
+        console.log(err);
+      }
     });
+
+    // axios.get(url + username).then(res => {
+    //   this.user = res.data;
+    //   this.dataReady = true;
+    // });
   }
 };
 </script>

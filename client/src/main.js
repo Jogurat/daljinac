@@ -7,8 +7,10 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import NotFound from "./components/NotFound";
 import User from "./components/User";
+import Vuetify from "vuetify";
 
 Vue.config.productionTip = false;
+Vue.use(Vuetify);
 Vue.use(VueRouter);
 
 const routes = [
