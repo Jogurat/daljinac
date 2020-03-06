@@ -1,12 +1,26 @@
 <template>
   <div>
-    <h1>LOGIN</h1>Username
-    <input type="text" v-model="username" />
-    <br />Password
-    <input type="text" name id v-model="password" />
-    <br />
-    <br />
-    <v-btn v-on:click="loginUser">Login</v-btn>
+    <v-container>
+      <v-row>
+        <h1>Login</h1>
+      </v-row>
+      <v-row>
+        <v-col cols="3">
+          <v-text-field outlined label="Username" v-model="username"></v-text-field>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="3">
+          <v-text-field outlined label="Password" v-model="password"></v-text-field>
+        </v-col>
+      </v-row>
+      <v-row>
+        <v-col cols="1"></v-col>
+        <v-col>
+          <v-btn v-on:click="loginUser">Login</v-btn>
+        </v-col>
+      </v-row>
+    </v-container>
   </div>
 </template>
 
