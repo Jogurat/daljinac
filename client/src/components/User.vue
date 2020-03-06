@@ -1,5 +1,6 @@
 <template>
   <div v-if="dataReady">
+    <h1>{{ username }}</h1>
     <ul>
       <li v-for="room in user.rooms" :key="room._id">{{ room.name }}</li>
     </ul>
@@ -7,10 +8,10 @@
 </template>
 
 <script>
-//import axios from "axios";
+import axios from "axios";
 import jwt from "jsonwebtoken";
 
-//const url = "http://localhost:3000/users/";
+const url = "http://localhost:3000/users/";
 
 export default {
   name: "User",
@@ -42,10 +43,10 @@ export default {
       }
     });
 
-    // axios.get(url + username).then(res => {
-    //   this.user = res.data;
-    //   this.dataReady = true;
-    // });
+    axios.get(url + this.username).then(res => {
+      this.user = res.data;
+      this.dataReady = true;
+    });
   }
 };
 </script>
