@@ -1,5 +1,22 @@
 <template>
   <v-app>
+    <v-app-bar dense color="light-blue">
+      <v-container>
+        <v-row>
+          <v-col cols="2">
+            <v-img src="../assets/daljinac.png" aspect-ratio="1"></v-img>
+          </v-col>
+        </v-row>
+      </v-container>
+
+      <v-toolbar-title>Daljinac</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn icon>
+        <v-icon>mdi-magnify</v-icon>
+      </v-btn>
+      <v-btn v-if="!loggedIn()">Login</v-btn>
+      <v-btn v-else @click="logOut">Log out</v-btn>
+    </v-app-bar>
     <v-content>
       <router-view></router-view>
     </v-content>
@@ -24,6 +41,15 @@ export default {
 
   data: () => ({
     //
-  })
+  }),
+  methods: {
+    loggedIn: function() {
+      if (localStorage.getItem("token")) return true;
+      else return false;
+    },
+    logOut: function() {
+      localStorage.removeItem("token");
+    }
+  }
 };
 </script>

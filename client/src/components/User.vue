@@ -5,7 +5,7 @@
         <h1>{{ username }}</h1>
       </v-row>
       <v-row>
-        <v-card v-for="room in user.rooms" :key="room._id" max-width="100px">
+        <v-card hover v-for="room in user.rooms" :key="room._id" max-width="100px">
           <v-card-title>{{ room.name }}</v-card-title>
           <v-card-text>23</v-card-text>
         </v-card>
