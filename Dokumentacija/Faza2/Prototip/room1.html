@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daljinac/sobe</title>
+    <!-- Autor: Teodora Nedeljković -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel='stylesheet' href='style.css'>
+    <script src="myscripts.js"></script>
+</head>
+<body>
+    <div class='container'>
+        <div class='row'>
+            <div class='col-sm-12 firstRow'>
+                <div class='col-sm-1 firstRow'>
+                    &nbsp;
+                    <!--<button type="button" class="btn btn-info dugme"><a class='link2' href='index.html'>Naslovna strana</a></button>-->
+                    <a class="btn btn-primary dugme" href="index.html" role="button">Naslovna strana</a>
+                    &nbsp;
+                </div>
+            </div>
+        </div> 
+        <div class='naslovi'> SOBE </div>
+      <div class='row'>
+        <div class='col-md-4'>
+                <div class='thecard'>
+                   <div class='card-img'>
+                    <img src="assets/dnevna.jpg" alt="dnevna" height='90%' width='100%'>
+                   </div>
+                   <div class="card-caption">
+                    <i id="like-btn" class="fa fa-thumbs-o-up"></i>
+                    <span class="date">Ponedeljak, Jul 16, 2020</span>
+                    <h1>Dnevna soba</h1>
+                    <div class='temp'>
+                        <P> 27&deg</P>
+                    </div>
+                    <div class='row'>
+                        <div class='col-sm-12'>
+                                <table>
+                                    <tr>
+                                        <td> <img src="assets/upaljeno.png" alt="up" height="10%" weight='20%'> </td>
+                                        <td>  <img src="assets/gore.png" alt="gore" height="10%" weight='20%'> </td>
+                                        <td> <img src="assets/dole.png" alt="dole" height="10%" weight='20%'> </td>
+                                    </tr>
+                        </table>
+                    </div>
+                   </div>
+                  <div class="card-outmore">
+                    <h5>Pročitaj više detalja</h5>
+                    
+                  </div>
+                </div>
+            </div>
+        </div>
+
+        <div class='col-md-4'>
+            <div class='thecard'>
+               <div class='card-img'>
+                <img src="assets/spavaca.jpg" alt="spavaca" height='100%' width="100%">
+               </div>
+              <div class='centrirajDugme'>
+                <button type="button" class="btn btn-outline-secondary dugmeSoba" id='dugmence'
+                onclick="document.querySelector('.bg-modal').style.display = 'flex'"> + Dodaj novu sobu</button>
+                <!--<button type="button" class="btn btn-primary dugmeSoba">Dodaj novu sobu</button>-->
+                
+              </div>
+            </div>
+        </div>
+        <div class="bg-modal">
+            <div class="modal-content">
+                <div class="close" id='zatvori' onclick="document.querySelector('.bg-modal').style.display = 'none'">+</div>
+                <div class='card-img'>
+                    <img src="assets/dnevna.jpg" alt="dnevna" height='50' width='60'>
+                    &nbsp;
+                   </div>
+                <form >
+                    <input type="text" placeholder="Soba">
+                    <!--<select id='odabir'>
+                        <option>Dnevna</option>
+                        <option>Spavaca</option>
+                        <option>Dečija</option>
+                      </select>-->
+                    <input type="text" placeholder="WiFi">
+                    <input type="text" placeholder="Lozinka za WiFi">
+                    <input type="text" placeholder="Tip klime">
+                    <a class="btn btn-primary dugme" href="room1.html" role="button">Dodaj</a>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    </div>

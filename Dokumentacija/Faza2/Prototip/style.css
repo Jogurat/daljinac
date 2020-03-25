@@ -1,0 +1,191 @@
+
+//Autori:Teodora Nedeljković,
+       //Ksenija Mladenovic
+
+.dugme{
+    background-color: rgb(86, 165, 196);
+}
+.dugme:hover{
+    background-color:rgb(128, 189, 207);
+}
+body{
+    background-color: lightsteelblue;
+}
+
+.firstRow{
+    background-color:rgb(128, 180, 197);
+}
+.naslovi{
+    text-align: center;
+    font-size: 50px;
+    color: rgb(131, 131, 197);
+}
+
+.card{
+    box-shadow: opx 0px 20px 1px rgba(0,0,0,0.2);
+    padding:10px;
+    margin-top:30px;
+    background-color: whitesmoke;
+}
+.card img{
+    width:100%;
+    height:100%;
+}
+.thecard {
+    width: 300px;
+    margin: 5% auto;
+    box-shadow: 0 1px 30px rgba(0,0,0,.4);
+    display: block;
+    background-color: #fff;
+    border-radius: 4px;
+    transition: 400ms ease;
+  }
+  .thecard:hover {
+    box-shadow: 0 10px 50px rgba(0,0,0,.6);
+  }
+  .card-img {
+    height: 225px;
+  }
+  .card-caption {
+    position: relative;
+    background: #ffffff;
+    padding: 15px 25px 5px 25px;
+    border-radius: 0px 0px 4px 4px;
+  }
+  .card-outmore {
+    padding: 10px 25px 10px 25px;
+    border-radius: 0px 0px 4px 4px;
+    border-top: 1px solid #e0e0e0;
+    background: #efefef;
+    color: #222;
+    display: inline-table;
+    width: 100%;
+    box-sizing: border-box;
+    transition: 400ms ease;
+  } 
+ .card-outmore:hover {
+    background: #2C3E50;
+    color: #fff;
+  }
+  .card-outmore h5 {
+    float: left;
+  }
+  .card-outmore i {
+    float: right;
+  }
+ 
+ 
+  
+  span.date {
+    font-size: 10px;
+  }
+.link1{
+    text-align: center;
+}
+
+link2{
+    color:white;
+
+}
+.temp
+{
+  font-size: 81px;
+  color: rgba(0,0,0,0.9);
+  font-weight: 100;
+}
+  
+  
+  #outmore-icon {
+    border:1px solid ;
+    padding: 1px 6px;
+    border-radius: 50em;
+  }
+.table{
+    text-align: center;
+    font-size: 18px;
+    color: rgb(71, 71, 124);
+}
+#unos{
+  color:rgb(71, 71, 124);
+}
+.naslovi2{
+  text-indent:50px;
+  font-size: 43px;
+  color:rgb(131, 131, 197);
+}
+.paragraf{
+  text-align: center;
+  color: lightslategrayl;
+}
+.firstcharacter{
+  float: left;
+  font-size: 75px;
+  line-height: 60px;
+  padding-top: 4px;
+  padding-right: 8px;
+  padding-left: 3px;
+}
+#menu{
+   text-align: right;
+    color: rgb(86, 165, 196);;
+    font-weight: bold;
+    padding-top: 10px;
+    font-size: 20px;
+}
+.dugmeSoba{
+  background-color: #fff;
+  outline:none; 
+  text-align: center;
+}
+
+.dugmeSoba:hover{
+  background-color:#2C3E50;
+  outline:none; 
+}
+.centrirajDugme{
+  text-align: center;
+}
+
+.bg-modal{
+  background-color: rgba(0, 0, 0, 0.8);
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	display: none;
+	justify-content: center;
+	align-items: center;
+}
+.modal-content{
+  height: 300px;
+	width: 500px;
+	background-color: white;
+	text-align: center;
+	padding: 20px;
+	position: relative;
+	border-radius: 4px;
+
+}
+input{
+  margin: 10px auto;
+	display: block;
+	width: 50%;
+	border: 1px solid gray;
+}
+
+.close{
+  position: absolute;
+	top: 0;
+	right: 10px;
+	font-size: 42px;
+	color: #333;
+	transform: rotate(45deg);
+	cursor: pointer;
+
+}
+
+.odabir{
+  width:50%;
+  display:block;
+  margin: 15px auto;
+}
