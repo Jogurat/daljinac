@@ -40,7 +40,7 @@ npm i
 
 instalira sve dependecy-e koji se nalaze u package.json fajlu
 
-Dalje, prelazimo u "client" folder komandom i takodje instaliramo dependecy-e komandama:
+Dalje, prelazimo u "client" folder i takodje instaliramo dependecy-e komandama:
 
 ```bash
 cd client
@@ -68,4 +68,4 @@ cd client
 npm run serve
 ```
 
-(Prva komanda prelazi iz root foldera u "client folder")
+(Prva komanda prelazi iz root foldera u "client" folder)
