@@ -51,6 +51,8 @@ npm i
 
 ## Pokretanje projekta
 
+:warning: Za pravilno pokretanje projekta takodje su potrebna dva .env fajla. Za njih mi se obratite privatno (putem Githuba ili slicno).
+
 ### Pokretanje backend-a
 
 Backend pokrecemo iz root foldera komandom:
