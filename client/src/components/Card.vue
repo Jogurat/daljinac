@@ -16,11 +16,12 @@ export default {
     };
   },
   props: {
+    // props: {['title', 'deviceID']}
     title: String,
     deviceID: Number
   }
 };
 </script>
 
-<style>
+<style scoped>
 </style>
