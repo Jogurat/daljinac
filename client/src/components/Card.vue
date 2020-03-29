@@ -9,24 +9,25 @@
     class="mx-auto my-6"
     max-width="374"
   >
-  
-
-
-
-
+        
+     
   
     <v-img
       height="250"
       src="https://images.pexels.com/photos/1918291/pexels-photo-1918291.jpeg?auto=compress&cs=tinysrgb&h=650&w=940"
     
     ></v-img>
-
-    <v-card-title>{{ $props.title }}</v-card-title>
-
+   
+  <v-card-title>{{ $props.title }}</v-card-title>
     
-    <div class="my-4 subtitle-1">
-        <v-card-text>ID vašeg uređajaja: {{ $props.deviceID }}</v-card-text>
-      </div>
+     <v-card-text>
+      <v-row align="center">
+        <v-col class="display-3" cols="12">
+          23&deg;C
+        </v-col>
+      </v-row>
+    </v-card-text>
+
 
     <v-divider class="mx-4"></v-divider>
 
