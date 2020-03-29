@@ -19,7 +19,9 @@
     ></v-img>
    
   <v-card-title>{{ $props.title }}</v-card-title>
-    
+     <v-card-subtitle>
+      Beograd, Srbija
+    </v-card-subtitle>
      <v-card-text>
       <v-row align="center">
         <v-col class="display-3" cols="12">
@@ -33,18 +35,18 @@
 
 
     <v-card-text>
-       <div>
+       <div align="center">
 
-      <v-btn class="ma-4" color="green" dark>
-        <v-icon dark>mdi-power</v-icon>
+      <v-btn class="ma-4" color="green" icon>
+        <v-icon dark size="55px">mdi-power</v-icon>
       </v-btn>
 
-      <v-btn class="ma-4" color="red" dark>
-        <v-icon dark>mdi-plus-circle-outline</v-icon>
+      <v-btn class="ma-4" color="red" icon>
+        <v-icon dark size="48px">mdi-plus-circle-outline</v-icon>
       </v-btn>
 
-      <v-btn class="ma-4" color="blue" dark>
-        <v-icon dark>mdi-minus-circle-outline</v-icon>
+      <v-btn class="ma-4" color="blue" icon>
+        <v-icon dark size="48px">mdi-minus-circle-outline</v-icon>
       </v-btn>
     </div>
     </v-card-text>
