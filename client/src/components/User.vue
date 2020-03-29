@@ -5,10 +5,14 @@
         <h1>{{ username }}</h1>
       </v-row>
       <v-row>
-        <v-card hover v-for="room in user.rooms" :key="room._id" max-width="100px">
-          <v-card-title>{{ room.name }}</v-card-title>
-          <v-card-text>23</v-card-text>
-        </v-card>
+        <Card
+          hover
+          v-for="room in user.rooms"
+          :key="room._id"
+          max-width="100px"
+          v-bind:title="room.name"
+          v-bind:deviceID="room.deviceID"
+        ></Card>
       </v-row>
       <!--Test-->
       <v-row>
@@ -50,6 +54,7 @@
 <script>
 import axios from "axios";
 import jwt from "jsonwebtoken";
+import Card from "./Card";
 
 const url = "http://localhost:3000/users/";
 const roomUrl = "http://localhost:3000/users/room/";
@@ -66,6 +71,9 @@ export default {
       newRoomName: "",
       newDeviceID: ""
     };
+  },
+  components: {
+    Card
   },
   methods: {
     newRoom: function() {
