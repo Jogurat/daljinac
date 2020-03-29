@@ -21,7 +21,7 @@
         </v-card>
       </v-row>
       <v-row>
-        <v-dialog v-model="dialog" max-width="400px">
+        <v-dialog v-model="dialog" max-width="400px"> <!--Dialog popravi-->
           <v-card>
             <v-card-title>New Room</v-card-title>
             <v-container>
