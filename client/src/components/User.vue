@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-container>
+    <v-container v-if="dataReady">
       <v-row>
         <h1>{{ username }}</h1>
       </v-row>
