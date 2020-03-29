@@ -15,7 +15,7 @@
   >
     <v-img
       height="250"
-      src="../assets/dnevna.jpg"
+      src="client/assets/dnevna.jpg"
     ></v-img>
 
     <v-card-title>{{ $props.title }}</v-card-title>
