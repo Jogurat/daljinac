@@ -8,7 +8,7 @@ require("dotenv").config();
 
 const SECRET_KEY = process.env.SECRET_KEY;
 
-//Get users
+//Get ALL users
 router.get("/", async (req, res) => {
   try {
     const users = await User.find();
@@ -97,7 +97,7 @@ function checkAuth(req, res, next) {
     const bearerToken = bearear[1];
     req.token = bearerToken;
     next();
-  } else { 
+  } else {
     res.sendStatus(403);
   }
 }
