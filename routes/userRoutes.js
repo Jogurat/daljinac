@@ -44,7 +44,7 @@ router.put("/room/:username", async (req, res) => {
   }
 });
 
-//Post user
+//Post user REGSTER
 router.post("/", (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
@@ -59,7 +59,7 @@ router.post("/", (req, res) => {
         const newUser = await user.save();
         res.json(newUser).status(201);
       } catch (err) {
-        res.json(err).status(400);
+        res.status(400).json(err);
       }
     });
   });
@@ -74,19 +74,23 @@ router.post("/login", async (req, res) => {
     const user = await User.findOne({ username });
     bcrypt.compare(password, user.password, (err, result) => {
       if (result) {
+        console.log(result);
         //dobar pass
         jwt.sign(user.toJSON(), SECRET_KEY, (err, token) => {
           console.log("Pravim token");
           console.log(user.toJSON());
-          res.json(token).status(200); //SIGNED IN
+          res.status(200).json(token); //SIGNED IN
         });
       } else {
         //los pass
-        res.status(404);
+        //res.json({ message: "Wrong username or password" }).status(404);
+        res
+          .status(404)
+          .json({ message: "Pogresno korisnicko ime ili lozinka" });
       }
     });
   } catch (err) {
-    res.json({ message: err.message }).status(500);
+    res.status(500).json({ message: err.message });
   }
 });
 
