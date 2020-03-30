@@ -11,6 +11,7 @@ const helper = require("../pages/changePassPage");
 require("dotenv").config();
 
 const SECRET_KEY = process.env.SECRET_KEY;
+const EMAIL_SECRET = process.env.EMAIL_SECRET;
 
 //Transporter for sending pass change mail
 let transporter = nodemailer.createTransport({
@@ -119,7 +120,7 @@ router.post("/login", async (req, res) => {
 //Create link for changing pass with JWT
 router.get("/forgotPass/:username", async (req, res) => {
   const EMAIL_SECRET = process.env.EMAIL_SECRET;
-  const url = "http://localhost:3000/changePass/";
+  const url = "http://localhost:8080/changePass/";
   try {
     let user = await User.findOne({ username: req.params.username });
     user.changePass = true;
@@ -128,6 +129,7 @@ router.get("/forgotPass/:username", async (req, res) => {
       const link = url + token;
       //console.log(setUrl.setUrl(link));
       console.log("USER MEJL JE: " + user.email);
+      console.log("Link koji sam napravio je: " + link);
       let mailOptions = {
         from: '"daljina.cc support" <daljinaccc@gmail.com>', // sender address
         to: user.email, // list of receivers
@@ -143,6 +145,28 @@ router.get("/forgotPass/:username", async (req, res) => {
   } catch (err) {
     console.log(err);
   }
+});
+
+router.put("/changePass", (req, res) => {
+  const token = req.body.token;
+  const newPass = req.body.newPass;
+  console.log(EMAIL_SECRET);
+  jwt.verify(token, EMAIL_SECRET, async (err, decoded) => {
+    const user = await User.findOne({ username: decoded.username });
+    let password = newPass;
+    console.log(password);
+    bcrypt.genSalt(10, (err, salt) => {
+      bcrypt.hash(password, salt, async (err, hash) => {
+        try {
+          user.password = hash;
+          await user.save();
+          res.json(user).status(201);
+        } catch (err) {
+          res.status(400).json(err);
+        }
+      });
+    });
+  });
 });
 
 function checkAuth(req, res, next) {
