@@ -2,7 +2,7 @@
   <div>
     <v-container>
       <v-row>
-        <h1>{{ username }}</h1>
+        <h1>{{ username }} 's home</h1>
       </v-row>
       <v-row>
         <Card
@@ -23,7 +23,7 @@
       <v-row>
         <v-dialog v-model="dialog" max-width="400px">
           <v-card>
-            <v-card-title>New Room</v-card-title>
+            <v-card-title >New Room</v-card-title>
             <v-container>
               <v-row>
                 <v-col cols="1"></v-col>
@@ -55,10 +55,8 @@
 import axios from "axios";
 import jwt from "jsonwebtoken";
 import Card from "./Card";
-
 const url = "http://localhost:3000/users/";
 const roomUrl = "http://localhost:3000/users/room/";
-
 export default {
   name: "User",
   data: function() {
@@ -105,12 +103,10 @@ export default {
     jwt.verify(token, SECRET_KEY, (err, decoded) => {
       this.username = decoded.username;
       console.log("DECODED TOKEN " + JSON.stringify(decoded));
-
       if (err) {
         console.log(err);
       }
     });
-
     axios.get(url + this.username).then(res => {
       this.user = res.data;
       this.dataReady = true;

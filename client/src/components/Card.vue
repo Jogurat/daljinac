@@ -1,13 +1,9 @@
-<!--<template>
-  <div class="container">
-    <v-card max width="500px" , max-height="450px">
-      <v-card-title>{{ $props.title }}</v-card-title>
-      <v-card-text>{{ $props.deviceID }}</v-card-text
-    </v-card>
-  </div>
-</template>-->
+
 <template>
+<v-hover>
+    <template v-slot="{ hover }">
   <v-card
+  :elevation="hover ? 24 : 6"
     :loading="loading"
     class="mx-auto my-12"
     max-width="300"
@@ -30,27 +26,27 @@
 
     <v-divider class="mx-4"></v-divider>
     <v-card-text>
-      <v-row >
-        
-      <v-col cols="12" sm="3">
-            <v-btn icon color="green">
+
+          <div align="center">
+      
+            <v-btn class="ma-4" icon color="green">
               <v-icon large>mdi-power-standby</v-icon> <!--mdi-chevron-up-circle-->
             </v-btn>
-          </v-col>
+        
 
-          <v-col cols="12" sm="3">
-            <v-btn icon color="blue">
+         
+            <v-btn class="ma-4" icon color="blue">
               <v-icon large>mdi-chevron-up-circle</v-icon>
             </v-btn>
-          </v-col>
+      
 
-          <v-col cols="12" sm="3">
-            <v-btn icon color="blue">
+         
+            <v-btn class="ma-4" icon color="blue">
               <v-icon large>mdi-chevron-down-circle</v-icon>
             </v-btn>
-          </v-col>
-        
-      </v-row>
+   
+        </div>
+     
     </v-card-text>
 
    <!-- <v-card-actions>
@@ -63,10 +59,13 @@
       </v-btn>
     </v-card-actions>-->
   </v-card>
+  </template>
+</v-hover>
 </template>
 
 
 <script>
+
 export default {
   name: "Card",
   data: function() {

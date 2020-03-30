@@ -1,26 +1,51 @@
 <template>
-  <v-app>
-    <v-app-bar dense color="light-blue">
+<v-app>
+  <v-card>
+    <v-toolbar
+      color="#546E7A"
+      dark
+      flat
+    >
+     <!--<v-toolbar-title>
+       <div class="text-no-wrap text-example" style="width: 8rem;">
+         Daljina.cc
+       </div>
+    </v-toolbar-title>-->
       <v-container>
         <v-row>
-          <v-col cols="2">
-            <v-img src="../assets/daljinac.png" aspect-ratio="1"></v-img>
+          <v-col cols="4" padding-top="20px">
+            <v-img src="../assets/Group 5.svg" ></v-img>
           </v-col>
         </v-row>
       </v-container>
+     <v-spacer></v-spacer>
+       <v-card-text>
 
-      <v-toolbar-title>Daljinac</v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-      <v-btn v-if="!loggedIn()">Login</v-btn>
-      <v-btn v-else @click="logOut">Log out</v-btn>
-    </v-app-bar>
-    <v-content>
+          <div align="right">
+      
+            <v-btn class="ma-4" icon>
+              <v-icon large>mdi-magnify</v-icon> <!--mdi-chevron-up-circle-->
+            </v-btn>
+        
+
+         
+            <v-btn class="ma-4" color="blue accent-3" v-if="!loggedIn()">Login</v-btn>
+            <v-btn class="ma-4" color="blue accent-3" v-else @click="logOut">Log out</v-btn>
+
+         
+            <v-btn class="ma-4" color="blue accent-3">Contact us
+            </v-btn>
+   
+        </div>
+     
+    </v-card-text>
+    </v-toolbar>
+ <v-content>
       <router-view></router-view>
     </v-content>
-  </v-app>
+  </v-card>
+ 
+</v-app>
 </template>
 
 <script>

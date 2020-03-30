@@ -23,6 +23,7 @@
   },
   "devDependencies": {
     "@mdi/font": "^4.9.95",
+    "@mdi/js": "^5.0.45",
     "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "nodemon": "^2.0.2"
