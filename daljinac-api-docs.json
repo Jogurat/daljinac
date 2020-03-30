@@ -1,0 +1,227 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "Daljinac API",
+    "description": "## Dobrodosli u dokumentaciju API-a projekta Daljinac"
+  },
+  "host": "daljinac-api.herokuapp.com",
+  "schemes": ["https"],
+  "consumes": ["application/json"],
+  "produces": ["application/json"],
+  "paths": {
+    "/users": {
+      "get": {
+        "operationId": "GET_users",
+        "summary": "Dohvatnje svih korisnika",
+        "tags": ["users"],
+        "responses": {
+          "200": {
+            "description": "Dobar zahtev",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/user"
+              }
+            }
+          }
+        }
+      },
+      "post": {
+        "operationId": "POST_user",
+        "summary": "Pravljenje/registracija novog korisnika",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/user",
+              "example": {
+                "username": "KorisnickoIme",
+                "password": "lozinka123",
+                "email": "korisnik@gmail.com"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Uspesno kreiran korisnik",
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          }
+        }
+      }
+    },
+    "/users/{username}": {
+      "parameters": [
+        {
+          "name": "username",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ],
+      "get": {
+        "operationId": "GET_user_byUsername",
+        "summary": "Dohvatanje korisnika po korisnickom imenu",
+        "tags": ["users"],
+        "responses": {
+          "200": {
+            "description": "Dobro korisnicko ime - vraca tog korisnika",
+            "schema": {
+              "$ref": "#/definitions/user"
+            }
+          },
+          "404": {
+            "description": "Lose korisnicko ime - taj korisnik ne postoji",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/{username}/rooms": {
+      "get": {
+        "operationId": "GET_rooms_byUsername",
+        "summary": "Dohvata sobe za korisnika po korisnickom imenu",
+        "tags": ["users"],
+        "parameteres": [
+          {
+            "name": "username",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Dobro korisnicko ime - vraca sve sobe tog korisnika",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/room"
+              }
+            }
+          },
+          "404": {
+            "description": "Lose korisnicko ime - taj korisnik ne postoji",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": "string"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/users/login": {
+      "post": {
+        "operationId": "POST_loginUser",
+        "summary": "Loguje korisnika i vraca JSON Web Token koji se koristi za AUTH",
+        "tags": ["users"],
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/user-partial",
+              "example": {
+                "username": "KorisnickoIme",
+                "password": "lozinka123"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Uspesno logovanje korisnika - vraca se JWT",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "token": "string"
+              }
+            }
+          },
+          "404": {
+            "description": "Lose korisnicko ime ili lozinka",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "user": {
+      "title": "user",
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "_id": {
+              "type": "string"
+            },
+            "username": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "rooms": {
+              "type": "array"
+            }
+          },
+          "required": ["_id", "username", "password", "email", "rooms"]
+        }
+      ]
+    },
+    "user-partial": {
+      "title": "user-partial",
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "username": {
+              "type": "string"
+            },
+            "password": {
+              "type": "string"
+            }
+          },
+          "required": ["username", "password"]
+        }
+      ]
+    },
+    "room": {
+      "title": "rooms",
+      "allOf": [
+        {
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "deviceID": {
+              "type": "number"
+            }
+          },
+          "required": ["name", "deviceID"]
+        }
+      ]
+    }
+  }
+}
