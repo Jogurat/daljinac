@@ -7,6 +7,8 @@ import Register from "./components/Register";
 import Login from "./components/Login";
 import NotFound from "./components/NotFound";
 import User from "./components/User";
+import ForgotPass from "./components/ForgotPass";
+import ChangePass from "./components/ChangePass";
 import Vuetify from "vuetify";
 
 Vue.config.productionTip = false;
@@ -18,6 +20,8 @@ const routes = [
   { path: "/register", component: Register }, //sajt.com/register
   { path: "/login", component: Login },
   { path: "/user", component: User },
+  { path: "/forgotPass", component: ForgotPass },
+  { path: "/changePass/:token", component: ChangePass },
   { path: "*", component: NotFound }
 ];
 

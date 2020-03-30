@@ -4,9 +4,27 @@ const bcrypt = require("bcryptjs");
 const Action = require("../models/actions");
 const User = require("../models/users");
 const jwt = require("jsonwebtoken");
+const nodemailer = require("nodemailer");
+
+const helper = require("../pages/changePassPage");
+
 require("dotenv").config();
 
 const SECRET_KEY = process.env.SECRET_KEY;
+
+//Transporter for sending pass change mail
+let transporter = nodemailer.createTransport({
+  host: "smtp.gmail.com",
+  port: 587,
+  secure: false, // true for 465, false for other ports
+  auth: {
+    user: "daljinaccc@gmail.com", // generated ethereal user
+    pass: "daljinacc123" // generated ethereal password
+  },
+  tls: {
+    rejectUnauthorized: false
+  }
+});
 
 //Get ALL users
 router.get("/", async (req, res) => {
@@ -50,12 +68,14 @@ router.put("/room/:username", async (req, res) => {
 router.post("/", (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
+  const email = req.body.email;
 
   bcrypt.genSalt(10, (err, salt) => {
     bcrypt.hash(password, salt, async (err, hash) => {
       const user = new User({
         username,
-        password: hash
+        password: hash,
+        email
       });
       try {
         const newUser = await user.save();
@@ -93,6 +113,35 @@ router.post("/login", async (req, res) => {
     });
   } catch (err) {
     res.status(500).json({ message: err.message });
+  }
+});
+
+//Create link for changing pass with JWT
+router.get("/forgotPass/:username", async (req, res) => {
+  const EMAIL_SECRET = process.env.EMAIL_SECRET;
+  const url = "http://localhost:3000/changePass/";
+  try {
+    let user = await User.findOne({ username: req.params.username });
+    user.changePass = true;
+    console.log(user);
+    jwt.sign(user.toJSON(), EMAIL_SECRET, { expiresIn: "2h" }, (err, token) => {
+      const link = url + token;
+      //console.log(setUrl.setUrl(link));
+      console.log("USER MEJL JE: " + user.email);
+      let mailOptions = {
+        from: '"daljina.cc support" <daljinaccc@gmail.com>', // sender address
+        to: user.email, // list of receivers
+        subject: "daljina.cc password change", // Subject line
+        // text: `Please click this link to change your pass: ${link}` // plain text body
+        html: helper.setUrl(link)
+      };
+      transporter.sendMail(mailOptions, (error, info) => {
+        if (error) return console.log(error);
+      });
+      res.status(200).json({ link });
+    });
+  } catch (err) {
+    console.log(err);
   }
 });
 
