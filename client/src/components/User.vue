@@ -34,6 +34,22 @@
                   <v-text-field label="Device ID" v-model="newDeviceID"></v-text-field>
                 </v-col>
               </v-row>
+
+              <v-row>
+                 <v-col cols="4"></v-col>
+                <v-col>
+                  <v-radio-group v-model="dialogm1" column label="Room type">
+            <v-radio label="Living room" value="l"></v-radio>
+            <v-radio label="Bedrooom" value="b"></v-radio>
+            <v-radio label="Kitchen" value="k"></v-radio>
+            <v-radio label="Kids room" value="r"></v-radio>
+                  
+
+
+                  </v-radio-group>
+                   </v-col>
+              </v-row>
+
               <v-row>
                 <v-col cols="4"></v-col>
                 <v-col>
