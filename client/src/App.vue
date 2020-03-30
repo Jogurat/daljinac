@@ -1,6 +1,7 @@
 <template>
   <v-app>
-    <v-app-bar dense color="light-blue">
+      
+       <v-app-bar color="light-blue" dense >
       <v-container>
         <v-row>
           <v-col cols="2">
@@ -9,13 +10,14 @@
         </v-row>
       </v-container>
 
-      <v-toolbar-title>Daljinac</v-toolbar-title>
+      <v-toolbar-title>Daljinac</v-toolbar-title> <!---Toolbar-->
       <v-spacer></v-spacer>
       <v-btn icon>
         <v-icon>mdi-magnify</v-icon>
       </v-btn>
       <v-btn v-if="!loggedIn()">Login</v-btn>
       <v-btn v-else @click="logOut">Log out</v-btn>
+      <v-btn>Contact us</v-btn>
     </v-app-bar>
     <v-content>
       <router-view></router-view>
