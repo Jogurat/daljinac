@@ -11,51 +11,47 @@
   <v-card
     :loading="loading"
     class="mx-auto my-12"
-    max-width="374"
+    max-width="300"
   >
     <v-img
-      height="250"
-      src="client/assets/dnevna.jpg"
+      height="150"
+     
+      src="https://www.thespruce.com/thmb/_iITA9xgfLDWyLjzF5xwBDTzdgI=/960x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/GettyImages-842254818-5bfc267446e0fb00260a3348.jpg"
     ></v-img>
 
     <v-card-title>{{ $props.title }}</v-card-title>
-    <v-list-item two-line>
-      <v-list-item-content>
-        <v-list-item-title class="headline">Beograd</v-list-item-title>
-        <v-list-item-subtitle>Mon, 12:30 PM</v-list-item-subtitle>
-      </v-list-item-content>
-    </v-list-item>
+    <v-card-subtitle>Beograd, Srbija</v-card-subtitle>
     <v-card-text>
       <v-row align="center">
-        <v-col class="display-3" cols="6">
+        <v-col class="display-2" cols="6">
           23&deg;C
-        </v-col>
-        <v-col cols="6">
-          <v-img
-            src="https://cdn.vuetifyjs.com/images/cards/sun.png"
-            alt="Sunny image"
-            width="92"
-          ></v-img>
         </v-col>
       </v-row>
     </v-card-text>
 
     <v-divider class="mx-4"></v-divider>
-
     <v-card-text>
-      <v-chip-group
-        v-model="selection"
-        active-class="deep-purple accent-4 white--text"
-        column
-      >
-        <v-chip>mdi-chevron-up-circle</v-chip>
+      <v-row >
+        
+      <v-col cols="12" sm="3">
+            <v-btn icon color="green">
+              <v-icon large>mdi-power-standby</v-icon> <!--mdi-chevron-up-circle-->
+            </v-btn>
+          </v-col>
 
-        <v-chip>7:30PM</v-chip>
+          <v-col cols="12" sm="3">
+            <v-btn icon color="blue">
+              <v-icon large>mdi-chevron-up-circle</v-icon>
+            </v-btn>
+          </v-col>
 
-        <v-chip>8:00PM</v-chip>
-
-        <v-chip>9:00PM</v-chip>
-      </v-chip-group>
+          <v-col cols="12" sm="3">
+            <v-btn icon color="blue">
+              <v-icon large>mdi-chevron-down-circle</v-icon>
+            </v-btn>
+          </v-col>
+        
+      </v-row>
     </v-card-text>
 
    <!-- <v-card-actions>
