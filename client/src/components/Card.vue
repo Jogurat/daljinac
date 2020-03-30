@@ -2,15 +2,7 @@
   <div class="container">
     <v-card max width="500px" , max-height="450px">
       <v-card-title>{{ $props.title }}</v-card-title>
-      <v-card-text>{{ $props.deviceID }}</v-card-text>
-<<<<<<< HEAD
-
-
-=======
-      <v-btn icon>
-        <v-icon>mdi-alpha-r-circle-outline</v-icon>
-      </v-btn>
->>>>>>> 1c9329a7521d03527a8d4e257223d6d1634db51f
+      <v-card-text>{{ $props.deviceID }}</v-card-text
     </v-card>
   </div>
 </template>-->
