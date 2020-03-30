@@ -5,6 +5,7 @@
       <v-card-text>{{ $props.deviceID }}</v-card-text>
 <<<<<<< HEAD
 
+
 =======
       <v-btn icon>
         <v-icon>mdi-alpha-r-circle-outline</v-icon>
