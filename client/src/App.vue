@@ -18,7 +18,6 @@
       </v-btn>
       <v-btn v-if="!loggedIn()">Login</v-btn>
       <v-btn v-else @click="logOut">Log out</v-btn>
-      <v-btn>Contact us</v-btn>
     </v-app-bar>
     <v-content>
       <router-view></router-view>

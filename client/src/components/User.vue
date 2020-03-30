@@ -16,12 +16,10 @@
       </v-row>
       <!--Test-->
       <v-row>
-        <v-card max-width="500px">
-          <v-card-title>Sobica</v-card-title>
-        </v-card>
       </v-row>
       <v-row>
-        <v-dialog v-model="dialog" max-width="400px"> <!--Dialog popravi-->
+        <v-dialog name="New room" v-model="dialog" max-width="400px"> <!--Dialog popravi-->
+          
           <v-card>
             <v-card-title>New Room</v-card-title>
             <v-container>
