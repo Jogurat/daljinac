@@ -29,6 +29,8 @@ router.get("/:username", async (req, res) => {
   }
 });
 
+//Add new room
+
 router.put("/room/:username", async (req, res) => {
   try {
     //GOT USER

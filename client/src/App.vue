@@ -8,7 +8,8 @@
           </v-col>
         </v-row>
       </v-container>
-
+      <v-btn to="/register">Register</v-btn>
+      <v-btn to="/login">Login</v-btn>
       <v-toolbar-title>Daljinac</v-toolbar-title>
       <v-spacer></v-spacer>
       <v-btn icon>
