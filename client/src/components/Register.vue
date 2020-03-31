@@ -1,30 +1,12 @@
 <template>
   <div>
-    <v-container>
-      <v-row>
-        <h1>Register</h1>
-      </v-row>
-      <v-row>
-        <v-col cols="3">
-          <v-text-field outlined label="Email" v-model="email"></v-text-field>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col cols="3">
-          <v-text-field outlined label="Username" v-model="username"></v-text-field>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col cols="3">
-          <v-text-field outlined label="Password" v-model="password"></v-text-field>
-        </v-col>
-      </v-row>
-      <v-row>
-        <v-col>
-          <v-btn v-on:click="registerUser">Register</v-btn>
-        </v-col>
-      </v-row>
-    </v-container>
+    <h1>REGISTER</h1>Username
+    <input type="text" v-model="username" />
+    <br />Password
+    <input type="password" name id v-model="password"  />
+    <br />
+    <br />
+    <v-btn v-on:click="registerUser">Register</v-btn>
   </div>
 </template>
 

@@ -11,7 +11,7 @@
       </v-row>
       <v-row>
         <v-col cols="3">
-          <v-text-field outlined label="Password" v-model="password"></v-text-field>
+          <v-text-field outlined label="Password" v-model="password" type="password"></v-text-field>
         </v-col>
       </v-row>
       <v-row>
