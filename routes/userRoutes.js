@@ -80,7 +80,7 @@ const createUser = router.post("/", (req, res) => {
       });
       try {
         const newUser = await user.save();
-        res.json(newUser).status(201);
+        res.status(201).json(newUser);
       } catch (err) {
         res.status(400).json(err);
       }
