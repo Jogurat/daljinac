@@ -9,7 +9,9 @@ const jwt = require("jsonwebtoken");
 const SECRET_KEY = process.env.SECRET_KEY;
 
 mongoose.connect(process.env.MONGODB_URI, {
-  useNewUrlParser: true
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true
 });
 const db = mongoose.connection;
 db.on("error", error => console.error(error));
@@ -22,7 +24,7 @@ const actionsRouter = require("./routes/routes");
 const userRouter = require("./routes/userRoutes");
 
 app.use("/actions", actionsRouter);
-app.use("/users", userRouter);
+app.use("/users", userRouter.router);
 app.get("/", (req, res) => {
   res.sendfile("./index.html");
 });
