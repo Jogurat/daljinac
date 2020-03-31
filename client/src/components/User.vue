@@ -2,8 +2,17 @@
   <div>
     <v-container>
       <v-row>
-        <h1>{{ username }} 's home</h1>
+        <v-col cols="4" align="center">
+          <h1>{{ username }} 's home</h1>
+        </v-col>
       </v-row>
+
+      <v-row>
+        <v-col cols="4" align="center">
+        <v-btn  @click="dialog = !dialog">New room</v-btn>
+        </v-col>
+      </v-row>
+      
       <v-row>
         <Card
           hover
@@ -16,9 +25,6 @@
       </v-row>
       <!--Test-->
       <v-row>
-        <v-card max-width="500px">
-          <v-card-title>Sobica</v-card-title>
-        </v-card>
       </v-row>
       <v-row>
         <v-dialog v-model="dialog" max-width="400px">
@@ -60,9 +66,7 @@
           </v-card>
         </v-dialog>
       </v-row>
-      <v-row>
-        <v-btn @click="dialog = !dialog">New room</v-btn>
-      </v-row>
+      
     </v-container>
   </div>
 </template>
