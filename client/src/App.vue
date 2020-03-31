@@ -1,28 +1,34 @@
 <template>
   <v-app>
-      
-       <v-app-bar color="light-blue" dense >
-      <v-container>
-        <v-row>
-          <v-col cols="2">
-            <v-img src="../assets/daljinac.png" aspect-ratio="1"></v-img>
-          </v-col>
-        </v-row>
-      </v-container>
-      <v-btn to="/register">Register</v-btn>
-      <v-btn to="/login">Login</v-btn>
-      <v-toolbar-title>Daljinac</v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-      <v-btn v-if="!loggedIn()">Login</v-btn>
-      <v-btn v-else @click="logOut">Log out</v-btn>
-      <v-btn>Contact us</v-btn>
-    </v-app-bar>
-    <v-content>
-      <router-view></router-view>
-    </v-content>
+    <v-card>
+      <v-toolbar color="#546E7A" dark flat>
+        <!--<v-toolbar-title>
+       <div class="text-no-wrap text-example" style="width: 8rem;">
+         Daljina.cc
+       </div>
+        </v-toolbar-title>-->
+        <v-container>
+          <v-row>
+            <v-col cols="4" padding-top="20px">
+              <v-img src="../assets/Group 5.svg" max-width="240px" max-height="70px"></v-img>
+            </v-col>
+          </v-row>
+        </v-container>
+        <v-spacer></v-spacer>
+        <v-card-text>
+          <div align="right">
+            <v-btn class="ma-4" color="blue accent-3" v-if="!loggedIn()" to="/register">Register</v-btn>
+            <v-btn class="ma-4" color="blue accent-3" v-if="!loggedIn()" to="/login">Login</v-btn>
+            <v-btn class="ma-4" color="blue accent-3" v-else @click="logOut" to="/">Log out</v-btn>
+
+            <v-btn class="ma-4" color="blue accent-3">Contact us</v-btn>
+          </div>
+        </v-card-text>
+      </v-toolbar>
+      <v-content>
+        <router-view></router-view>
+      </v-content>
+    </v-card>
   </v-app>
 </template>
 
@@ -42,17 +48,27 @@ export default {
 
   components: {},
 
-  data: () => ({
-    //
-  }),
+  data: function() {},
   methods: {
     loggedIn: function() {
-      if (localStorage.getItem("token")) return true;
-      else return false;
+      if (localStorage.getItem("token")) {
+        //this.isLoggedIn = true;
+        return true;
+      } else {
+        //this.isLoggedIn = false;
+        return false;
+      }
     },
     logOut: function() {
       localStorage.removeItem("token");
+      // this.isLoggedIn = false;
     }
   }
 };
 </script>
+
+<style scoped>
+.test {
+  padding-left: 150px;
+}
+</style>
