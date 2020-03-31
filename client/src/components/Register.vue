@@ -3,7 +3,7 @@
     <h1>REGISTER</h1>Username
     <input type="text" v-model="username" />
     <br />Password
-    <input type="text" name id v-model="password" />
+    <input type="password" name id v-model="password"  />
     <br />
     <br />
     <v-btn v-on:click="registerUser">Register</v-btn>

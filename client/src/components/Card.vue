@@ -36,13 +36,13 @@
 
          
             <v-btn class="ma-4" icon color="blue">
-              <v-icon large>mdi-chevron-up-circle</v-icon>
+              <v-icon large>mdi-chevron-up-circle-outline</v-icon>
             </v-btn>
       
 
          
             <v-btn class="ma-4" icon color="blue">
-              <v-icon large>mdi-chevron-down-circle</v-icon>
+              <v-icon large>mdi-chevron-down-circle-outline</v-icon>
             </v-btn>
    
         </div>
