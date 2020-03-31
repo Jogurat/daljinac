@@ -41,6 +41,18 @@
     </v-card-text>
     </v-toolbar>
  <v-content>
+      <v-btn to="/register">Register</v-btn>
+      <v-btn to="/login">Login</v-btn>
+      <v-toolbar-title>Daljinac</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <v-btn icon>
+        <v-icon>mdi-magnify</v-icon>
+      </v-btn>
+      <v-btn v-if="!loggedIn()">Login</v-btn>
+      <v-btn v-else @click="logOut">Log out</v-btn>
+      <v-btn>Contact us</v-btn>
+    
+    <v-content>
       <router-view></router-view>
     </v-content>
   </v-card>

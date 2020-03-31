@@ -15,6 +15,11 @@
         </v-col>
       </v-row>
       <v-row>
+        <v-col>
+          <router-link to="/forgotPass">Forgot your password?</router-link>
+        </v-col>
+      </v-row>
+      <v-row>
         <v-col cols="1"></v-col>
         <v-col>
           <v-btn v-on:click="loginUser">Login</v-btn>
