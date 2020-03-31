@@ -9,7 +9,7 @@ const config = require("./config.js");
 
 const SECRET_KEY = config.SECRET_KEY;
 
-mongoose.connect(process.env.MONGODB_URI, {
+mongoose.connect(config.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useCreateIndex: true
@@ -30,4 +30,4 @@ app.get("/", (req, res) => {
   res.sendfile("./index.html");
 });
 
-app.listen(process.env.PORT || 3000, () => console.log("Server started"));
+app.listen(config.PORT, () => console.log("Server started"));

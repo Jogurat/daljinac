@@ -7,11 +7,11 @@ const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
 
 const helper = require("../pages/changePassPage");
-
+const config = require("../config.js");
 require("dotenv").config();
 
-const SECRET_KEY = process.env.SECRET_KEY;
-const EMAIL_SECRET = process.env.EMAIL_SECRET;
+const SECRET_KEY = config.SECRET_KEY;
+const EMAIL_SECRET = config.EMAIL_SECRET;
 
 //Transporter for sending pass change mail
 let transporter = nodemailer.createTransport({
@@ -119,7 +119,7 @@ const loginUser = router.post("/login", async (req, res) => {
 
 //Create link for changing pass with JWT
 const forgotPassMail = router.get("/forgotPass/:username", async (req, res) => {
-  const EMAIL_SECRET = process.env.EMAIL_SECRET;
+  const EMAIL_SECRET = config.EMAIL_SECRET;
   const url = "http://localhost:8080/changePass/";
   try {
     let user = await User.findOne({ username: req.params.username });
