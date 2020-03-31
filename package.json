@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "test": "mocha",
     "devStart": "nodemon server.js",
     "start": "nodemon server.js",
     "myStart": "nodemon server.js cd client vue-cli-service serve cd .."
