@@ -24,7 +24,7 @@ const actionsRouter = require("./routes/routes");
 const userRouter = require("./routes/userRoutes");
 
 app.use("/actions", actionsRouter);
-app.use("/users", userRouter);
+app.use("/users", userRouter.router);
 app.get("/", (req, res) => {
   res.sendfile("./index.html");
 });

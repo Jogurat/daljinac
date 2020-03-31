@@ -28,7 +28,7 @@ let transporter = nodemailer.createTransport({
 });
 
 //Get ALL users
-router.get("/", async (req, res) => {
+const getAllUsers = router.get("/", async (req, res) => {
   try {
     const users = await User.find();
     res.json(users);
@@ -38,7 +38,7 @@ router.get("/", async (req, res) => {
 });
 
 //Get user by username
-router.get("/:username", async (req, res) => {
+const getUserByUsername = router.get("/:username", async (req, res) => {
   try {
     const user = await User.findOne({ username: req.params.username });
     if (user !== null) res.json(user);
@@ -50,7 +50,7 @@ router.get("/:username", async (req, res) => {
 
 //Add new room
 
-router.put("/room/:username", async (req, res) => {
+const addRoom = router.put("/room/:username", async (req, res) => {
   try {
     //GOT USER
     const user = await User.findOne({ username: req.params.username });
@@ -66,7 +66,7 @@ router.put("/room/:username", async (req, res) => {
 });
 
 //Post user REGSTER
-router.post("/", (req, res) => {
+const createUser = router.post("/", (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
   const email = req.body.email;
@@ -89,7 +89,7 @@ router.post("/", (req, res) => {
 });
 
 //LOGIN USER
-router.post("/login", async (req, res) => {
+const loginUser = router.post("/login", async (req, res) => {
   console.log("OVO JE USER " + req.body.username);
   const username = req.body.username;
   let password = req.body.password;
@@ -118,7 +118,7 @@ router.post("/login", async (req, res) => {
 });
 
 //Create link for changing pass with JWT
-router.get("/forgotPass/:username", async (req, res) => {
+const forgotPassMail = router.get("/forgotPass/:username", async (req, res) => {
   const EMAIL_SECRET = process.env.EMAIL_SECRET;
   const url = "http://localhost:8080/changePass/";
   try {
@@ -147,7 +147,7 @@ router.get("/forgotPass/:username", async (req, res) => {
   }
 });
 
-router.put("/changePass", (req, res) => {
+const changePass = router.put("/changePass", (req, res) => {
   const token = req.body.token;
   const newPass = req.body.newPass;
   console.log(EMAIL_SECRET);
@@ -181,4 +181,13 @@ function checkAuth(req, res, next) {
   }
 }
 
-module.exports = router;
+module.exports = {
+  router,
+  getAllUsers,
+  getUserByUsername,
+  addRoom,
+  createUser,
+  loginUser,
+  forgotPassMail,
+  changePass
+};
