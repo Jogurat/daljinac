@@ -41,7 +41,7 @@ const getAllUsers = router.get("/", async (req, res) => {
 const getUserByUsername = router.get("/:username", async (req, res) => {
   try {
     const user = await User.findOne({ username: req.params.username });
-    if (user !== null) res.json(user);
+    if (user !== null) res.status(200).json(user);
     else res.status(404).json({ message: "User not found 404" });
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -49,7 +49,6 @@ const getUserByUsername = router.get("/:username", async (req, res) => {
 });
 
 //Add new room
-
 const addRoom = router.put("/room/:username", async (req, res) => {
   try {
     //GOT USER
@@ -74,6 +73,8 @@ const createUser = router.post("/", (req, res) => {
   bcrypt.genSalt(10, (err, salt) => {
     bcrypt.hash(password, salt, async (err, hash) => {
       const user = new User({
+        //ovde bi mozda trebalo samo da stoji objekat, a User da
+        // a user da predstavlja semu iz modela
         username,
         password: hash,
         email
@@ -120,7 +121,7 @@ const loginUser = router.post("/login", async (req, res) => {
 //Create link for changing pass with JWT
 const forgotPassMail = router.get("/forgotPass/:username", async (req, res) => {
   const EMAIL_SECRET = config.EMAIL_SECRET;
-  const url = "http://localhost:8080/changePass/";
+  const url = config.FRONT_HOST + "/changePass/";
   try {
     let user = await User.findOne({ username: req.params.username });
     user.changePass = true;
