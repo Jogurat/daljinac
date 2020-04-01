@@ -65,28 +65,38 @@ const addRoom = router.put("/room/:username", async (req, res) => {
 });
 
 //Post user REGSTER
-const createUser = router.post("/", (req, res) => {
+const createUser = router.post("/", async (req, res) => {
   const username = req.body.username;
   const password = req.body.password;
   const email = req.body.email;
-
-  bcrypt.genSalt(10, (err, salt) => {
-    bcrypt.hash(password, salt, async (err, hash) => {
-      const user = new User({
-        //ovde bi mozda trebalo samo da stoji objekat, a User da
-        // a user da predstavlja semu iz modela
-        username,
-        password: hash,
-        email
+  try {
+    let oldUser = await User.findOne({ username });
+    if (oldUser !== null)
+      res
+        .status(409)
+        .json({ message: "User with this username already exists!" });
+    else {
+      bcrypt.genSalt(10, (err, salt) => {
+        bcrypt.hash(password, salt, async (err, hash) => {
+          const user = new User({
+            //ovde bi mozda trebalo samo da stoji objekat, a User da
+            // a user da predstavlja semu iz modela
+            username,
+            password: hash,
+            email
+          });
+          try {
+            const newUser = await user.save();
+            res.status(201).json(newUser);
+          } catch (err) {
+            res.status(400).json(err);
+          }
+        });
       });
-      try {
-        const newUser = await user.save();
-        res.status(201).json(newUser);
-      } catch (err) {
-        res.status(400).json(err);
-      }
-    });
-  });
+    }
+  } catch (err) {
+    res.status(500).json({ message: err });
+  }
 });
 
 //LOGIN USER
