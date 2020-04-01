@@ -1,12 +1,5 @@
 <template>
   <div>
-    <h1>REGISTER</h1>Username
-    <input type="text" v-model="username" />
-    <br />Password
-    <input type="password" name id v-model="password"  />
-    <br />
-    <br />
-    <v-btn v-on:click="registerUser">Register</v-btn>
     <v-container>
       <v-row>
         <h1>Register</h1>
