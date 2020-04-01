@@ -74,4 +74,30 @@ describe("User routes", () => {
         });
     });
   });
+
+  //Add room to user
+  describe("CREATE room for user", () => {
+    it("should PUT one room to user", done => {
+      const username = "TestUser";
+      const url = "/users/room/" + username;
+      const newRoom = {
+        name: "Test Room",
+        deviceID: 42
+      };
+      chai
+        .request(server)
+        .put(url)
+        .send(newRoom)
+        .end((err, res) => {
+          res.should.have.status(202);
+          res.should.be.a("object");
+          res.body.should.have.property("rooms");
+          const rooms = res.body.rooms;
+          rooms.length.should.eql(1);
+          rooms[0].should.have.property("name").eql(newRoom.name);
+          rooms[0].should.have.property("deviceID").eql(newRoom.deviceID);
+          done();
+        });
+    });
+  });
 });
