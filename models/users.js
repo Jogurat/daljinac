@@ -14,12 +14,18 @@ const usersSchema = new mongoose.Schema({
   },
   email: {
     type: String,
-    required: false
+    required: true
   },
   rooms: [
     {
-      name: String,
-      deviceID: Number
+      name: {
+        type: String,
+        required: true
+      },
+      deviceID: {
+        type: Number,
+        required: true
+      }
     }
   ]
 });
