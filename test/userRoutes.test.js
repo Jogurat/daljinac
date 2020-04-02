@@ -11,6 +11,7 @@ let should = chai.should();
 chai.use(chaiHttp);
 
 describe("User routes", () => {
+  //this.timeout(0);
   before(done => {
     User.deleteMany({}, err => {
       done();
