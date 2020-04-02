@@ -8,6 +8,9 @@ const chaiHttp = require("chai-http");
 const server = require("../server");
 let should = chai.should();
 
+const usersUrl = "/users/";
+const loginUrl = usersUrl + "login";
+
 chai.use(chaiHttp);
 
 describe("User routes", () => {
@@ -22,7 +25,7 @@ describe("User routes", () => {
     it("should GET all users", done => {
       chai
         .request(server)
-        .get("/users")
+        .get(usersUrl)
         .end((err, res) => {
           res.should.have.status(200);
           res.body.should.be.an("array");
@@ -43,7 +46,7 @@ describe("User routes", () => {
 
       chai
         .request(server)
-        .post("/users") //http://localhost:3000/users
+        .post(usersUrl) //http://localhost:3000/users
         .send(user)
         .end((err, res) => {
           res.should.have.status(201);
@@ -60,7 +63,7 @@ describe("User routes", () => {
   describe("GET one user", () => {
     it("should GET one user by username", done => {
       const username = "TestUser";
-      const url = "/users/" + username;
+      const url = usersUrl + username;
       chai
         .request(server)
         .get(url)
@@ -107,10 +110,10 @@ describe("User routes", () => {
         username: "TestUser",
         password: "pass"
       };
-      const url = "/users/login/";
+
       chai
         .request(server)
-        .post(url)
+        .post(loginUrl)
         .send(user)
         .end((err, res) => {
           res.should.have.status(200);
@@ -121,22 +124,31 @@ describe("User routes", () => {
     });
   });
 
-  describe("failed user login", () => {
+  describe("failed user login - bad password", () => {
     it("should return 404 status and not log the user in", done => {
       const user = {
         username: "TestUser",
         password: "123"
       };
-      const url = "/users/login";
+
       chai
         .request(server)
-        .post(url)
+        .post(loginUrl)
         .send(user)
         .end((err, res) => {
           res.should.have.status(404);
           res.body.should.not.have.property("token");
           done();
         });
+    });
+  });
+
+  describe("failed user login - bad request", () => {
+    it("should return 500 status because of bad request body", done => {
+      const user = {
+        username: "TestUser"
+      };
+      const url = "/users/";
     });
   });
 });
