@@ -254,8 +254,8 @@ describe("User routes", () => {
           .send(user)
           .end((err, res) => {
             res.should.have.status(200);
-            res.body.should.have.property("token");
-            res.body.token.should.be.a("string");
+            //res.body.should.have.property("token");
+            res.body.should.be.a("string");
             done();
           });
       });
