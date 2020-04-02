@@ -30,6 +30,6 @@ app.get("/", (req, res) => {
   res.sendfile("./index.html");
 });
 
-app.listen(config.PORT, () => console.log("Server started"));
+let server = app.listen(config.PORT, () => console.log("Server started"));
 
-module.exports = app;
+module.exports = server;

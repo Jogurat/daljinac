@@ -331,4 +331,9 @@ describe("User routes", () => {
       });
     });
   });
+
+  after(done => {
+    server.close();
+    done();
+  });
 });
