@@ -114,7 +114,7 @@ const loginUser = router.post("/login", async (req, res) => {
         jwt.sign(user.toJSON(), SECRET_KEY, (err, token) => {
           //console.log("Pravim token");
           //console.log(user.toJSON());
-          res.status(200).json({ token }); //SIGNED IN
+          res.status(200).json(token); //SIGNED IN
         });
       } else {
         //los pass
