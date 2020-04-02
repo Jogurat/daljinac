@@ -72,6 +72,7 @@ const createUser = router.post("/", async (req, res) => {
   try {
     let oldUser = await User.findOne({ username });
     if (oldUser !== null)
+      //Korisnik vec postoji!
       res
         .status(409)
         .json({ message: "User with this username already exists!" });
@@ -101,19 +102,19 @@ const createUser = router.post("/", async (req, res) => {
 
 //LOGIN USER
 const loginUser = router.post("/login", async (req, res) => {
-  console.log("OVO JE USER " + req.body.username);
+  //console.log("OVO JE USER " + req.body.username);
   const username = req.body.username;
   let password = req.body.password;
   try {
     const user = await User.findOne({ username });
     bcrypt.compare(password, user.password, (err, result) => {
       if (result) {
-        console.log(result);
+        //console.log(result);
         //dobar pass
         jwt.sign(user.toJSON(), SECRET_KEY, (err, token) => {
-          console.log("Pravim token");
-          console.log(user.toJSON());
-          res.status(200).json(token); //SIGNED IN
+          //console.log("Pravim token");
+          //console.log(user.toJSON());
+          res.status(200).json({ token }); //SIGNED IN
         });
       } else {
         //los pass
@@ -135,12 +136,12 @@ const forgotPassMail = router.get("/forgotPass/:username", async (req, res) => {
   try {
     let user = await User.findOne({ username: req.params.username });
     user.changePass = true;
-    console.log(user);
+    //console.log(user);
     jwt.sign(user.toJSON(), EMAIL_SECRET, { expiresIn: "2h" }, (err, token) => {
       const link = url + token;
       //console.log(setUrl.setUrl(link));
-      console.log("USER MEJL JE: " + user.email);
-      console.log("Link koji sam napravio je: " + link);
+      //console.log("USER MEJL JE: " + user.email);
+      //console.log("Link koji sam napravio je: " + link);
       let mailOptions = {
         from: '"daljina.cc support" <daljinaccc@gmail.com>', // sender address
         to: user.email, // list of receivers
@@ -165,7 +166,7 @@ const changePass = router.put("/changePass", (req, res) => {
   jwt.verify(token, EMAIL_SECRET, async (err, decoded) => {
     const user = await User.findOne({ username: decoded.username });
     let password = newPass;
-    console.log(password);
+    //console.log(password);
     bcrypt.genSalt(10, (err, salt) => {
       bcrypt.hash(password, salt, async (err, hash) => {
         try {

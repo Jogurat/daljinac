@@ -25,7 +25,7 @@ describe("User routes", () => {
         .get("/users")
         .end((err, res) => {
           res.should.have.status(200);
-          res.body.should.be.a("array");
+          res.body.should.be.an("array");
           res.body.length.should.be.eql(0);
           done();
         });
@@ -47,7 +47,7 @@ describe("User routes", () => {
         .send(user)
         .end((err, res) => {
           res.should.have.status(201);
-          res.body.should.be.a("object");
+          res.body.should.be.an("object");
           res.body.should.have.property("username").eql("TestUser");
           res.body.should.have.property("email").eql("test@gmail.com");
           res.body.should.have.property("password").not.eql("pass");
@@ -66,7 +66,7 @@ describe("User routes", () => {
         .get(url)
         .end((err, res) => {
           res.should.have.status(200);
-          res.should.be.a("object");
+          res.should.be.an("object");
           res.body.should.have.property("username").eql("TestUser");
           res.body.should.have.property("password");
           res.body.should.have.property("email").eql("test@gmail.com");
@@ -90,12 +90,51 @@ describe("User routes", () => {
         .send(newRoom)
         .end((err, res) => {
           res.should.have.status(202);
-          res.should.be.a("object");
+          res.should.be.an("object");
           res.body.should.have.property("rooms");
           const rooms = res.body.rooms;
           rooms.length.should.eql(1);
           rooms[0].should.have.property("name").eql(newRoom.name);
           rooms[0].should.have.property("deviceID").eql(newRoom.deviceID);
+          done();
+        });
+    });
+  });
+
+  describe("successful user login", () => {
+    it("should return json web token", done => {
+      const user = {
+        username: "TestUser",
+        password: "pass"
+      };
+      const url = "/users/login/";
+      chai
+        .request(server)
+        .post(url)
+        .send(user)
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.have.property("token");
+          res.body.token.should.be.a("string");
+          done();
+        });
+    });
+  });
+
+  describe("failed user login", () => {
+    it("should return 404 status and not log the user in", done => {
+      const user = {
+        username: "TestUser",
+        password: "123"
+      };
+      const url = "/users/login";
+      chai
+        .request(server)
+        .post(url)
+        .send(user)
+        .end((err, res) => {
+          res.should.have.status(404);
+          res.body.should.not.have.property("token");
           done();
         });
     });
