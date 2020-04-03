@@ -24,7 +24,7 @@
         ></Card>
       </v-row>
       <!--Test-->
-      <v-row> </v-row>
+      <v-row></v-row>
       <v-row>
         <v-dialog v-model="dialog" max-width="400px">
           <v-card>
@@ -33,16 +33,10 @@
               <v-row>
                 <v-col cols="1"></v-col>
                 <v-col cols="5">
-                  <v-text-field
-                    label="Room name"
-                    v-model="newRoomName"
-                  ></v-text-field>
+                  <v-text-field label="Room name" v-model="newRoomName"></v-text-field>
                 </v-col>
                 <v-col cols="5">
-                  <v-text-field
-                    label="Device ID"
-                    v-model="newDeviceID"
-                  ></v-text-field>
+                  <v-text-field label="Device ID" v-model="newDeviceID"></v-text-field>
                 </v-col>
               </v-row>
 
@@ -73,74 +67,80 @@
 </template>
 
 <script>
-  import axios from "axios";
-  import jwt from "jsonwebtoken";
-  import Card from "./Card";
-  //const config = require("../../../config");
+import axios from "axios";
+import jwt from "jsonwebtoken";
+import Card from "./Card";
+//const config = require("../../../config");
 
-  const url = "http://localhost:3000/users/";
-  const roomUrl = "http://localhost:3000/users/room/";
-  export default {
-    name: "User",
-    data: function() {
-      return {
-        user: null,
-        username: "",
-        rooms: [],
-        dataReady: false,
-        dialog: false,
-        newRoomName: "",
-        newDeviceID: ""
-      };
-    },
-    components: {
-      Card
-    },
-    methods: {
-      newRoom: function() {
-        //console.log(config);
-        axios
-          .put(roomUrl + this.username, {
-            name: this.newRoomName,
-            deviceID: this.newDeviceID
-          })
-          .then(res => {
-            console.log(res);
-            axios.get(url + this.username).then(res => {
+const url = "http://localhost:3000/users/";
+const roomUrl = "http://localhost:3000/users/room/";
+export default {
+  name: "User",
+  data: function() {
+    return {
+      user: null,
+      username: "",
+      rooms: [],
+      dataReady: false,
+      dialog: false,
+      newRoomName: "",
+      newDeviceID: ""
+    };
+  },
+  components: {
+    Card
+  },
+  methods: {
+    newRoom: function() {
+      //console.log(config);
+      const token = localStorage.getItem("token");
+      axios
+        .put(
+          roomUrl + this.username,
+          { name: this.newRoomName, deviceID: this.newDeviceID },
+          { headers: { authorization: `Bearer ${token}` } }
+        )
+        .then(res => {
+          console.log(res);
+          axios
+            .get(url + this.username, {
+              headers: { Authorization: `Bearer ${token}` }
+            })
+            .then(res => {
               this.user = res.data;
               this.dataReady = true;
               console.log(res.data.rooms);
             });
-          });
-      }
-    },
-    //   mounted: async function() {
-    //     const resp = await axios.get(url);
-    //     this.user = resp.data;
-    //     if (this.user) this.dataReady = true;
-    //   }
-    mounted: function() {
-      const SECRET_KEY = process.env.VUE_APP_SECRET_KEY;
-      console.log("SECRET KEY JE : " + SECRET_KEY);
-      const token = localStorage.getItem("token");
-      //console.log(token);
-      jwt.verify(token, SECRET_KEY, (err, decoded) => {
-        this.username = decoded.username;
-        console.log("DECODED TOKEN " + JSON.stringify(decoded));
-        if (err) {
-          console.log(err);
-        }
-      });
-      axios.get(url + this.username).then(res => {
-        this.user = res.data;
-        this.dataReady = true;
-      });
+        });
     }
-  };
+  },
+  //   mounted: async function() {
+  //     const resp = await axios.get(url);
+  //     this.user = resp.data;
+  //     if (this.user) this.dataReady = true;
+  //   }
+  mounted: function() {
+    const SECRET_KEY = process.env.VUE_APP_SECRET_KEY;
+    console.log("SECRET KEY JE : " + SECRET_KEY);
+    const token = localStorage.getItem("token");
+    //console.log(token);
+    jwt.verify(token, SECRET_KEY, (err, decoded) => {
+      this.username = decoded.username;
+      console.log("DECODED TOKEN " + JSON.stringify(decoded));
+      if (err) {
+        console.log(err);
+      }
+    });
+    axios.get(url + this.username).then(res => {
+      this.user = res.data;
+      this.dataReady = true;
+    });
+  }
+};
 </script>
 
 <style>
-  li {
-    text-decoration: black;
-  }
+li {
+  text-decoration: black;
+}
 </style>

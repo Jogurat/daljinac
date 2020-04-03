@@ -49,7 +49,7 @@ const getUserByUsername = router.get("/:username", async (req, res) => {
 });
 
 //Add new room
-const addRoom = router.put("/room/:username", async (req, res) => {
+const addRoom = router.put("/room/:username", checkAuth, async (req, res) => {
   try {
     //GOT USER
     const user = await User.findOne({ username: req.params.username });
@@ -185,14 +185,22 @@ const changePass = router.put("/changePass", (req, res) => {
 function checkAuth(req, res, next) {
   const bearerHeader = req.headers["authorization"];
   if (typeof bearerHeader !== "undefined") {
+    //console.log(req);
     const bearer = bearerHeader.split(" ");
-    const bearerToken = bearear[1];
-    req.token = bearerToken;
-    next();
+    const bearerToken = bearer[1];
+    //req.token = bearerToken;
+    jwt.verify(bearerToken, SECRET_KEY, (err, decoded) => {
+      if (decoded) next();
+      else res.sendStatus(403);
+    });
+    //next();
   } else {
+    //console.log(req);
     res.sendStatus(403);
   }
 }
+
+function isLogged(req, res, next) { }
 
 module.exports = {
   router,
