@@ -176,69 +176,7 @@ describe("User routes", () => {
     });
   });
 
-  describe("Add room", () => {
-    //Add room to user
-    describe("successful CREATE room for user", () => {
-      it("should PUT one room to user", done => {
-        const username = "TestUser";
-        const url = "/users/room/" + username;
-        const newRoom = {
-          name: "Test Room",
-          deviceID: 42
-        };
-        chai
-          .request(server)
-          .put(url)
-          .send(newRoom)
-          .end((err, res) => {
-            res.should.have.status(202);
-            res.should.be.an("object");
-            res.body.should.have.property("rooms");
-            const rooms = res.body.rooms;
-            rooms.length.should.eql(1);
-            rooms[0].should.have.property("name").eql(newRoom.name);
-            rooms[0].should.have.property("deviceID").eql(newRoom.deviceID);
-            done();
-          });
-      });
-    });
-
-    describe("failed add room - no room name", () => {
-      it("should not add new room to user", done => {
-        const username = "TestUser";
-        const url = "/users/room/" + username;
-        const newRoom = {
-          deviceID: 42
-        };
-        chai
-          .request(server)
-          .put(url)
-          .send(newRoom)
-          .end((err, res) => {
-            res.should.have.status(500);
-            done();
-          });
-      });
-    });
-
-    describe("failed add room - no deviceID", () => {
-      it("should not add new room to user", done => {
-        const username = "TestUser";
-        const url = "/users/room/" + username;
-        const newRoom = {
-          name: "Room Name"
-        };
-        chai
-          .request(server)
-          .put(url)
-          .send(newRoom)
-          .end((err, res) => {
-            res.should.have.status(500);
-            done();
-          });
-      });
-    });
-  });
+  let token;
 
   describe("User Login", () => {
     describe("successful user login", () => {
@@ -256,6 +194,7 @@ describe("User routes", () => {
             res.should.have.status(200);
             //res.body.should.have.property("token");
             res.body.should.be.a("string");
+            token = res.body;
             done();
           });
       });
@@ -298,6 +237,92 @@ describe("User routes", () => {
           });
       });
     });
+  });
+
+
+  describe("Add New Room", () => {
+    //Add room to user
+    describe("successful CREATE room for user", () => {
+      it("should PUT one room to user", done => {
+        const username = "TestUser";
+        const url = "/users/room/" + username;
+        const newRoom = {
+          name: "Test Room",
+          deviceID: 42
+        };
+        chai
+          .request(server)
+          .put(url)
+          .set("Authorization", `Bearer ${token}`)
+          .send(newRoom)
+          .end((err, res) => {
+            res.should.have.status(202);
+            res.should.be.an("object");
+            res.body.should.have.property("rooms");
+            const rooms = res.body.rooms;
+            rooms.length.should.eql(1);
+            rooms[0].should.have.property("name").eql(newRoom.name);
+            rooms[0].should.have.property("deviceID").eql(newRoom.deviceID);
+            done();
+          });
+      });
+    });
+
+    describe("failed add room - no room name", () => {
+      it("should not add new room to user and return status 500", done => {
+        const username = "TestUser";
+        const url = "/users/room/" + username;
+        const newRoom = {
+          deviceID: 42
+        };
+        chai
+          .request(server)
+          .put(url)
+          .set("Authorization", `Bearer ${token}`)
+          .send(newRoom)
+          .end((err, res) => {
+            res.should.have.status(500);
+            done();
+          });
+      });
+    });
+
+    describe("failed add room - no deviceID", () => {
+      it("should not add new room to user and return status 500", done => {
+        const username = "TestUser";
+        const url = "/users/room/" + username;
+        const newRoom = {
+          name: "Room Name"
+        };
+        chai
+          .request(server)
+          .put(url)
+          .set("Authorization", `Bearer ${token}`)
+          .send(newRoom)
+          .end((err, res) => {
+            res.should.have.status(500);
+            done();
+          });
+      });
+    });
+
+    describe("failed add room - no auth token", () => {
+      it("should not add new room to user and return status 403", done => {
+        const username = "TestUser";
+        const url = "/users/room/" + username;
+        const newRoom = {
+          name: "Test Room",
+          deviceID: 42
+        };
+        chai
+          .request(server)
+          .put(url)
+          .end((err, res) => {
+            res.should.have.status(403);
+            done();
+          })
+      })
+    })
   });
 
   describe("Password change", () => {
