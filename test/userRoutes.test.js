@@ -240,7 +240,7 @@ describe("User routes", () => {
   });
 
 
-  describe("Add room", () => {
+  describe("Add New Room", () => {
     //Add room to user
     describe("successful CREATE room for user", () => {
       it("should PUT one room to user", done => {
@@ -269,7 +269,7 @@ describe("User routes", () => {
     });
 
     describe("failed add room - no room name", () => {
-      it("should not add new room to user", done => {
+      it("should not add new room to user and return status 500", done => {
         const username = "TestUser";
         const url = "/users/room/" + username;
         const newRoom = {
@@ -288,7 +288,7 @@ describe("User routes", () => {
     });
 
     describe("failed add room - no deviceID", () => {
-      it("should not add new room to user", done => {
+      it("should not add new room to user and return status 500", done => {
         const username = "TestUser";
         const url = "/users/room/" + username;
         const newRoom = {
@@ -305,6 +305,24 @@ describe("User routes", () => {
           });
       });
     });
+
+    describe("failed add room - no auth token", () => {
+      it("should not add new room to user and return status 403", done => {
+        const username = "TestUser";
+        const url = "/users/room/" + username;
+        const newRoom = {
+          name: "Test Room",
+          deviceID: 42
+        };
+        chai
+          .request(server)
+          .put(url)
+          .end((err, res) => {
+            res.should.have.status(403);
+            done();
+          })
+      })
+    })
   });
 
   describe("Password change", () => {
