@@ -29,7 +29,7 @@ app.use("/users", userRouter.router);
 app.get("/", (req, res) => {
   res.sendfile("./index.html");
 });
+//comments
+let server = app.listen(config.PORT, () => console.log("Server started"));
 
-app.listen(config.PORT, () => console.log("Server started"));
-
-module.exports = app;
+module.exports = server;
