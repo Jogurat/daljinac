@@ -1,58 +1,15 @@
 <template>
- <v-app style=" background: rgba(0,0,0,0);">
-   <div id="bod">
+ <v-app>
       
         <!--<v-toolbar-title>
        <div class="text-no-wrap text-example" style="width: 8rem;">
          Daljina.cc
        </div>
         </v-toolbar-title>-->
-        <v-container>
-             <v-row>
-            <v-col cols="8" padding-top="20px">
-              <v-img
-                src="../assets/Group 5.svg"
-                max-width="240px"
-                max-height="70px"
-              ></v-img>
-            </v-col>
-            <v-col cols="4" padding-top="20px" align="right">
-            <v-btn
-              class="ma-4"
-              color="blue accent-3"
-              v-if="!loggedIn()"
-              to="/register"
-              >Register</v-btn
-            >
-            <v-btn
-              class="ma-4"
-              color="blue accent-3"
-              v-if="!loggedIn()"
-              to="/login"
-              >Login</v-btn
-            >
-            <v-btn
-              class="ma-4"
-              color="blue accent-3"
-              v-else
-              @click="logOut"
-              to="/"
-              >Log out</v-btn
-            >
-
-            <v-btn class="ma-4" color="blue accent-3">Contact us</v-btn>
-          </v-col>
-          </v-row>
-        </v-container>
-        <v-spacer></v-spacer>
-        <v-card-text>
-          
-        </v-card-text>
- 
-      <v-content>
+       
+  <v-content>
         <router-view></router-view>
       </v-content>
-     </div>
   </v-app>
 
 </template>
