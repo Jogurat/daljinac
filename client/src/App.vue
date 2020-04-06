@@ -1,27 +1,22 @@
 <template>
-
-  <v-app>
-    <v-card>
-      <v-toolbar color="#546E7A" dark flat>
+ <v-app style=" background: rgba(0,0,0,0);">
+   <div id="bod">
+      
         <!--<v-toolbar-title>
        <div class="text-no-wrap text-example" style="width: 8rem;">
          Daljina.cc
        </div>
         </v-toolbar-title>-->
         <v-container>
-          <v-row>
-            <v-col cols="4" padding-top="20px">
+             <v-row>
+            <v-col cols="7" padding-top="10px">
               <v-img
                 src="../assets/Group 5.svg"
                 max-width="240px"
                 max-height="70px"
               ></v-img>
             </v-col>
-          </v-row>
-        </v-container>
-        <v-spacer></v-spacer>
-        <v-card-text>
-          <div align="right">
+            <v-col cols="5" padding-top="20px" align="right">
             <v-btn
               class="ma-4"
               color="blue accent-3"
@@ -45,31 +40,21 @@
               >Log out</v-btn
             >
 
-         
-            <v-btn class="ma-4" color="blue accent-3">Contact us
-            </v-btn>
-   
-        </div>
-     
-    </v-card-text>
-    </v-toolbar>
- <!--<v-content>
-      <v-btn to="/register">Register</v-btn>
-      <v-btn to="/login">Login</v-btn>
-      <v-toolbar-title>Daljinac</v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-      <v-btn v-if="!loggedIn()">Login</v-btn>
-      <v-btn v-else @click="logOut">Log out</v-btn>
-      <v-btn class="ma-4" color="blue accent-3">Contact us</v-btn>
-  </v-content>-->
-    <v-content>
-      <router-view></router-view>
-    </v-content>
-  </v-card>  
-</v-app>
+            <v-btn class="ma-4" color="blue accent-3">Contact us</v-btn>
+          </v-col>
+          </v-row>
+        </v-container>
+        <v-spacer></v-spacer>
+        <v-card-text>
+          
+        </v-card-text>
+ 
+      <v-content>
+        <router-view></router-view>
+      </v-content>
+     </div>
+  </v-app>
+
 </template>
 
 <script>
@@ -113,4 +98,13 @@
   .test {
     padding-left: 150px;
   }
-</style>-->
+  #bod{
+background-image: url('../assets/pexels-plavadevojka.jpeg');
+     /* background-color: #8f2c2c; */
+    height: 100vh;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    position: relative;
+  }
+</style>
