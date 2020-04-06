@@ -23,11 +23,15 @@ db.once("open", () => console.log("Connected to Database"));
 
 app.use(express.json());
 app.use(cors());
-app.use('/', serveStatic(path.join(__dirname, '/dist')))
 
-app.get(/.*/, function (req, res) {
-  res.sendFile(path.join(__dirname, '/dist/index.html'))
-})
+//deployment
+// app.use('/', serveStatic(path.join(__dirname, '/dist')))
+
+// app.get(/.*/, function (req, res) {
+//   res.sendFile(path.join(__dirname, '/dist/index.html'))
+// })
+
+
 const actionsRouter = require("./routes/routes");
 const userRouter = require("./routes/userRoutes");
 
