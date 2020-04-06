@@ -9,7 +9,7 @@
         </v-toolbar-title>-->
         <v-container>
              <v-row>
-            <v-col cols="8" padding-top="20px">
+            <v-col  cols="8" >
               <v-img
                 src="../assets/Group 5.svg"
                 max-width="240px"
@@ -18,38 +18,32 @@
             </v-col>
             <v-col cols="4" padding-top="20px" align="right">
               
-            <v-dialog v-model="dialog" persistent max-width="600px">
+      <v-dialog  v-model="dialog" persistent overlay-opacity="0.75" width="400px">
       <template v-slot:activator="{ on }">
-        <v-btn color="primary" dark v-on="on">Register</v-btn>
+        <v-btn class="ma-4" color="blue accent-3" dark v-on="on">Register</v-btn>
       </template>
       <v-card>
         <v-card-title>
-          <span class="headline">User Profile</span>
+          <span class="headline">Make user profile</span>
         </v-card-title>
         <v-card-text>
           <v-container>
             <v-row>
-              <v-col cols="12" sm="6" md="4">
-                <v-text-field label="First name and surname *" required></v-text-field>
+              <v-col cols="12" >
+                <v-text-field label="Email*" required></v-text-field>
               </v-col>
-              <v-col cols="12" sm="6" md="4">
-                <v-text-field
+            </v-row>
+            <v-row>
+              <v-col cols="12">
+                <v-text-field 
                   label="Username*"
                   required
                 ></v-text-field>
               </v-col>
+            </v-row>
+            <v-row>
               <v-col cols="12">
-                <v-text-field label="Email*" required></v-text-field>
-              </v-col>
-              <v-col cols="12">
-                <v-text-field label="Password*" type="password" required></v-text-field>
-              </v-col>
-              <v-col cols="12" sm="6">
-                <v-select
-                  :items="['0-17', '18-29', '30-54', '54+']"
-                  label="Age*"
-                  required
-                ></v-select>
+                <v-text-field  label="Password*" type="password" required></v-text-field>
               </v-col>
             </v-row>
           </v-container>
@@ -58,16 +52,16 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
-          <v-btn color="blue darken-1" text @click="dialog = false">Save</v-btn>
+          <v-btn color="blue darken-1" text @click="dialog = false">Register</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
 
 
 
-  <v-dialog v-model="dialog" persistent max-width="600px">
+  <v-dialog v-model="dialog2" persistent overlay-opacity="0.75" width="400px">
       <template v-slot:activator="{ on }">
-        <v-btn color="primary" dark v-on="on">Log in</v-btn>
+        <v-btn class="ma-4" color="blue accent-3" dark v-on="on">Log in</v-btn>
       </template>
       <v-card>
         <v-card-title>
@@ -88,15 +82,15 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
-          <v-btn color="blue darken-1" text @click="dialog = false">Save</v-btn>
+          <v-btn color="blue darken-1" text @click="dialog2 = false">Close</v-btn>
+          <v-btn color="blue darken-1" text @click="dialog2 = false">Log in</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
             
             
 
-            <v-btn class="ma-4" color="blue accent-3">Contact us</v-btn>
+            <!--<v-btn class="ma-4" color="blue accent-3">Contact us</v-btn>-->
           </v-col>
           </v-row>
         </v-container>
@@ -125,13 +119,17 @@
   Vue.component("font-awesome-icon", FontAwesomeIcon);
 
   export default {
-    name: "App",
+    name: "Homepage",
 
     components: {},
 
     data: function() {
       return {
-         dialog:false
+         dialog:false,
+         dialog2:false,
+         notifications: false,
+         sound: true,
+         widgets: false,
       };
     },
    

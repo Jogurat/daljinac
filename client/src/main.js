@@ -17,13 +17,13 @@ Vue.use(Vuetify);
 Vue.use(VueRouter);
 
 const routes = [
-  { path: "/", component: Login },
+  { path: "/", component: Homepage },
+  { path: "/homepage", component: Homepage },
   { path: "/register", component: Register }, //sajt.com/register
   { path: "/login", component: Login },
   { path: "/user", component: User },
   { path: "/forgotPass", component: ForgotPass },
   { path: "/changePass/:token", component: ChangePass },
-  { path: "/homepage", component: Homepage },
   { path: "*", component: NotFound },
 ];
 

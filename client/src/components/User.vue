@@ -1,5 +1,6 @@
 <template>
   <div>
+    <NavigationBar></NavigationBar>
     <v-container>
       <v-row>
         <v-col cols="4" align="center">
@@ -70,6 +71,7 @@
 import axios from "axios";
 import jwt from "jsonwebtoken";
 import Card from "./Card";
+import NavigationBar from "./NavigationBar";
 //const config = require("../../../config");
 
 const url = "http://localhost:3000/users/";
@@ -88,7 +90,8 @@ export default {
     };
   },
   components: {
-    Card
+    Card, 
+    NavigationBar
   },
   methods: {
     newRoom: function() {
@@ -112,6 +115,13 @@ export default {
               console.log(res.data.rooms);
             });
         });
+    },
+     loggedIn: function() {
+      if (localStorage.getItem("token")) return true;
+      else return false;
+    },
+    logOut: function() {
+      localStorage.removeItem("token");
     }
   },
   //   mounted: async function() {
@@ -135,6 +145,8 @@ export default {
       this.user = res.data;
       this.dataReady = true;
     });
+   // navBar.loggedIn();
+   // navBar.logOut();
   }
 };
 </script>
