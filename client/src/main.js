@@ -4,6 +4,7 @@ import vuetify from "./plugins/vuetify";
 import "material-design-icons-iconfont/dist/material-design-icons.css";
 import VueRouter from "vue-router";
 import Register from "./components/Register";
+import Homepage from "./components/Homepage"
 import Login from "./components/Login";
 import NotFound from "./components/NotFound";
 import User from "./components/User";
@@ -22,7 +23,8 @@ const routes = [
   { path: "/user", component: User },
   { path: "/forgotPass", component: ForgotPass },
   { path: "/changePass/:token", component: ChangePass },
-  { path: "*", component: NotFound }
+  { path: "/homepage", component: Homepage },
+  { path: "*", component: NotFound },
 ];
 
 const router = new VueRouter({
