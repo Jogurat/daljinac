@@ -36,7 +36,6 @@
             <v-row>
               <v-col cols="12">
                 <v-text-field 
-                 v-model="username"
                   label="Username*"
                   required
                 ></v-text-field>
@@ -44,7 +43,7 @@
             </v-row>
             <v-row>
               <v-col cols="12">
-                <v-text-field  v-model="password" label="Password*" type="password" required></v-text-field>
+                <v-text-field  label="Password*" type="password" required></v-text-field>
               </v-col>
             </v-row>
           </v-container>
@@ -53,7 +52,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
-          <v-btn color="blue darken-1" text @click="dialog = false" v-on:click="registerUser">Register</v-btn>
+          <v-btn color="blue darken-1" text @click="dialog = false">Register</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -109,11 +108,12 @@
 </template>
 
 <script>
-import axios from "axios";
   import Vue from "vue";
+  //import VueRouter from "vue-router";
   import { library } from "@fortawesome/fontawesome-svg-core";
   import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
   import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+  import axios from "axios";
   //import router from "../main";
   import { config } from "../../config";
   let url = `${config.DB_HOST}:${config.PORT}/users/login`;
@@ -191,5 +191,3 @@ background-image: url('../assets/pexels-plavadevojka.jpeg');
     position: relative;
   }
 </style>
-
-
