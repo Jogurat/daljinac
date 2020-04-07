@@ -36,6 +36,7 @@
             <v-row>
               <v-col cols="12">
                 <v-text-field 
+                 v-model="username"
                   label="Username*"
                   required
                 ></v-text-field>
@@ -43,7 +44,7 @@
             </v-row>
             <v-row>
               <v-col cols="12">
-                <v-text-field  label="Password*" type="password" required></v-text-field>
+                <v-text-field  v-model="password" label="Password*" type="password" required></v-text-field>
               </v-col>
             </v-row>
           </v-container>
@@ -110,7 +111,9 @@
 <script>
 import axios from "axios";
   import Vue from "vue";
-  const url = "http://localhost:3000";
+  import { config } from "../../config";
+  let url = `${config.DB_HOST}:${config.PORT}/users/login`;
+
   //import VueRouter from "vue-router";
   import { library } from "@fortawesome/fontawesome-svg-core";
   import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
@@ -132,25 +135,15 @@ import axios from "axios";
          notifications: false,
          sound: true,
          widgets: false,
+         username: "",
+         password: ""
       };
     },
    
   
 
     methods: {
-      loggedIn: function() {
-        if (localStorage.getItem("token")) {
-          //this.isLoggedIn = true;
-          return true;
-        } else {
-          //this.isLoggedIn = false;
-          return false;
-        }
-      },
-      logOut: function() {
-        localStorage.removeItem("token");
-        // this.isLoggedIn = false;
-      },
+      
        async loginUser() {
       //PROMISE
       // axios
@@ -196,3 +189,5 @@ background-image: url('../assets/pexels-plavadevojka.jpeg');
     position: relative;
   }
 </style>
+
+
