@@ -72,10 +72,10 @@
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-text-field label="Username*" required></v-text-field>
+                <v-text-field label="Username*" v-model="username" required></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field label="Password*" type="password" required></v-text-field>
+                <v-text-field label="Password*" v-model="password" type="password" required></v-text-field>
               </v-col>
             </v-row>
           </v-container>
@@ -83,8 +83,13 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
+<<<<<<< HEAD
           <v-btn color="blue darken-1" text @click="dialog2 = false">Close</v-btn>
           <v-btn color="blue darken-1" text @click="dialog2 = false" v-on:click="loginUser">Log in</v-btn>
+=======
+          <v-btn color="blue darken-1"  text @click="dialog2 = false">Close</v-btn>
+          <v-btn color="blue darken-1"  text v-on:click="loginUser">Log in</v-btn>
+>>>>>>> 8ea3e6f716354074049679e314418dcb8b0ea5ee
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -118,17 +123,12 @@ import axios from "axios";
   import { library } from "@fortawesome/fontawesome-svg-core";
   import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
   import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-  //import HelloWorld from "./components/HelloWorld";
   library.add(faUserSecret);
 
   Vue.component("font-awesome-icon", FontAwesomeIcon);
 
-  export default {
-    name: "Homepage",
 
-    components: {},
-
-    data: function() {
+    /*data: function() {
       return {
          dialog:false,
          dialog2:false,
@@ -138,13 +138,20 @@ import axios from "axios";
          username: "",
          password: ""
       };
-    },
+    },*/
    
-  
-
-    methods: {
-      
-       async loginUser() {
+  export default {
+  name: "Homepage",
+  components: {},
+    
+  data: () => ({
+    username: "",
+    password: "",
+    dialog:false,
+    dialog2:false
+  }),
+  methods: {
+    async loginUser() {
       //PROMISE
       // axios
       //   .post(url, {
@@ -171,8 +178,8 @@ import axios from "axios";
         console.log(err);
       }
     }
-    }
-  };
+  }
+};
 </script>
 
 <style scoped>
