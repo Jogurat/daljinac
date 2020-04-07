@@ -30,7 +30,7 @@
           <v-container>
             <v-row>
               <v-col cols="12" >
-                <v-text-field label="Email*" required></v-text-field>
+                <v-text-field label="Email*" v-model="email" required></v-text-field>
               </v-col>
             </v-row>
             <v-row>
@@ -83,7 +83,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1"  text @click="dialog2 = false">Close</v-btn>
-          <v-btn color="blue darken-1"  text v-on:click="loginUser">Log in</v-btn>
+          <v-btn color="blue darken-1"  text v-on:click=" loginUser">Log in</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
