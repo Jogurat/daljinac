@@ -83,13 +83,8 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-<<<<<<< HEAD
-          <v-btn color="blue darken-1" text @click="dialog2 = false">Close</v-btn>
-          <v-btn color="blue darken-1" text @click="dialog2 = false" v-on:click="loginUser">Log in</v-btn>
-=======
           <v-btn color="blue darken-1"  text @click="dialog2 = false">Close</v-btn>
           <v-btn color="blue darken-1"  text v-on:click="loginUser">Log in</v-btn>
->>>>>>> 8ea3e6f716354074049679e314418dcb8b0ea5ee
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -116,13 +111,13 @@
 <script>
 import axios from "axios";
   import Vue from "vue";
-  import { config } from "../../config";
-  let url = `${config.DB_HOST}:${config.PORT}/users/login`;
-
-  //import VueRouter from "vue-router";
   import { library } from "@fortawesome/fontawesome-svg-core";
   import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
   import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+  //import router from "../main";
+  import { config } from "../../config";
+  let url = `${config.DB_HOST}:${config.PORT}/users/login`;
+  //import HelloWorld from "./components/HelloWorld";
   library.add(faUserSecret);
 
   Vue.component("font-awesome-icon", FontAwesomeIcon);
