@@ -6,6 +6,9 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const config = require("./config.js");
+const serveStatic = require('serve-static')
+const path = require('path')
+
 
 const SECRET_KEY = config.SECRET_KEY;
 
@@ -21,14 +24,22 @@ db.once("open", () => console.log("Connected to Database"));
 app.use(express.json());
 app.use(cors());
 
+//deployment
+// app.use('/', serveStatic(path.join(__dirname, '/dist')))
+
+// app.get(/.*/, function (req, res) {
+//   res.sendFile(path.join(__dirname, '/dist/index.html'))
+// })
+
+
 const actionsRouter = require("./routes/routes");
 const userRouter = require("./routes/userRoutes");
 
 app.use("/actions", actionsRouter);
 app.use("/users", userRouter.router);
-app.get("/", (req, res) => {
-  res.sendfile("./index.html");
-});
+// app.get("/", (req, res) => {
+//   res.sendfile("./index.html");
+// });
 //comments
 let server = app.listen(config.PORT, () => console.log("Server started"));
 

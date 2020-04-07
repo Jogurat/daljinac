@@ -71,11 +71,12 @@
 import axios from "axios";
 import jwt from "jsonwebtoken";
 import Card from "./Card";
+import { config } from "../../config";
 import NavigationBar from "./NavigationBar";
-//const config = require("../../../config");
+let url = `${config.DB_HOST}:${config.PORT}/users/`;
 
-const url = "http://localhost:3000/users/";
-const roomUrl = "http://localhost:3000/users/room/";
+//const url = "http://localhost:3000/users/";
+const roomUrl = `${url}/room/`;
 export default {
   name: "User",
   data: function() {

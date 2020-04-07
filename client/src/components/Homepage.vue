@@ -71,10 +71,10 @@
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-text-field label="Username*" required></v-text-field>
+                <v-text-field label="Username*" v-model="username" required></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field label="Password*" type="password" required></v-text-field>
+                <v-text-field label="Password*" v-model="password" type="password" required></v-text-field>
               </v-col>
             </v-row>
           </v-container>
@@ -82,8 +82,8 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="dialog2 = false">Close</v-btn>
-          <v-btn color="blue darken-1" text @click="dialog2 = false">Log in</v-btn>
+          <v-btn color="blue darken-1"  text @click="dialog2 = false">Close</v-btn>
+          <v-btn color="blue darken-1"  text v-on:click="loginUser">Log in</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -113,44 +113,68 @@
   import { library } from "@fortawesome/fontawesome-svg-core";
   import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
   import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+  import axios from "axios";
+  //import router from "../main";
+  import { config } from "../../config";
+  let url = `${config.DB_HOST}:${config.PORT}/users/login`;
   //import HelloWorld from "./components/HelloWorld";
   library.add(faUserSecret);
 
   Vue.component("font-awesome-icon", FontAwesomeIcon);
 
-  export default {
-    name: "Homepage",
 
-    components: {},
-
-    data: function() {
+    /*data: function() {
       return {
          dialog:false,
          dialog2:false,
          notifications: false,
          sound: true,
          widgets: false,
+         username: "",
+         password: ""
       };
-    },
+    },*/
    
-  
-
-    methods: {
-      loggedIn: function() {
-        if (localStorage.getItem("token")) {
-          //this.isLoggedIn = true;
-          return true;
-        } else {
-          //this.isLoggedIn = false;
-          return false;
-        }
-      },
-      logOut: function() {
-        localStorage.removeItem("token");
-        // this.isLoggedIn = false;
+  export default {
+  name: "Homepage",
+  components: {},
+    
+  data: () => ({
+    username: "",
+    password: "",
+    dialog:false,
+    dialog2:false
+  }),
+  methods: {
+    async loginUser() {
+      //PROMISE
+      // axios
+      //   .post(url, {
+      //     data: { username: this.username, password: this.password }
+      //   })
+      //   .then(function(response) {
+      //     console.log(response);
+      //     let token = response;
+      //     localStorage.setItem("token", token);
+      //   })
+      //   .catch(function(err) {
+      //     console.log("NALAZIM SE U ERR" + err);
+      //   });
+      try {
+        const res = await axios.post(url, {
+          username: this.username,
+          password: this.password
+        });
+        const token = res.data;
+        //console.log("TOKEN U LOGIN " + token);
+        localStorage.setItem("token", token);
+        this.$router.push("/user");
+      } catch (err) {
+        console.log(err);
       }
     }
-  };
+  }
+};
 </script>
 
 <style scoped>
