@@ -32,7 +32,10 @@
 <script>
 import axios from "axios";
 //import router from "../main";
-const url = "http://localhost:3000/users/login";
+import { config } from "../../config";
+
+let url = `${config.DB_HOST}:${config.PORT}/users/login`;
+//const url = "http://localhost:3000/users/login";
 
 export default {
   name: "Login",

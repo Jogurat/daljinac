@@ -91,7 +91,10 @@
 
 <script>
 import axios from "axios";
+import { config } from "../../config";
 
+let url = `${config.DB_HOST}:${config.PORT}`;
+console.log(url);
 export default {
   name: "Register",
   data: function() {
@@ -103,7 +106,8 @@ export default {
   },
   methods: {
     registerUser: function() {
-      axios.post("http://localhost:3000/users", {
+      console.log(url);
+      axios.post(`${url}/users`, {
         username: this.username,
         password: this.password,
         email: this.email

@@ -52,7 +52,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
-          <v-btn color="blue darken-1" text @click="dialog = false">Register</v-btn>
+          <v-btn color="blue darken-1" text @click="dialog = false" v-on:click="registerUser">Register</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -83,7 +83,7 @@
         <v-card-actions>
           <v-spacer></v-spacer>
           <v-btn color="blue darken-1" text @click="dialog2 = false">Close</v-btn>
-          <v-btn color="blue darken-1" text @click="dialog2 = false">Log in</v-btn>
+          <v-btn color="blue darken-1" text @click="dialog2 = false" v-on:click="loginUser">Log in</v-btn>
         </v-card-actions>
       </v-card>
     </v-dialog>
@@ -108,7 +108,9 @@
 </template>
 
 <script>
+import axios from "axios";
   import Vue from "vue";
+  const url = "http://localhost:3000";
   //import VueRouter from "vue-router";
   import { library } from "@fortawesome/fontawesome-svg-core";
   import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
@@ -148,7 +150,34 @@
       logOut: function() {
         localStorage.removeItem("token");
         // this.isLoggedIn = false;
+      },
+       async loginUser() {
+      //PROMISE
+      // axios
+      //   .post(url, {
+      //     data: { username: this.username, password: this.password }
+      //   })
+      //   .then(function(response) {
+      //     console.log(response);
+      //     let token = response;
+      //     localStorage.setItem("token", token);
+      //   })
+      //   .catch(function(err) {
+      //     console.log("NALAZIM SE U ERR" + err);
+      //   });
+      try {
+        const res = await axios.post(url, {
+          username: this.username,
+          password: this.password
+        });
+        const token = res.data;
+        //console.log("TOKEN U LOGIN " + token);
+        localStorage.setItem("token", token);
+        this.$router.push("/user");
+      } catch (err) {
+        console.log(err);
       }
+    }
     }
   };
 </script>
