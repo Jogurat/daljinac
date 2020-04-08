@@ -1,5 +1,35 @@
 <template>
-  <div>
+
+  <v-dialog v-model="dialog2" persistent overlay-opacity="0.75" width="400px">
+      <template v-slot:activator="{ on }">
+        <v-btn class="ma-4" color="blue accent-3" dark v-on="on">Log in</v-btn>
+      </template>
+      <v-card>
+        <v-card-title>
+          <span class="headline">Log in</span>
+        </v-card-title>
+        <v-card-text>
+          <v-container>
+            <v-row>
+              <v-col cols="12">
+                <v-text-field label="Username*" v-model="username" required></v-text-field>
+              </v-col>
+              <v-col cols="12">
+                <v-text-field label="Password*" v-model="password" type="password" required></v-text-field>
+              </v-col>
+            </v-row>
+          </v-container>
+          <small>*indicates required field</small>
+        </v-card-text>
+        <v-card-actions>
+          <v-spacer></v-spacer>
+          <v-btn color="blue darken-1"  text @click="dialog2 = false">Close</v-btn>
+          <v-btn color="blue darken-1"  text v-on:click=" loginUser">Log in</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-dialog>
+
+  <!--<div>
     <v-container>
       <v-row>
         <h1>Login</h1>
@@ -26,7 +56,7 @@
         </v-col>
       </v-row>
     </v-container>
-  </div>
+  </div>-->
 </template>
 
 <script>
@@ -41,7 +71,8 @@ export default {
   name: "Login",
   data: () => ({
     username: "",
-    password: ""
+    password: "",
+    dialog2:false
   }),
   methods: {
     async loginUser() {

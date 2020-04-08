@@ -18,78 +18,10 @@
             </v-col>
             <v-col cols="4" padding-top="20px" align="right">
               
-      <v-dialog  v-model="dialog" persistent overlay-opacity="0.75" width="400px">
-      <template v-slot:activator="{ on }">
-        <v-btn class="ma-4" color="blue accent-3" dark v-on="on">Register</v-btn>
-      </template>
-      <v-card>
-        <v-card-title>
-          <span class="headline">Make user profile</span>
-        </v-card-title>
-        <v-card-text>
-          <v-container>
-            <v-row>
-              <v-col cols="12" >
-                <v-text-field label="Email*" v-model="email" required></v-text-field>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="12">
-                <v-text-field 
-                  label="Username*"
-                  required
-                ></v-text-field>
-              </v-col>
-            </v-row>
-            <v-row>
-              <v-col cols="12">
-                <v-text-field  label="Password*" type="password" required></v-text-field>
-              </v-col>
-            </v-row>
-          </v-container>
-          <small>*indicates required field</small>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text @click="dialog = false">Close</v-btn>
-          <v-btn color="blue darken-1" text @click="dialog = false">Register</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
-
-
-
-  <v-dialog v-model="dialog2" persistent overlay-opacity="0.75" width="400px">
-      <template v-slot:activator="{ on }">
-        <v-btn class="ma-4" color="blue accent-3" dark v-on="on">Log in</v-btn>
-      </template>
-      <v-card>
-        <v-card-title>
-          <span class="headline">Log in</span>
-        </v-card-title>
-        <v-card-text>
-          <v-container>
-            <v-row>
-              <v-col cols="12">
-                <v-text-field label="Username*" v-model="username" required></v-text-field>
-              </v-col>
-              <v-col cols="12">
-                <v-text-field label="Password*" v-model="password" type="password" required></v-text-field>
-              </v-col>
-            </v-row>
-          </v-container>
-          <small>*indicates required field</small>
-        </v-card-text>
-        <v-card-actions>
-          <v-spacer></v-spacer>
-          <v-btn color="blue darken-1"  text @click="dialog2 = false">Close</v-btn>
-          <v-btn color="blue darken-1"  text v-on:click=" loginUser">Log in</v-btn>
-        </v-card-actions>
-      </v-card>
-    </v-dialog>
+      
             
-            
-
+            <Register></Register>
+            <Login></Login>
             <!--<v-btn class="ma-4" color="blue accent-3">Contact us</v-btn>-->
           </v-col>
           </v-row>
@@ -113,13 +45,10 @@
   import { library } from "@fortawesome/fontawesome-svg-core";
   import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
   import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-  import axios from "axios";
+  import Register from "./Register";
+  import Login from "./Login";
   //import router from "../main";
-  import { config } from "../../config";
-  let url = `${config.DB_HOST}:${config.PORT}/users/login`;
-  //import HelloWorld from "./components/HelloWorld";
   library.add(faUserSecret);
-
   Vue.component("font-awesome-icon", FontAwesomeIcon);
 
 
@@ -137,15 +66,18 @@
    
   export default {
   name: "Homepage",
-  components: {},
+  components: {
+    Login,
+    Register
+  },
     
   data: () => ({
-    username: "",
-    password: "",
+    //username: "",
+    //password: "",
     dialog:false,
-    dialog2:false
+    //dialog2:false
   }),
-  methods: {
+  /*methods: {
     async loginUser() {
       //PROMISE
       // axios
@@ -173,7 +105,7 @@
         console.log(err);
       }
     }
-  }
+  }*/
 };
 </script>
 
