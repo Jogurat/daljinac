@@ -1,5 +1,6 @@
 <template>
   <div>
+    <NavigationBar></NavigationBar>
     <v-container>
       <v-row>
         <v-text-field v-model="username"></v-text-field>
@@ -14,6 +15,7 @@
 
 <script>
 import axios from "axios";
+import NavigationBar from "./NavigationBar";
 
 export default {
   name: "ForgotPass",
@@ -22,6 +24,7 @@ export default {
       username: ""
     };
   },
+  components: {NavigationBar},
   methods: {
     sendEmail: async function() {
       const url = "http://localhost:3000/users/forgotPass/";

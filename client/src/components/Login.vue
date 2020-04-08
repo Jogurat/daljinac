@@ -1,33 +1,46 @@
 <template>
-
   <v-dialog v-model="dialog2" persistent overlay-opacity="0.75" width="400px">
       <template v-slot:activator="{ on }">
         <v-btn class="ma-4" color="blue accent-3" dark v-on="on">Log in</v-btn>
       </template>
+      <v-form>
       <v-card>
-        <v-card-title>
+        <v-card-title class="justify-center">
           <span class="headline">Log in</span>
         </v-card-title>
         <v-card-text>
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-text-field label="Username*" v-model="username" required></v-text-field>
+                <v-text-field label="Username*" v-model="username" filled rounded dense required></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field label="Password*" v-model="password" type="password" required></v-text-field>
+                <v-text-field label="Password*" v-model="password" filled rounded dense required
+                :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                :type="show1 ? 'text' : 'password'"
+              counter
+             @click:append="show1 = !show1"></v-text-field>
               </v-col>
+               <v-row>
+                 <v-col class="text-center">
+                  <router-link  to="/forgotPass">Forgot your password?</router-link>
+                </v-col>
+               </v-row>
             </v-row>
           </v-container>
           <small>*indicates required field</small>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1"  text @click="dialog2 = false">Close</v-btn>
-          <v-btn color="blue darken-1"  text v-on:click=" loginUser">Log in</v-btn>
+          <v-btn  icon color="blue darken-1" text v-on:click="close">
+            <v-icon medium>mdi-close</v-icon>
+          </v-btn>
+          <v-btn  color="blue darken-1" text v-on:click="loginUser">Log in</v-btn>
         </v-card-actions>
       </v-card>
+      </v-form>
     </v-dialog>
+
 
   <!--<div>
     <v-container>
@@ -72,7 +85,8 @@ export default {
   data: () => ({
     username: "",
     password: "",
-    dialog2:false
+    dialog2:false,
+    show1: false
   }),
   methods: {
     async loginUser() {
@@ -101,7 +115,10 @@ export default {
       } catch (err) {
         console.log(err);
       }
-    }
+    },
+    reset () {
+        this.$refs.form.reset()
+      },
   }
 };
 </script>
