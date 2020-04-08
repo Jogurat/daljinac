@@ -12,8 +12,14 @@
     </v-toolbar-title>-->
       <v-container>
         <v-row>
-          <v-col cols="4" padding-top="20px">
-            <v-img src="../assets/Group 5.svg" ></v-img>
+          
+          <v-col cols="4">
+           
+            <v-img src="../assets/e.svg"
+          
+                max-width="240px"
+                max-height="70px" 
+                 ></v-img>
           </v-col>
         </v-row>
       </v-container>

@@ -9,9 +9,10 @@
         </v-toolbar-title>-->
         <v-container>
              <v-row>
-            <v-col  cols="8" >
+            <v-col  cols="8">
               <v-img
-                src="../assets/Group 5.svg"
+                
+                src="../assets/e.svg"
                 max-width="240px"
                 max-height="70px"
               ></v-img>
