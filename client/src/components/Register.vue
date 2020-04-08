@@ -1,6 +1,6 @@
 <template>
   
-    <v-dialog  v-model="dialog" persistent overlay-opacity="0.75" width="400px">
+    <v-dialog  v-model="dialog"  overlay-opacity="0.75" width="400px">
       
       <template v-slot:activator="{ on }">
         <v-btn class="ma-4" color="blue accent-3" dark v-on="on">Register</v-btn>
@@ -49,7 +49,7 @@
           <!--<v-btn icon color="blue darken-1" text v-on:click="reset">
             <v-icon medium>mdi-restore</v-icon>
           </v-btn>-->
-          <v-btn  icon color="blue darken-1" text v-on:click="close">
+          <v-btn  icon color="blue darken-1" v-on:click="close">
             <v-icon medium>mdi-close</v-icon>
           </v-btn>
           <v-btn  color="blue darken-1" text v-on:click="registerUser">Register</v-btn>

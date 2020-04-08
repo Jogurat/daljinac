@@ -3,7 +3,8 @@
       <template v-slot:activator="{ on }">
         <v-btn class="ma-4" color="blue accent-3" dark v-on="on">Log in</v-btn>
       </template>
-      <v-form>
+      <v-form ref="form"
+      v-model="valid">
       <v-card>
         <v-card-title class="justify-center">
           <span class="headline">Log in</span>
@@ -32,7 +33,7 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn  icon color="blue darken-1" text v-on:click="close">
+          <v-btn  icon color="blue darken-1" v-on:click="close">
             <v-icon medium>mdi-close</v-icon>
           </v-btn>
           <v-btn  color="blue darken-1" text v-on:click="loginUser">Log in</v-btn>
@@ -86,7 +87,8 @@ export default {
     username: "",
     password: "",
     dialog2:false,
-    show1: false
+    show1: false,
+    valid: true
   }),
   methods: {
     async loginUser() {
@@ -119,6 +121,10 @@ export default {
     reset () {
         this.$refs.form.reset()
       },
+    close(){
+        this.$refs.form.reset();
+        this.dialog2=false;
+      }
   }
 };
 </script>
