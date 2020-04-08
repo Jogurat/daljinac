@@ -72,6 +72,7 @@ import axios from "axios";
 import jwt from "jsonwebtoken";
 import Card from "./Card";
 import { config } from "../../config";
+import NavigationBar from "./NavigationBar"
 
 let url = `${config.DB_HOST}:${config.PORT}/users/`;
 
