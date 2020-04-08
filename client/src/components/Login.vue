@@ -19,7 +19,6 @@
                 <v-text-field label="Password*" v-model="password" filled rounded dense required
                 :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                 :type="show1 ? 'text' : 'password'"
-              counter
              @click:append="show1 = !show1"></v-text-field>
               </v-col>
                <v-row>

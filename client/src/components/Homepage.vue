@@ -8,14 +8,19 @@
        </div>
         </v-toolbar-title>-->
         <v-container>
+          
              <v-row>
+              
             <v-col  cols="8">
+              <router-link to="/Homepage">
               <v-img
                 
                 src="../assets/e.svg"
                 max-width="240px"
                 max-height="70px"
+                
               ></v-img>
+              </router-link>
             </v-col>
             <v-col cols="4" padding-top="20px" align="right">
               
@@ -25,7 +30,9 @@
             <Login></Login>
             <!--<v-btn class="ma-4" color="blue accent-3">Contact us</v-btn>-->
           </v-col>
+          
           </v-row>
+          
         </v-container>
         <v-spacer></v-spacer>
         <v-card-text>
@@ -78,6 +85,7 @@
     dialog:false,
     //dialog2:false
   }),
+  
   /*methods: {
     async loginUser() {
       //PROMISE

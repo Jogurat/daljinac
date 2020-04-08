@@ -4,6 +4,7 @@
       color="#546E7A"
       dark
       flat
+      fixed
     >
      <!--<v-toolbar-title>
        <div class="text-no-wrap text-example" style="width: 8rem;">
@@ -11,6 +12,7 @@
        </div>
     </v-toolbar-title>-->
       <v-container>
+        <router-link to="/Homepage">
         <v-row>
           
           <v-col cols="4">
@@ -22,6 +24,7 @@
                  ></v-img>
           </v-col>
         </v-row>
+         </router-link>
       </v-container>
      <v-spacer></v-spacer>
        <v-card-text>
