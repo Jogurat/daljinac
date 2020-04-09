@@ -12,7 +12,16 @@
     >
       <v-card>
         <v-card-title class="justify-center">
+          <v-row>
+            <v-col cols="10">
           <span class="headline">Make user profile</span>
+          </v-col>
+          <v-col cols="2">
+          <v-btn  icon color="blue darken-1" v-on:click="close">
+            <v-icon medium>mdi-close</v-icon>
+          </v-btn>
+           </v-col>
+          </v-row>
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -49,9 +58,7 @@
           <!--<v-btn icon color="blue darken-1" text v-on:click="reset">
             <v-icon medium>mdi-restore</v-icon>
           </v-btn>-->
-          <v-btn  icon color="blue darken-1" v-on:click="close">
-            <v-icon medium>mdi-close</v-icon>
-          </v-btn>
+          
           <v-btn  color="blue darken-1" text v-on:click="registerUser">Register</v-btn>
         </v-card-actions>
       </v-card>

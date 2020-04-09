@@ -7,7 +7,16 @@
       v-model="valid">
       <v-card>
         <v-card-title class="justify-center">
+          <v-row>
+            <v-col cols="10">
           <span class="headline">Log in</span>
+          </v-col>
+          <v-col cols="2">
+             <v-btn  icon color="blue darken-1" v-on:click="close">
+            <v-icon medium>mdi-close</v-icon>
+          </v-btn>
+           </v-col>
+          </v-row>
         </v-card-title>
         <v-card-text>
           <v-container>
@@ -32,9 +41,6 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn  icon color="blue darken-1" v-on:click="close">
-            <v-icon medium>mdi-close</v-icon>
-          </v-btn>
           <v-btn  color="blue darken-1" text v-on:click="loginUser">Log in</v-btn>
         </v-card-actions>
       </v-card>
