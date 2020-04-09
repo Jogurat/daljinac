@@ -1,4 +1,5 @@
 <template>
+
   <v-card>
     <v-toolbar
       color="#546E7A"
@@ -6,6 +7,7 @@
       flat
       fixed
     >
+    
      <!--<v-toolbar-title>
        <div class="text-no-wrap text-example" style="width: 8rem;">
          Daljina.cc
@@ -47,12 +49,13 @@
         </div>
      
     </v-card-text>
+    
     </v-toolbar>
  <v-content>
       <router-view></router-view>
     </v-content>
   </v-card>
- 
+
 </template>
 
 <script>

@@ -2,13 +2,21 @@
   <div>
     <NavigationBar></NavigationBar>
     <v-container>
+      <v-form>
       <v-row>
-        <v-text-field v-model="username"></v-text-field>
+        <v-col cols="4">
+        <v-text-field label="Enter your e-mail address" v-model="username" filled rounded dense required></v-text-field>
+        </v-col>
       </v-row>
-
-      <v-row>
-        <v-btn @click="sendEmail">Send E-mail</v-btn>
+    <div>
+      <v-row> 
+        <v-col cols="4" align="center">
+        <v-btn  color="blue accent-3" dark @click="sendEmail">Send E-mail</v-btn>
+        </v-col>
       </v-row>
+       
+        </div>
+      </v-form>
     </v-container>
   </div>
 </template>
