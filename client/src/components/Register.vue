@@ -59,11 +59,19 @@
             <v-icon medium>mdi-restore</v-icon>
           </v-btn>-->
           
-          <v-btn  color="blue darken-1" text v-on:click="registerUser">Register</v-btn>
+
+          
+          <v-btn  color="blue darken-1" text v-on:click="registerUser">
+            Register</v-btn>
+            
+          
         </v-card-actions>
       </v-card>
+      
      </v-form>
+     
     </v-dialog>
+    
     
 
     <!--<v-container>
