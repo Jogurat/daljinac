@@ -2,6 +2,8 @@
   <div>
     <NavigationBar></NavigationBar>
     <v-container>
+      <br>
+      <br>
       <v-row>
         <v-col cols="4" align="center">
           <h1>{{ username }} 's home</h1>
