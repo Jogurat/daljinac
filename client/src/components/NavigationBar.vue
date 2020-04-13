@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-<template>
-
-=======
  <template>
->>>>>>> d6d03dee49e3150a69cc1799087264cb71a4cbf5
   <v-card>
     <v-toolbar
       color="#546E7A"
@@ -11,15 +6,6 @@
       flat
       class="header"
     >
-<<<<<<< HEAD
-    
-     <!--<v-toolbar-title>
-       <div class="text-no-wrap text-example" style="width: 8rem;">
-         Daljina.cc
-       </div>
-    </v-toolbar-title>-->
-=======
->>>>>>> d6d03dee49e3150a69cc1799087264cb71a4cbf5
       <v-container>
         <router-link to="/Homepage">
         <v-row>

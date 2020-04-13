@@ -2,6 +2,9 @@
   <div>
     <NavigationBar></NavigationBar>
     <v-container>
+      <br>
+      <br>
+      <br>
       <v-form>
       <v-row>
         <v-col cols="4">

@@ -58,14 +58,6 @@
           <!--<v-btn icon color="blue darken-1" text v-on:click="reset">
             <v-icon medium>mdi-restore</v-icon>
           </v-btn>-->
-<<<<<<< HEAD
-          <router-link  to="/Login">
-          <v-btn  icon color="blue darken-1" v-on:click="close">
-            <v-icon medium>mdi-close</v-icon>
-          </v-btn>
-          </router-link>
-          <v-btn  color="blue darken-1" text v-on:click="registerUser">Register</v-btn>
-=======
           
 
           
@@ -73,7 +65,6 @@
             Register</v-btn>
             
           
->>>>>>> d6d03dee49e3150a69cc1799087264cb71a4cbf5
         </v-card-actions>
       </v-card>
       
