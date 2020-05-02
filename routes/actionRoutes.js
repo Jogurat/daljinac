@@ -33,11 +33,24 @@ router.get("/byDeviceId/:id", async (req, res) => {
   }
 });
 
+// Get all actions for given device id that are unfinished (isProcessed === false)
+router.get("/unprocessed/:id", async (req, res) => {
+  console.log("hi");
+  try {
+    const actions = await Action.find({
+      deviceID: req.params.id,
+      isProcessed: false,
+    });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 //Create one
 router.post("/", async (req, res) => {
   const action = new Action({
     deviceID: req.body.deviceID,
-    actionCode: req.body.actionCode
+    actionCode: req.body.actionCode,
   });
   try {
     const newAction = await action.save();
