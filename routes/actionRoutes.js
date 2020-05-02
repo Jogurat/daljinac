@@ -33,7 +33,7 @@ router.get("/byDeviceId/:id", async (req, res) => {
   }
 });
 
-// Get all actions for given device id that are unfinished (isProcessed === false)
+// Get all actions for given device id that are unprocessed (isProcessed === false)
 router.get("/unprocessed/:id", async (req, res) => {
   console.log("hi");
   try {
@@ -42,6 +42,22 @@ router.get("/unprocessed/:id", async (req, res) => {
       isProcessed: false,
     });
     res.status(200).json(actions);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// Get the first sent (oldest) & unprocessed action for given device id
+router.get("/firstUnprocessed/:id", async (req, res) => {
+  try {
+    const actions = await Action.find({
+      deviceID: req.params.id,
+      isProcessed: false,
+    });
+    const last = actions.sort((a, b) => {
+      b.createdAt - a.createdAt;
+    });
+    res.status(200).json(last[0]);
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
