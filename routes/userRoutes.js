@@ -20,11 +20,11 @@ let transporter = nodemailer.createTransport({
   secure: false, // true for 465, false for other ports
   auth: {
     user: "daljinaccc@gmail.com", // generated ethereal user
-    pass: "daljinacc123" // generated ethereal password
+    pass: "daljinacc123", // generated ethereal password
   },
   tls: {
-    rejectUnauthorized: false
-  }
+    rejectUnauthorized: false,
+  },
 });
 
 //Get ALL users
@@ -84,7 +84,7 @@ const createUser = router.post("/", async (req, res) => {
             // a user da predstavlja semu iz modela
             username,
             password: hash,
-            email
+            email,
           });
           try {
             const newUser = await user.save();
@@ -147,7 +147,7 @@ const forgotPassMail = router.get("/forgotPass/:username", async (req, res) => {
         to: user.email, // list of receivers
         subject: "daljina.cc password change", // Subject line
         // text: `Please click this link to change your pass: ${link}` // plain text body
-        html: helper.setUrl(link)
+        html: helper.setUrl(link),
       };
       transporter.sendMail(mailOptions, (error, info) => {
         if (error) return console.log(error);
@@ -200,7 +200,7 @@ function checkAuth(req, res, next) {
   }
 }
 
-function isLogged(req, res, next) { }
+function isLogged(req, res, next) {}
 
 module.exports = {
   router,
@@ -210,5 +210,5 @@ module.exports = {
   createUser,
   loginUser,
   forgotPassMail,
-  changePass
+  changePass,
 };

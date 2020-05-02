@@ -33,11 +33,41 @@ router.get("/byDeviceId/:id", async (req, res) => {
   }
 });
 
+// Get all actions for given device id that are unprocessed (isProcessed === false)
+router.get("/unprocessed/:id", async (req, res) => {
+  console.log("hi");
+  try {
+    const actions = await Action.find({
+      deviceID: req.params.id,
+      isProcessed: false,
+    });
+    res.status(200).json(actions);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// Get the first sent (oldest) & unprocessed action for given device id
+router.get("/firstUnprocessed/:id", async (req, res) => {
+  try {
+    const actions = await Action.find({
+      deviceID: req.params.id,
+      isProcessed: false,
+    });
+    const last = actions.sort((a, b) => {
+      b.createdAt - a.createdAt;
+    });
+    res.status(200).json(last[0]);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 //Create one
 router.post("/", async (req, res) => {
   const action = new Action({
     deviceID: req.body.deviceID,
-    actionCode: req.body.actionCode
+    code: req.body.code,
   });
   try {
     const newAction = await action.save();
@@ -48,7 +78,16 @@ router.post("/", async (req, res) => {
 });
 
 //Update one
-router.patch("/", (req, res) => {});
+router.put("/:id", async (req, res) => {
+  try {
+    const actionToUpdate = await Action.findById(req.params.id);
+    actionToUpdate.isProcessed = true;
+    await actionToUpdate.save();
+    res.status(201).json(actionToUpdate);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
 
 //Delete one
 router.delete("/:id", (req, res) => {});
