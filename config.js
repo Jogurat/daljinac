@@ -12,4 +12,4 @@ else if (process.env.NODE_ENV == "test")
   config.MONGODB_URI = "mongodb://localhost/testDB";
 else config.MONGODB_URI = process.env.MONGODB_URI;
 
-module.exports = config;
+module.exports = config;//kad bi neko zeleo da koristi izvan ovog fajla

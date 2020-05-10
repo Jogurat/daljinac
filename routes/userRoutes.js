@@ -55,7 +55,7 @@ const addRoom = router.put("/room/:username", checkAuth, async (req, res) => {
     const user = await User.findOne({ username: req.params.username });
 
     let newRooms = user.rooms;
-    newRooms.push({ name: req.body.name, deviceID: req.body.deviceID });
+    newRooms.push({ name: req.body.name, deviceID: req.body.deviceID, type:req.body.type });
     user.rooms = newRooms;
     await user.save();
     res.status(202).json(user);
@@ -128,6 +128,34 @@ const loginUser = router.post("/login", async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
+//LOGOUT USER
+/*const logoutUser = router.post("/login", async (req, res) => {
+  //console.log("OVO JE USER " + req.body.username);
+  const username = req.body.username;
+  let password = req.body.password;
+  try {
+    const user = await User.findOne({ username });
+    bcrypt.compare(password, user.password, (err, result) => {
+      if (result) {
+        //console.log(result);
+        //dobar pass
+        jwt.sign(user.toJSON(), SECRET_KEY, (err, token) => {
+          //console.log("Pravim token");
+          //console.log(user.toJSON());
+          res.status(200).json(token); //SIGNED IN
+        });
+      } else {
+        //los pass
+        //res.json({ message: "Wrong username or password" }).status(404);
+        res
+          .status(404)
+          .json({ message: "Pogresno korisnicko ime ili lozinka" });
+      }
+    });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});*/
 
 //Create link for changing pass with JWT
 const forgotPassMail = router.get("/forgotPass/:username", async (req, res) => {

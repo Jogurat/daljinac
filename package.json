@@ -19,6 +19,7 @@
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "jsonwebtoken": "^8.5.1",
+    "mdbvue": "^6.6.0",
     "mongoose": "^5.9.2",
     "nodemailer": "^6.4.6",
     "vue": "^2.6.11"

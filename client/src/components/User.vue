@@ -1,6 +1,9 @@
 <template>
   <div>
+    <NavigationBar></NavigationBar>
     <v-container>
+      <br>
+      <br>
       <v-row>
         <v-col cols="4" align="center">
           <h1>{{ username }} 's home</h1>
@@ -71,6 +74,7 @@ import axios from "axios";
 import jwt from "jsonwebtoken";
 import Card from "./Card";
 import { config } from "../../config";
+import NavigationBar from "./NavigationBar"
 
 let url = `${config.DB_HOST}:${config.PORT}/users/`;
 
@@ -90,7 +94,8 @@ export default {
     };
   },
   components: {
-    Card
+    Card, 
+    NavigationBar
   },
   methods: {
     newRoom: function() {
@@ -114,6 +119,13 @@ export default {
               console.log(res.data.rooms);
             });
         });
+    },
+     loggedIn: function() {
+      if (localStorage.getItem("token")) return true;
+      else return false;
+    },
+    logOut: function() {
+      localStorage.removeItem("token");
     }
   },
   //   mounted: async function() {
@@ -137,6 +149,8 @@ export default {
       this.user = res.data;
       this.dataReady = true;
     });
+   // navBar.loggedIn();
+   // navBar.logOut();
   }
 };
 </script>

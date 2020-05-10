@@ -14,6 +14,7 @@ const loginUrl = usersUrl + "login";
 chai.use(chaiHttp);
 
 describe("User routes", () => {
+  //this.timeout(0);
   before(done => {
     User.deleteMany({}, err => {
       done();
