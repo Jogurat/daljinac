@@ -61,7 +61,8 @@
           
 
           
-          <v-btn  color="blue darken-1" text v-on:click="registerUser">
+          <v-btn  color="blue darken-1" text v-on:click="registerUser"
+          @click="alert = !alert">
             Register</v-btn>
             
           
@@ -69,8 +70,15 @@
       </v-card>
       
      </v-form>
-     
+     <v-alert
+      :value="alert"
+      color="green"
+      icon="mdi-check-circle-outline"
+      transition="scale-transition"
+    >
+    You are registred now! </v-alert>
     </v-dialog>
+    
     
     
 
@@ -118,6 +126,7 @@ export default {
       dialog:false,
       valid: true,
       show1: false,
+       alert: false,
        rules: {
           required: value => !!value || 'Required.',
           min: v => v.length >= 5 || 'Min 5 characters',

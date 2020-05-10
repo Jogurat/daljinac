@@ -55,7 +55,7 @@ const addRoom = router.put("/room/:username", checkAuth, async (req, res) => {
     const user = await User.findOne({ username: req.params.username });
 
     let newRooms = user.rooms;
-    newRooms.push({ name: req.body.name, deviceID: req.body.deviceID });
+    newRooms.push({ name: req.body.name, deviceID: req.body.deviceID, type: req.body.type });
     user.rooms = newRooms;
     await user.save();
     res.status(202).json(user);

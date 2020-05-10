@@ -8,6 +8,10 @@ const roomsSchema = new mongoose.Schema({
   deviceID: {
     type: Number,
     required: true
+  },
+  type: {
+    type: String,
+    required: true
   }
 });
 
