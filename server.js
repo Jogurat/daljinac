@@ -24,7 +24,7 @@ app.use(express.json());
 app.use(cors());
 
 //deployment
-// app.use('/', serveStatic(path.join(__dirname, '/dist')))
+app.use("/", serveStatic(path.join(__dirname, "./client/dist")));
 
 // app.get(/.*/, function (req, res) {
 //   res.sendFile(path.join(__dirname, '/dist/index.html'))
