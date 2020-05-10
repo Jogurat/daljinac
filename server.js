@@ -6,19 +6,18 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
 const config = require("./config.js");
-const serveStatic = require('serve-static')
-const path = require('path')
-
+const serveStatic = require("serve-static");
+const path = require("path");
 
 const SECRET_KEY = config.SECRET_KEY;
 
 mongoose.connect(config.MONGODB_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-  useCreateIndex: true
+  useCreateIndex: true,
 });
 const db = mongoose.connection;
-db.on("error", error => console.error(error));
+db.on("error", (error) => console.error(error));
 db.once("open", () => console.log("Connected to Database"));
 
 app.use(express.json());
@@ -31,8 +30,7 @@ app.use(cors());
 //   res.sendFile(path.join(__dirname, '/dist/index.html'))
 // })
 
-
-const actionsRouter = require("./routes/routes");
+const actionsRouter = require("./routes/actionRoutes");
 const userRouter = require("./routes/userRoutes");
 
 app.use("/actions", actionsRouter);
