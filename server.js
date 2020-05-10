@@ -24,6 +24,7 @@ app.use(express.json());
 app.use(cors());
 
 //deployment
+// test comment
 app.use("/", serveStatic(path.join(__dirname, "./client/dist")));
 
 // app.get(/.*/, function (req, res) {
@@ -32,9 +33,11 @@ app.use("/", serveStatic(path.join(__dirname, "./client/dist")));
 
 const actionsRouter = require("./routes/actionRoutes");
 const userRouter = require("./routes/userRoutes");
+const codesRouter = require("./routes/codesRoutes");
 
 app.use("/actions", actionsRouter);
 app.use("/users", userRouter.router);
+app.use("/codes", codesRouter);
 // app.get("/", (req, res) => {
 //   res.sendfile("./index.html");
 // });
