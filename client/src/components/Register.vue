@@ -147,12 +147,12 @@ export default {
         email: this.email
       });
     },
-    validate () {
+    /*validate () {
         this.$refs.form.validate()
-      },
-      reset () {
+      },*/
+      /*reset () {
         this.$refs.form.reset();
-      },
+      },*/
       close(){
         this.$refs.form.reset();
         this.dialog=false;

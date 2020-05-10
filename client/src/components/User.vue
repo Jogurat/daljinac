@@ -104,8 +104,8 @@ export default {
       axios
         .put(
           roomUrl + this.username,
-          { name: this.newRoomName, deviceID: this.newDeviceID },
-          { headers: { authorization: `Bearer ${token}` } }
+          { name: this.newRoomName, deviceID: this.newDeviceID, type: "kitchen"},
+          { headers: { authorization: `Bearer ${token}` }}
         )
         .then(res => {
           console.log(res);

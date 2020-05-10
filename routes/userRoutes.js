@@ -129,6 +129,7 @@ const loginUser = router.post("/login", async (req, res) => {
   }
 });
 
+
 //Create link for changing pass with JWT
 const forgotPassMail = router.get("/forgotPass/:username", async (req, res) => {
   const EMAIL_SECRET = config.EMAIL_SECRET;
