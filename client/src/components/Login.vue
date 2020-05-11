@@ -106,7 +106,7 @@
   if (process.env.NODE_ENV === "development") {
     url = `${config.DB_HOST}:${config.PORT}/users/login`;
   } else {
-    url = "https://daljinac-api.herokuapp.com/users/login";
+    url = "https://daljinac-api.herokuapp.com/api/users/login";
   }
 
   export default {

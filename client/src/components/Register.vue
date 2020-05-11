@@ -116,7 +116,7 @@
   if (process.env.NODE_ENV === "development") {
     url = `${config.DB_HOST}`;
   } else {
-    url = "https://daljinac-api.herokuapp.com/";
+    url = "https://daljinac-api.herokuapp.com/api";
   }
 
   // const config2 = require("../../../config").config;
