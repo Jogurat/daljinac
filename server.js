@@ -42,6 +42,7 @@ app.use("/codes", codesRouter);
 //   res.sendfile("./index.html");
 // });
 //comments
+console.log(config);
 let server = app.listen(config.PORT, () => console.log("Server started"));
 
 module.exports = server;
