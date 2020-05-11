@@ -71,13 +71,36 @@
             <v-icon medium>mdi-restore</v-icon>
           </v-btn>-->
 
-          <v-btn color="blue darken-1" text v-on:click="registerUser"
-            >Register</v-btn
-          >
+          
+          <v-btn  color="blue darken-1" text v-on:click="registerUser"
+          @click="alert = !alert">
+            Register</v-btn>
+            
+          
         </v-card-actions>
       </v-card>
-    </v-form>
-  </v-dialog>
+     </v-form>
+     <v-alert v-model="alertReg"
+      :value="alert"
+      color="green"
+      icon="mdi-check-circle-outline"
+      transition="scale-transition"
+    >
+    You are registred now! </v-alert>
+
+
+    <v-alert v-model="alertLos"
+      :value="alert"
+      color="red"
+      icon="mdi-check-circle-outline"
+      transition="scale-transition"
+    >
+    There is already a user with this credentials! </v-alert>
+
+    </v-dialog>
+    
+    
+    
 
   <!--<v-container>
       <v-row>
@@ -155,12 +178,14 @@
       /*validate () {
         this.$refs.form.validate()
       },*/
-      /*reset () {
+      reset () {
         this.$refs.form.reset();
-      },*/
-      close() {
+      },
+      close(){
         this.$refs.form.reset();
-        this.dialog = false;
+        this.dialog=false;
+        this.alertReg=false;
+        this.alertLos=false;
       },
     },
   };

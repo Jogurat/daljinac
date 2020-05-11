@@ -24,6 +24,7 @@
           max-width="100px"
           v-bind:title="room.name"
           v-bind:deviceID="room.deviceID"
+          :room-type="room.type"
         ></Card>
       </v-row>
       <!--Test-->
@@ -53,10 +54,10 @@
                 <v-col cols="4"></v-col>
                 <v-col>
                   <v-radio-group v-model="dialogm1" column label="Room type">
-                    <v-radio label="Living room" value="l"></v-radio>
-                    <v-radio label="Bedrooom" value="b"></v-radio>
-                    <v-radio label="Kitchen" value="k"></v-radio>
-                    <v-radio label="Kids room" value="r"></v-radio>
+                    <v-radio label="Living room" value="livingroom"></v-radio>
+                    <v-radio   label="Bedrooom" value="bedroom"></v-radio>
+                    <v-radio  label="Kitchen" value="kitchen"></v-radio>
+                    <v-radio  label="Kids room" value="kidsroom"></v-radio>
                   </v-radio-group>
                 </v-col>
               </v-row>
@@ -80,35 +81,32 @@
   import jwt from "jsonwebtoken";
   import Card from "./Card";
   import NavigationBar from "./NavigationBar";
-  const jsonConfig = require("../../../config.json");
+  const jsonConfig = require("../../../config");
   const config = jsonConfig;
 
   let url = `${config.DB_HOST}/users/`;
 
-  // if (process.env.NODE_ENV === "development") {
-  //   url = `${config.DB_HOST}:${config.PORT}/users/`;
-  // } else {
-  //   url = "https://daljinac-api.herokuapp.com/users/";
-  // }
-  //const url = "http://localhost:3000/users/";
-  const roomUrl = `${url}room/`;
-  export default {
-    name: "User",
-    data: function() {
-      return {
-        user: null,
-        username: "",
-        rooms: [],
-        dataReady: false,
-        dialog: false,
-        newRoomName: "",
-        newDeviceID: "",
-      };
-    },
-    components: {
-      Card,
-      NavigationBar,
-    },
+//const url = "http://localhost:3000/users/";
+const roomUrl = `${url}/room/`;
+export default {
+  name: "User",
+  data: function() {
+    return {
+      user: null,
+      username: "",
+      rooms: [],
+      dataReady: false,
+      dialog: false,
+      newRoomName: "",
+      newDeviceID: "",
+      type: "",
+      dialogm1: null
+    };
+  },
+  components: {
+    Card, 
+    NavigationBar
+  },
     methods: {
       newRoom: function() {
         //console.log(config);
@@ -119,7 +117,7 @@
             {
               name: this.newRoomName,
               deviceID: this.newDeviceID,
-              type: "kitchen",
+              type: this.dialogm1,
             },
             { headers: { authorization: `Bearer ${token}` } }
           )
@@ -157,7 +155,7 @@
         this.dataReady = true;
       });
     },
-  };
+};
 </script>
 
 <style>
