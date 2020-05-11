@@ -46,7 +46,7 @@
       changePass: async function() {
         console.log(this.$route.params.token);
         try {
-          await axios.put(url, {
+          await axios.put("./api/users/changePass", {
             token: this.$route.params.token,
             newPass: this.newPass,
           });

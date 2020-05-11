@@ -142,14 +142,15 @@
       lazy: false,
     }),
     methods: {
-      registerUser: function() {
+      registerUser: async function() {
         console.log(url);
         // console.log(jsonConfig);
-        axios.post(`${url}/users`, {
+        let res = await axios.post(`./api/users`, {
           username: this.username,
           password: this.password,
           email: this.email,
         });
+        console.log(res);
       },
       /*validate () {
         this.$refs.form.validate()

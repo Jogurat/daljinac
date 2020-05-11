@@ -115,14 +115,18 @@
         const token = localStorage.getItem("token");
         axios
           .put(
-            roomUrl + this.username,
-            { name: this.newRoomName, deviceID: this.newDeviceID },
+            `./api/users/room/${this.username}`,
+            {
+              name: this.newRoomName,
+              deviceID: this.newDeviceID,
+              type: "kitchen",
+            },
             { headers: { authorization: `Bearer ${token}` } }
           )
           .then((res) => {
             console.log(res);
             axios
-              .get(url + this.username, {
+              .get(`./api/users/${this.username}`, {
                 headers: { Authorization: `Bearer ${token}` },
               })
               .then((res) => {
@@ -146,23 +150,12 @@
     //     if (this.user) this.dataReady = true;
     //   }
     mounted: function() {
-      const SECRET_KEY = process.env.VUE_APP_SECRET_KEY;
-      // console.log("SECRET KEY JE : " + SECRET_KEY);
-      const token = localStorage.getItem("token");
-      //console.log(token);
-      jwt.verify(token, SECRET_KEY, (err, decoded) => {
-        this.username = decoded.username;
-        // console.log("DECODED TOKEN " + JSON.stringify(decoded));
-        if (err) {
-          console.log(err);
-        }
-      });
-      axios.get(url + this.username).then((res) => {
+      this.username = localStorage.getItem("username");
+
+      axios.get(`./api/users/${this.username}`).then((res) => {
         this.user = res.data;
         this.dataReady = true;
       });
-      // navBar.loggedIn();
-      // navBar.logOut();
     },
   };
 </script>
