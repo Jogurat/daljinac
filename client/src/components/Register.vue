@@ -99,9 +99,13 @@
 
 <script>
 import axios from "axios";
-import { config } from "../../config";
+import { config } from "../../../config";
 
-let url = `${config.DB_HOST}:${config.PORT}`;
+if (config.DB_HOST !== "http://localhost:3000") {
+  let url = `${config.DB_HOST}`;
+} else {
+  let url = `${config.DB_HOST}:${config.PORT}`;
+}
 console.log(url);
 export default {
   name: "Register",
