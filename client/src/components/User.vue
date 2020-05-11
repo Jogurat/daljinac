@@ -80,7 +80,7 @@
   import jwt from "jsonwebtoken";
   import Card from "./Card";
   import NavigationBar from "./NavigationBar";
-  const jsonConfig = require("../../../config.json");
+  const jsonConfig = require("../../../config");
   const config = jsonConfig;
 
   let url = `${config.DB_HOST}/users/`;
