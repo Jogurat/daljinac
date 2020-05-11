@@ -144,7 +144,7 @@
     methods: {
       registerUser: function() {
         console.log(url);
-        console.log(jsonConfig);
+        // console.log(jsonConfig);
         axios.post(`${url}/users`, {
           username: this.username,
           password: this.password,
