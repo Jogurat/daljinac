@@ -106,6 +106,14 @@ router.post("/codes/:id", async (req, res) => {
   }
 });
 
+// Get bits for given code and deviceID
+router.get("/codes/:deviceID/:codeID", async (req, res) => {
+  try {
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 //Delete one
 router.delete("/:id", (req, res) => {});
 
