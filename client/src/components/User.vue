@@ -85,9 +85,9 @@
   let url;
 
   if (process.env.NODE_ENV === "development") {
-    url = `${config.DB_HOST}:${config.PORT}/users/`;
+    url = `${config.DB_HOST}:${config.PORT}/users`;
   } else {
-    url = "https://daljinac-api.herokuapp.com/users/";
+    url = "https://daljinac-api.herokuapp.com/users";
   }
   //const url = "http://localhost:3000/users/";
   const roomUrl = `${url}/room/`;
