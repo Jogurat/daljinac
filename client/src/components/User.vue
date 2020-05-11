@@ -79,16 +79,17 @@
   import axios from "axios";
   import jwt from "jsonwebtoken";
   import Card from "./Card";
-  import { config } from "../../config";
   import NavigationBar from "./NavigationBar";
+  const jsonConfig = require("../../../config.json");
+  const config = jsonConfig;
 
-  let url;
+  let url = `${config.DB_HOST}/users/`;
 
-  if (process.env.NODE_ENV === "development") {
-    url = `${config.DB_HOST}:${config.PORT}/users/`;
-  } else {
-    url = "https://daljinac-api.herokuapp.com/users/";
-  }
+  // if (process.env.NODE_ENV === "development") {
+  //   url = `${config.DB_HOST}:${config.PORT}/users/`;
+  // } else {
+  //   url = "https://daljinac-api.herokuapp.com/users/";
+  // }
   //const url = "http://localhost:3000/users/";
   const roomUrl = `${url}room/`;
   export default {
