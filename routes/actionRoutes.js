@@ -13,10 +13,11 @@ router.get("/", async (req, res) => {
   }
 });
 
-//Get one
+//Get ALL actions for given deviceID
 router.get("/:id", async (req, res) => {
   try {
-    const action = await Action.findById(req.params.id);
+    // const action = await Action.findById(req.params.id);
+    const action = await Action.find({ deviceID: req.params.id });
     res.json(action);
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -85,6 +86,29 @@ router.put("/:id", async (req, res) => {
     actionToUpdate.isProcessed = true;
     await actionToUpdate.save();
     res.status(201).json(actionToUpdate);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// Create code for given deviceID
+router.post("/codes/:id", async (req, res) => {
+  try {
+    const actionToPost = new Action({
+      deviceID: req.body.deviceID,
+      code: req.body.code,
+      bits: req.body.bits,
+    });
+    await actionToPost.save();
+    res.status(201).json(actionToPost);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
+// Get bits for given code and deviceID
+router.get("/codes/:deviceID/:codeID", async (req, res) => {
+  try {
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

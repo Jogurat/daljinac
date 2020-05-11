@@ -2,8 +2,8 @@
   <div>
     <NavigationBar></NavigationBar>
     <v-container>
-      <br>
-      <br>
+      <br />
+      <br />
       <v-row>
         <v-col cols="4" align="center">
           <h1>{{ username }} 's home</h1>
@@ -24,6 +24,7 @@
           max-width="100px"
           v-bind:title="room.name"
           v-bind:deviceID="room.deviceID"
+          :room-type="room.type"
         ></Card>
       </v-row>
       <!--Test-->
@@ -36,10 +37,16 @@
               <v-row>
                 <v-col cols="1"></v-col>
                 <v-col cols="5">
-                  <v-text-field label="Room name" v-model="newRoomName"></v-text-field>
+                  <v-text-field
+                    label="Room name"
+                    v-model="newRoomName"
+                  ></v-text-field>
                 </v-col>
                 <v-col cols="5">
-                  <v-text-field label="Device ID" v-model="newDeviceID"></v-text-field>
+                  <v-text-field
+                    label="Device ID"
+                    v-model="newDeviceID"
+                  ></v-text-field>
                 </v-col>
               </v-row>
 
@@ -47,10 +54,10 @@
                 <v-col cols="4"></v-col>
                 <v-col>
                   <v-radio-group v-model="dialogm1" column label="Room type">
-                    <v-radio label="Living room" value="l"></v-radio>
-                    <v-radio label="Bedrooom" value="b"></v-radio>
-                    <v-radio label="Kitchen" value="k"></v-radio>
-                    <v-radio label="Kids room" value="r"></v-radio>
+                    <v-radio label="Living room" value="livingroom"></v-radio>
+                    <v-radio   label="Bedrooom" value="bedroom"></v-radio>
+                    <v-radio  label="Kitchen" value="kitchen"></v-radio>
+                    <v-radio  label="Kids room" value="kidsroom"></v-radio>
                   </v-radio-group>
                 </v-col>
               </v-row>
@@ -70,13 +77,14 @@
 </template>
 
 <script>
-import axios from "axios";
-import jwt from "jsonwebtoken";
-import Card from "./Card";
-import { config } from "../../config";
-import NavigationBar from "./NavigationBar"
+  import axios from "axios";
+  import jwt from "jsonwebtoken";
+  import Card from "./Card";
+  import NavigationBar from "./NavigationBar";
+  const jsonConfig = require("../../../config");
+  const config = jsonConfig;
 
-let url = `${config.DB_HOST}:${config.PORT}/users/`;
+  let url = `${config.DB_HOST}/users/`;
 
 //const url = "http://localhost:3000/users/";
 const roomUrl = `${url}/room/`;
@@ -90,73 +98,68 @@ export default {
       dataReady: false,
       dialog: false,
       newRoomName: "",
-      newDeviceID: ""
+      newDeviceID: "",
+      type: "",
+      dialogm1: null
     };
   },
   components: {
     Card, 
     NavigationBar
   },
-  methods: {
-    newRoom: function() {
-      //console.log(config);
-      const token = localStorage.getItem("token");
-      axios
-        .put(
-          roomUrl + this.username,
-          { name: this.newRoomName, deviceID: this.newDeviceID, type: "kitchen"},
-          { headers: { authorization: `Bearer ${token}` }}
-        )
-        .then(res => {
-          console.log(res);
-          axios
-            .get(url + this.username, {
-              headers: { Authorization: `Bearer ${token}` }
-            })
-            .then(res => {
-              this.user = res.data;
-              this.dataReady = true;
-              console.log(res.data.rooms);
-            });
-        });
+    methods: {
+      newRoom: function() {
+        //console.log(config);
+        const token = localStorage.getItem("token");
+        axios
+          .put(
+            `./api/users/room/${this.username}`,
+            {
+              name: this.newRoomName,
+              deviceID: this.newDeviceID,
+              type: this.dialogm1,
+            },
+            { headers: { authorization: `Bearer ${token}` } }
+          )
+          .then((res) => {
+            console.log(res);
+            axios
+              .get(`./api/users/${this.username}`, {
+                headers: { Authorization: `Bearer ${token}` },
+              })
+              .then((res) => {
+                this.user = res.data;
+                this.dataReady = true;
+                console.log(res.data.rooms);
+              });
+          });
+      },
+      loggedIn: function() {
+        if (localStorage.getItem("token")) return true;
+        else return false;
+      },
+      logOut: function() {
+        localStorage.removeItem("token");
+      },
     },
-     loggedIn: function() {
-      if (localStorage.getItem("token")) return true;
-      else return false;
+    //   mounted: async function() {
+    //     const resp = await axios.get(url);
+    //     this.user = resp.data;
+    //     if (this.user) this.dataReady = true;
+    //   }
+    mounted: function() {
+      this.username = localStorage.getItem("username");
+
+      axios.get(`./api/users/${this.username}`).then((res) => {
+        this.user = res.data;
+        this.dataReady = true;
+      });
     },
-    logOut: function() {
-      localStorage.removeItem("token");
-    }
-  },
-  //   mounted: async function() {
-  //     const resp = await axios.get(url);
-  //     this.user = resp.data;
-  //     if (this.user) this.dataReady = true;
-  //   }
-  mounted: function() {
-    const SECRET_KEY = process.env.VUE_APP_SECRET_KEY;
-    console.log("SECRET KEY JE : " + SECRET_KEY);
-    const token = localStorage.getItem("token");
-    //console.log(token);
-    jwt.verify(token, SECRET_KEY, (err, decoded) => {
-      this.username = decoded.username;
-      console.log("DECODED TOKEN " + JSON.stringify(decoded));
-      if (err) {
-        console.log(err);
-      }
-    });
-    axios.get(url + this.username).then(res => {
-      this.user = res.data;
-      this.dataReady = true;
-    });
-   // navBar.loggedIn();
-   // navBar.logOut();
-  }
 };
 </script>
 
 <style>
-li {
-  text-decoration: black;
-}
+  li {
+    text-decoration: black;
+  }
 </style>

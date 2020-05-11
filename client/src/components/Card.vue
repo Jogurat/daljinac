@@ -5,8 +5,13 @@
       <v-card :elevation="hover ? 24 : 6" :loading="loading" class="mx-auto my-12" max-width="300">
         <v-img
           height="150"
+         :src="require(`../assets/${roomType}.jpeg`)"
+          ></v-img>
+
+         <!-- <v-img
+          height="150"
           src="https://www.thespruce.com/thmb/_iITA9xgfLDWyLjzF5xwBDTzdgI=/960x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/GettyImages-842254818-5bfc267446e0fb00260a3348.jpg"
-        ></v-img>
+        ></v-img> -->
 
         <v-card-title>{{ $props.title }}</v-card-title>
 
@@ -60,7 +65,8 @@ export default {
   props: {
     // props: {['title', 'deviceID']}
     title: String,
-    deviceID: Number
+    deviceID: Number,
+    roomType: String
   }
 };
 </script>

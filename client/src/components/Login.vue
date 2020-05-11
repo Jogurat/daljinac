@@ -1,55 +1,69 @@
 <template>
   <v-dialog v-model="dialog2" overlay-opacity="0.75" width="400px">
-      <template v-slot:activator="{ on }">
-        <v-btn class="ma-4" color="blue accent-3" dark v-on="on">Log in</v-btn>
-      </template>
-      <v-form ref="form"
-      v-model="valid"
-      :lazy-validation="lazy">
-      
+    <template v-slot:activator="{ on }">
+      <v-btn class="ma-4" color="blue accent-3" dark v-on="on">Log in</v-btn>
+    </template>
+    <v-form ref="form" v-model="valid" :lazy-validation="lazy">
       <v-card>
         <v-card-title class="justify-center">
           <v-row>
             <v-col cols="10">
-          <span class="headline">Log in</span>
-          </v-col>
-          <v-col cols="2">
-             <v-btn  icon color="blue darken-1" v-on:click="close">
-            <v-icon medium>mdi-close</v-icon>
-          </v-btn>
-           </v-col>
+              <span class="headline">Log in</span>
+            </v-col>
+            <v-col cols="2">
+              <v-btn icon color="blue darken-1" v-on:click="close">
+                <v-icon medium>mdi-close</v-icon>
+              </v-btn>
+            </v-col>
           </v-row>
         </v-card-title>
         <v-card-text>
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-text-field label="Username*" v-model="username" filled rounded dense required></v-text-field>
+                <v-text-field
+                  label="Username*"
+                  v-model="username"
+                  filled
+                  rounded
+                  dense
+                  required
+                ></v-text-field>
               </v-col>
               <v-col cols="12">
-                <v-text-field label="Password*" v-model="password" filled rounded dense required
-                :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-                :type="show1 ? 'text' : 'password'"
-                counter
-             @click:append="show1 = !show1"></v-text-field>
+                <v-text-field
+                  label="Password*"
+                  v-model="password"
+                  filled
+                  rounded
+                  dense
+                  required
+                  :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                  :type="show1 ? 'text' : 'password'"
+                  counter
+                  @click:append="show1 = !show1"
+                ></v-text-field>
               </v-col>
-               <v-row>
-                 <v-col class="text-center">
-                  <router-link  to="/forgotPass">Forgot your password?</router-link>
+              <v-row>
+                <v-col class="text-center">
+                  <router-link to="/forgotPass"
+                    >Forgot your password?</router-link
+                  >
                 </v-col>
-               </v-row>
+              </v-row>
             </v-row>
           </v-container>
           <small>*indicates required field</small>
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn  color="blue darken-1" text v-on:click="loginUser">Log in</v-btn>
+          <v-btn color="blue darken-1" text v-on:click="loginUser"
+            >Log in</v-btn
+          >
         </v-card-actions>
       </v-card>
-      </v-form>
-    </v-dialog>
-
+    </v-form>
+  </v-dialog>
 
   <!--<div>
     <v-container>
@@ -82,60 +96,67 @@
 </template>
 
 <script>
-import axios from "axios";
-//import router from "../main";
-import { config } from "../../config";
+  import axios from "axios";
+  //import router from "../main";
+  const config = require("../../../config");
+  // const config = jsonConfig;
 
-let url = `${config.DB_HOST}:${config.PORT}/users/login`;
-//const url = "http://localhost:3000/users/login";
+  let url = `${config.DB_HOST}/users/login`;
 
-export default {
-  name: "Login",
-  data: () => ({
-    username: "",
-    password: "",
-    dialog2:false,
-    show1: false,
-    valid: true
-  }),
-  methods: {
-    async loginUser() {
-      //PROMISE
-      // axios
-      //   .post(url, {
-      //     data: { username: this.username, password: this.password }
-      //   })
-      //   .then(function(response) {
-      //     console.log(response);
-      //     let token = response;
-      //     localStorage.setItem("token", token);
-      //   })
-      //   .catch(function(err) {
-      //     console.log("NALAZIM SE U ERR" + err);
-      //   });
-      try {
-        const res = await axios.post(url, {
-          username: this.username,
-          password: this.password
-        });
-        const token = res.data;
-        //console.log("TOKEN U LOGIN " + token);
-        localStorage.setItem("token", token);
-        this.$router.push("/user");
-      } catch (err) {
-        console.log(err);
-      }
-    },
-    
-    reset () {
-        this.$refs.form.reset()
-      },
-    close(){
-        this.$refs.form.reset();
-        this.dialog2=false;
-      }
+  if (process.env.NODE_ENV === "development") {
+    url = `${config.DB_HOST}/users/login`;
+  } else {
+    url = "https://daljinac-api.herokuapp.com/api/users/login";
   }
-};
+
+  export default {
+    name: "Login",
+    data: () => ({
+      username: "",
+      password: "",
+      dialog2: false,
+      show1: false,
+      valid: true,
+    }),
+    methods: {
+      async loginUser() {
+        //PROMISE
+        // axios
+        //   .post(url, {
+        //     data: { username: this.username, password: this.password }
+        //   })
+        //   .then(function(response) {
+        //     console.log(response);
+        //     let token = response;
+        //     localStorage.setItem("token", token);
+        //   })
+        //   .catch(function(err) {
+        //     console.log("NALAZIM SE U ERR" + err);
+        //   });
+        try {
+          console.log(url);
+          const res = await axios.post("./api/users/login", {
+            username: this.username,
+            password: this.password,
+          });
+          const token = res.data;
+          //console.log("TOKEN U LOGIN " + token);
+          localStorage.setItem("token", token);
+          localStorage.setItem("username", this.username);
+          this.$router.push("/user");
+        } catch (err) {
+          console.log(err);
+        }
+      },
+      reset() {
+        this.$refs.form.reset();
+      },
+      close() {
+        this.$refs.form.reset();
+        this.dialog2 = false;
+      },
+    },
+  };
 </script>
 
 <style scoped></style>
