@@ -135,13 +135,14 @@
         //   });
         try {
           console.log(url);
-          const res = await axios.post(url, {
+          const res = await axios.post("./api/users/login", {
             username: this.username,
             password: this.password,
           });
           const token = res.data;
           //console.log("TOKEN U LOGIN " + token);
           localStorage.setItem("token", token);
+          localStorage.setItem("username", this.username);
           this.$router.push("/user");
         } catch (err) {
           console.log(err);
