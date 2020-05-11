@@ -60,10 +60,9 @@
           
 
           
-          <v-btn  color="blue darken-1" text v-on:click="registerUser"
-          @click="alert = !alert">
-            Register</v-btn>
-            
+          <v-btn  color="blue darken-1" text v-on:click="registerUser">
+             Register</v-btn>
+           <Login v-model="showLoginForm"/> 
           
         </v-card-actions>
       </v-card>
@@ -74,20 +73,24 @@
       color="green"
       icon="mdi-check-circle-outline"
       transition="scale-transition"
-    >
-    You are registred now! </v-alert>
-    <v-alert v-model="alertLos"
+    >You are registred now! </v-alert>
+
+    <v-alert v-model="alertFail"
       :value="alert"
       color="red"
       icon="mdi-check-circle-outline"
       transition="scale-transition"
-    >
-    There is already a user with this credentials! </v-alert>
+    >There is already a user with this credentials! </v-alert>
+
+    <v-alert v-model="alertFail2"
+      :value="alert"
+      color="yellow"
+      icon="mdi-check-circle-outline"
+      transition="scale-transition"
+    >Enter data again! </v-alert>
+
     </v-dialog>
     
-    
-    
-
     <!--<v-container>
       <v-row>
         <h1>Register</h1>
@@ -120,18 +123,22 @@
 <script>
 import axios from "axios";
 import { config } from "../../config";
+import Login from "./Login";
 
 let url = `${config.DB_HOST}:${config.PORT}`;
 console.log(url);
 export default {
   name: "Register",
+  components: {Login},
   data: () => ({
       username: "",
       password: "",
-      //email: "",
+      
       dialog:false,
+      showLoginForm:false,
       alertReg:false,
-      alertLos:false,
+      alertFail:false,
+      alertFail2:false,
       valid: true,
       show1: false,
        alert: false,
@@ -139,7 +146,7 @@ export default {
           required: value => !!value || 'Required.',
           min: v => v.length >= 5 || 'Min 5 characters',
         },
-      email: '',
+      email: "",
      emailRules : [
         v => !!v || 'E-mail is required',
         v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
@@ -149,41 +156,61 @@ export default {
       ],
       lazy: false
     }),
+    
   methods: {
     
     registerUser: async function() {
+      let res;
       try {
       console.log(url);
-     //if (this.username!="" &&  this.password!="" && this.email!=""){
-      const res = await axios.post(`${url}/users`, {
+     if (this.username!=="" &&  this.password!=="" && this.email!==""){
+      res = await axios.post(`${url}/users`, {
         username: this.username,
         password: this.password,
         email: this.email,
       
       });
-      let mojStatus=res.status;
-       console.log(mojStatus);
-       if (mojStatus==201){
+      console.log(res);
+       console.log(res.status);
+       if (res.status==201){
           this.alertReg=true;
+          console.log("Usao u status 201");
        }
-     // } trenutno ne radi ovo if, treba videti u bazi da li se lepo napravi user ili ne
+     } //trenutno ne radi ovo if, treba videti u bazi da li se lepo napravi user ili ne
+    else if (this.username==="" ||  this.password==="" || this.email===""){
+       this.alertFail2=true;
+       console.log("Unesi ponovo podatke");
+     } 
     } catch(err){
-      console.log(err);
-      console.log("Ima vec isti user");
-      this.alertLos=true;
+      let res=err.response;
+      //console.log("hello from catch");
+      //console.log(err.response);
+      if (res.status==409){
+         this.alertFail=true;
+         this.alertReg=false;
+         console.log("Usao u status 409");
+       }
+       else if (res.status==500){
+         this.alertFail2=true;
+         this.alertFail=false;
+         this.alertReg=false;
+         console.log("Usao u status 500");
+       }
+      
     }
       },
-    /*validate () {
+    validate () {
         this.$refs.form.validate()
-      },*/
-      /*reset () {
+      },
+      reset () {
         this.$refs.form.reset();
-      },*/
+      },
       close(){
         this.$refs.form.reset();
         this.dialog=false;
         this.alertReg=false;
-        this.alertLos=false;
+        this.alertFail=false;
+        this.alertFail2=false;
       },
   }
 };
@@ -194,4 +221,6 @@ export default {
   align-content: center;
   text-align: center;
 }
+
+
 </style>
