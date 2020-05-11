@@ -8,7 +8,7 @@ const jwt = require("jsonwebtoken");
 const config = require("./config");
 const serveStatic = require("serve-static");
 const path = require("path");
-
+const checkAuth = require("./middleware/middleware");
 const SECRET_KEY = config.SECRET_KEY;
 
 mongoose.connect(config.MONGODB_URI, {
