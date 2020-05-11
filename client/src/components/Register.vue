@@ -34,7 +34,14 @@
             </v-row>
             <v-row>
               <v-col cols="12">
-                <v-text-field label="Username*" v-model="username" filled rounded dense required></v-text-field>
+                <v-text-field
+                  label="Username*"
+                  v-model="username"
+                  filled
+                  rounded
+                  dense
+                  required
+                ></v-text-field>
               </v-col>
             </v-row>
             <v-row>
@@ -64,7 +71,9 @@
             <v-icon medium>mdi-restore</v-icon>
           </v-btn>-->
 
-          <v-btn color="blue darken-1" text v-on:click="registerUser">Register</v-btn>
+          <v-btn color="blue darken-1" text v-on:click="registerUser"
+            >Register</v-btn
+          >
         </v-card-actions>
       </v-card>
     </v-form>
@@ -98,62 +107,59 @@
 </template>
 
 <script>
-import axios from "axios";
-import { config } from "../../../config";
-
-if (config.DB_HOST !== "http://localhost:3000") {
+  import axios from "axios";
+  // import { config } from "../../../config";
+  const config = require("../../../config");
   let url = `${config.DB_HOST}`;
-} else {
-  let url = `${config.DB_HOST}:${config.PORT}`;
-}
-console.log(url);
-export default {
-  name: "Register",
-  data: () => ({
-    username: "",
-    password: "",
-    //email: "",
-    dialog: false,
-    valid: true,
-    show1: false,
-    rules: {
-      required: value => !!value || "Required.",
-      min: v => v.length >= 5 || "Min 5 characters"
-    },
-    email: "",
-    emailRules: [
-      v => !!v || "E-mail is required",
-      v => /.+@.+\..+/.test(v) || "E-mail must be valid"
-    ],
-    lazy: false
-  }),
-  methods: {
-    registerUser: function() {
-      console.log(url);
-      console.log(config);
-      axios.post(`${url}/users`, {
-        username: this.username,
-        password: this.password,
-        email: this.email
-      });
-    },
-    /*validate () {
+
+  console.log(url);
+  export default {
+    name: "Register",
+    data: () => ({
+      username: "",
+      password: "",
+      //email: "",
+      dialog: false,
+      valid: true,
+      show1: false,
+      rules: {
+        required: (value) => !!value || "Required.",
+        min: (v) => v.length >= 5 || "Min 5 characters",
+      },
+      email: "",
+      emailRules: [
+        (v) => !!v || "E-mail is required",
+        (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+      ],
+      lazy: false,
+    }),
+    methods: {
+      registerUser: function() {
+        console.log(url);
+        console.log(config);
+        axios.post(`${url}/users`, {
+          username: this.username,
+          password: this.password,
+          email: this.email,
+        });
+      },
+      /*validate () {
         this.$refs.form.validate()
       },*/
-    /*reset () {
+      /*reset () {
         this.$refs.form.reset();
       },*/
-    close() {
-      this.$refs.form.reset();
-      this.dialog = false;
-    }
-  }
-};
+      close() {
+        this.$refs.form.reset();
+        this.dialog = false;
+      },
+    },
+  };
 </script>
 
 <style scoped>
-.headline {
-  align-content: center;
-  text-align: center;
-}
+  .headline {
+    align-content: center;
+    text-align: center;
+  }
 </style>
