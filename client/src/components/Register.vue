@@ -109,7 +109,7 @@
 <script>
   import axios from "axios";
   // import { config } from "../../../config";
-  // const config = require("../../../config");
+  const config = require("../../../config");
   // const jsonConfig = require("../../../config.json");
   // const config = jsonConfig;
   let url = `${config.DB_HOST}`;
