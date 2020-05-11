@@ -100,8 +100,13 @@
   //import router from "../main";
   import { config } from "../../config";
 
-  let url = `${config.DB_HOST}:${config.PORT}/users/login`;
-  //const url = "http://localhost:3000/users/login";
+  let url;
+
+  if (process.env.NODE_ENV === "development") {
+    url = `${config.DB_HOST}:${config.PORT}/users/login`;
+  } else {
+    url = "https://daljinac-api.herokuapp.com/users/login";
+  }
 
   export default {
     name: "Login",

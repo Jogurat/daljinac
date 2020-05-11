@@ -24,31 +24,37 @@
 </template>
 
 <script>
-import axios from "axios";
+  import axios from "axios";
 
-const url = "http://localhost:3000/users/changePass";
+  let url;
 
-export default {
-  name: "ChangePass",
-  data: function() {
-    return {
-      newPass: ""
-    };
-  },
-  methods: {
-    changePass: async function() {
-      console.log(this.$route.params.token);
-      try {
-        await axios.put(url, {
-          token: this.$route.params.token,
-          newPass: this.newPass
-        });
-      } catch (err) {
-        console.log(err);
-      }
-    }
+  if (process.env.NODE_ENV === "development") {
+    url = "http://localhost:3000/users/changePass";
+  } else {
+    url = "https://daljinac-api.herokuapp.com/users/changePass";
   }
-};
+
+  export default {
+    name: "ChangePass",
+    data: function() {
+      return {
+        newPass: "",
+      };
+    },
+    methods: {
+      changePass: async function() {
+        console.log(this.$route.params.token);
+        try {
+          await axios.put(url, {
+            token: this.$route.params.token,
+            newPass: this.newPass,
+          });
+        } catch (err) {
+          console.log(err);
+        }
+      },
+    },
+  };
 </script>
 
 <style></style>
