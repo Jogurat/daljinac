@@ -5,7 +5,7 @@ const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
 const jwt = require("jsonwebtoken");
-const config = require("./config.js");
+const config = require("./config");
 const serveStatic = require("serve-static");
 const path = require("path");
 

@@ -25,14 +25,15 @@
 
 <script>
   import axios from "axios";
+  const jsonConfig = require("../../../config.json");
+  const config = jsonConfig;
+  let url = `${config.DB_HOST}/users/changePass`;
 
-  let url;
-
-  if (process.env.NODE_ENV === "development") {
-    url = "http://localhost:3000/users/changePass";
-  } else {
-    url = "https://daljinac-api.herokuapp.com/users/changePass";
-  }
+  // if (process.env.NODE_ENV === "development") {
+  //   url = `${config.DB_HOST}`;
+  // } else {
+  //   url = "https://daljinac-api.herokuapp.com/users/changePass";
+  // }
 
   export default {
     name: "ChangePass",

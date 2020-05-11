@@ -109,13 +109,15 @@
 <script>
   import axios from "axios";
   // import { config } from "../../../config";
-  const config = require("../../../config");
-  let url;
-  if (process.env.NODE_ENV === "development") {
-    url = `${config.DB_HOST}`;
-  } else {
-    url = "https://daljinac-api.herokuapp.com";
-  }
+  // const config = require("../../../config");
+  const jsonConfig = require("../../../config.json");
+  const config = jsonConfig;
+  let url = `${config.DB_HOST}`;
+  // if (process.env.NODE_ENV === "development") {
+  //   url = `${config.DB_HOST}`;
+  // } else {
+  //   url = "https://daljinac-api.herokuapp.com/";
+  // }
 
   console.log(url);
   export default {
@@ -141,7 +143,7 @@
     methods: {
       registerUser: function() {
         console.log(url);
-        console.log(config);
+        console.log(jsonConfig);
         axios.post(`${url}/users`, {
           username: this.username,
           password: this.password,
