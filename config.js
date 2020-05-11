@@ -20,5 +20,6 @@ if (!fs.existsSync("config.json")) {
   fs.writeFile("config.json", json, "utf8", (err) => {
     console.log(err);
   });
+  console.log("I made the config file! :)");
 }
 module.exports = config; //kad bi neko zeleo da koristi izvan ovog fajla
