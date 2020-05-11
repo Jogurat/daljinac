@@ -68,15 +68,7 @@
           
         </v-card-actions>
       </v-card>
-      
      </v-form>
-     <v-alert
-      :value="alert"
-      color="green"
-      icon="mdi-check-circle-outline"
-      transition="scale-transition"
-    >
-    You are registred now! </v-alert>
     </v-dialog>
     
     
@@ -114,6 +106,7 @@
 <script>
 import axios from "axios";
 import { config } from "../../config";
+import { createUser } from "../../../routes/userRoutes"
 
 let url = `${config.DB_HOST}:${config.PORT}`;
 console.log(url);
@@ -146,6 +139,10 @@ export default {
         password: this.password,
         email: this.email
       });
+       if(${res.status}==202)
+       {
+         alert("cao");
+       }
     },
     /*validate () {
         this.$refs.form.validate()

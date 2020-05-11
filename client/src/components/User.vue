@@ -74,7 +74,7 @@ import axios from "axios";
 import jwt from "jsonwebtoken";
 import Card from "./Card";
 import { config } from "../../config";
-import NavigationBar from "./NavigationBar"
+import NavigationBar from "./NavigationBar";
 
 let url = `${config.DB_HOST}:${config.PORT}/users/`;
 
@@ -90,7 +90,8 @@ export default {
       dataReady: false,
       dialog: false,
       newRoomName: "",
-      newDeviceID: ""
+      newDeviceID: "",
+      type: ""
     };
   },
   components: {
