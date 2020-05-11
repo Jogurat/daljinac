@@ -33,8 +33,7 @@
             <v-row>
               <v-col cols="12">
                 <v-text-field 
-                  label="Username*" v-model="username" filled rounded dense
-                   required></v-text-field>
+                  label="Username*" v-model="username"  :rules="usernameRules" required filled rounded dense></v-text-field>
               </v-col>
             </v-row>
             <v-row>
@@ -69,6 +68,23 @@
         </v-card-actions>
       </v-card>
      </v-form>
+     <v-alert v-model="alertReg"
+      :value="alert"
+      color="green"
+      icon="mdi-check-circle-outline"
+      transition="scale-transition"
+    >
+    You are registred now! </v-alert>
+
+
+    <v-alert v-model="alertLos"
+      :value="alert"
+      color="red"
+      icon="mdi-check-circle-outline"
+      transition="scale-transition"
+    >
+    There is already a user with this credentials! </v-alert>
+
     </v-dialog>
     
     
@@ -106,7 +122,6 @@
 <script>
 import axios from "axios";
 import { config } from "../../config";
-import { createUser } from "../../../routes/userRoutes"
 
 let url = `${config.DB_HOST}:${config.PORT}`;
 console.log(url);
@@ -117,6 +132,8 @@ export default {
       password: "",
       //email: "",
       dialog:false,
+      alertReg:false,
+      alertLos:false,
       valid: true,
       show1: false,
        alert: false,
@@ -125,34 +142,53 @@ export default {
           min: v => v.length >= 5 || 'Min 5 characters',
         },
       email: '',
-      emailRules: [
+     emailRules : [
         v => !!v || 'E-mail is required',
         v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
+      ],
+      usernameRules:[
+        value => !!value || 'Username is required.'
       ],
       lazy: false
     }),
   methods: {
-    registerUser: function() {
+    
+    registerUser: async function() {
+
+      try {
       console.log(url);
-      axios.post(`${url}/users`, {
+     //if (this.username!="" &&  this.password!="" && this.email!=""){
+      const res = await axios.post(`${url}/users`, {
         username: this.username,
         password: this.password,
-        email: this.email
+        email: this.email,
+      
       });
-       if(${res.status}==202)
-       {
-         alert("cao");
+      let mojStatus=res.status;
+       console.log(mojStatus);
+       if (mojStatus==202){
+          this.alertReg=true;
        }
-    },
+     // } trenutno ne radi ovo if, treba videti u bazi da li se lepo napravi user ili ne
+    } catch(err){
+      console.log(err);
+      console.log("Ima vec isti user");
+      this.alertLos=true;
+      this.alertReg=false;
+      this.$refs.form.reset();
+    }
+      },
     /*validate () {
         this.$refs.form.validate()
       },*/
-      /*reset () {
+      reset () {
         this.$refs.form.reset();
-      },*/
+      },
       close(){
         this.$refs.form.reset();
         this.dialog=false;
+        this.alertReg=false;
+        this.alertLos=false;
       },
   }
 };

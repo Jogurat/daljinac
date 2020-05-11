@@ -24,6 +24,7 @@
           max-width="100px"
           v-bind:title="room.name"
           v-bind:deviceID="room.deviceID"
+          :room-type="room.type"
         ></Card>
       </v-row>
       <!--Test-->
@@ -47,10 +48,10 @@
                 <v-col cols="4"></v-col>
                 <v-col>
                   <v-radio-group v-model="dialogm1" column label="Room type">
-                    <v-radio label="Living room" value="l"></v-radio>
-                    <v-radio label="Bedrooom" value="b"></v-radio>
-                    <v-radio label="Kitchen" value="k"></v-radio>
-                    <v-radio label="Kids room" value="r"></v-radio>
+                    <v-radio label="Living room" value="livingroom"></v-radio>
+                    <v-radio   label="Bedrooom" value="bedroom"></v-radio>
+                    <v-radio  label="Kitchen" value="kitchen"></v-radio>
+                    <v-radio  label="Kids room" value="kidsroom"></v-radio>
                   </v-radio-group>
                 </v-col>
               </v-row>
@@ -91,7 +92,8 @@ export default {
       dialog: false,
       newRoomName: "",
       newDeviceID: "",
-      type: ""
+      type: "",
+      dialogm1: null
     };
   },
   components: {
@@ -105,7 +107,7 @@ export default {
       axios
         .put(
           roomUrl + this.username,
-          { name: this.newRoomName, deviceID: this.newDeviceID, type: "kitchen"},
+          { name: this.newRoomName, deviceID: this.newDeviceID, type:this.dialogm1},
           { headers: { authorization: `Bearer ${token}` }}
         )
         .then(res => {
@@ -127,7 +129,7 @@ export default {
     },
     logOut: function() {
       localStorage.removeItem("token");
-    }
+    },
   },
   //   mounted: async function() {
   //     const resp = await axios.get(url);
