@@ -81,7 +81,7 @@
   import jwt from "jsonwebtoken";
   import Card from "./Card";
   import NavigationBar from "./NavigationBar";
-  const jsonConfig = require("../../../config.json");
+  const jsonConfig = require("../../../config");
   const config = jsonConfig;
 
   let url = `${config.DB_HOST}/users/`;
@@ -107,33 +107,6 @@ export default {
     Card, 
     NavigationBar
   },
-  methods: {
-    newRoom: function() {
-      //console.log(config);
-      const token = localStorage.getItem("token");
-      axios
-        .put(
-          roomUrl + this.username,
-          { name: this.newRoomName, deviceID: this.newDeviceID, type:this.dialogm1},
-          { headers: { authorization: `Bearer ${token}` }}
-        )
-        .then(res => {
-          console.log(res);
-          axios
-            .get(url + this.username, {
-              headers: { Authorization: `Bearer ${token}` }
-            })
-            .then(res => {
-              this.user = res.data;
-              this.dataReady = true;
-              console.log(res.data.rooms);
-            });
-        });
-    },
-    components: {
-      Card,
-      NavigationBar,
-    },
     methods: {
       newRoom: function() {
         //console.log(config);
@@ -144,7 +117,7 @@ export default {
             {
               name: this.newRoomName,
               deviceID: this.newDeviceID,
-              type: "kitchen",
+              type: this.dialogm1,
             },
             { headers: { authorization: `Bearer ${token}` } }
           )
@@ -182,7 +155,7 @@ export default {
         this.dataReady = true;
       });
     },
-  };
+};
 </script>
 
 <style>
