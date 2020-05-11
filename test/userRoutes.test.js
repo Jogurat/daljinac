@@ -8,22 +8,22 @@ const chaiHttp = require("chai-http");
 const server = require("../server");
 let should = chai.should();
 
-const usersUrl = "/users/";
+const usersUrl = "/api/users/";
 const loginUrl = usersUrl + "login";
 
 chai.use(chaiHttp);
 
 describe("User routes", () => {
   //this.timeout(0);
-  before(done => {
-    User.deleteMany({}, err => {
+  before((done) => {
+    User.deleteMany({}, (err) => {
       done();
     });
   });
 
   //GET all users
   describe("GET all users", () => {
-    it("should GET all users", done => {
+    it("should GET all users", (done) => {
       chai
         .request(server)
         .get(usersUrl)
@@ -39,11 +39,11 @@ describe("User routes", () => {
   //Register user
   describe("User Registration", () => {
     describe("successful POST/register one user", () => {
-      it("should POST one user and return it", done => {
+      it("should POST one user and return it", (done) => {
         const user = {
           username: "TestUser",
           password: "pass",
-          email: "test@gmail.com"
+          email: "test@gmail.com",
         };
 
         chai
@@ -62,11 +62,11 @@ describe("User routes", () => {
     });
 
     describe("failed user registration - username already exists", () => {
-      it("should not post user and return status 409 - duplicate entry", done => {
+      it("should not post user and return status 409 - duplicate entry", (done) => {
         const user = {
           username: "TestUser",
           password: "pass",
-          email: "test@gmail.com"
+          email: "test@gmail.com",
         };
 
         chai
@@ -85,10 +85,10 @@ describe("User routes", () => {
     });
 
     describe("failed user registration - no username", () => {
-      it("should not post user and return status 500 - bad request", done => {
+      it("should not post user and return status 500 - bad request", (done) => {
         const user = {
           password: "123",
-          email: "test@gmail.com"
+          email: "test@gmail.com",
         };
         chai
           .request(server)
@@ -103,10 +103,10 @@ describe("User routes", () => {
     });
 
     describe("failed user registration - no password", () => {
-      it("should not post user and return status 500 - bad request", done => {
+      it("should not post user and return status 500 - bad request", (done) => {
         const user = {
           username: "123",
-          email: "test@gmail.com"
+          email: "test@gmail.com",
         };
         chai
           .request(server)
@@ -121,10 +121,10 @@ describe("User routes", () => {
     });
 
     describe("failed user registration - no email", () => {
-      it("should not post user and return status 500 - bad request", done => {
+      it("should not post user and return status 500 - bad request", (done) => {
         const user = {
           username: "123",
-          password: "test123"
+          password: "test123",
         };
         chai
           .request(server)
@@ -142,7 +142,7 @@ describe("User routes", () => {
   //Get user by username
   describe("GET one user", () => {
     describe("successful GET one user", () => {
-      it("should GET one user by username", done => {
+      it("should GET one user by username", (done) => {
         const username = "TestUser";
         const url = usersUrl + username;
         chai
@@ -161,7 +161,7 @@ describe("User routes", () => {
 
     //Get user by username - nonexisting user
     describe("failed GET one user - bad username", () => {
-      it("should return status 404 - user not found with given username", done => {
+      it("should return status 404 - user not found with given username", (done) => {
         const username = "IDontExist";
         const url = usersUrl + username;
         chai
@@ -181,10 +181,10 @@ describe("User routes", () => {
 
   describe("User Login", () => {
     describe("successful user login", () => {
-      it("should return json web token", done => {
+      it("should return json web token", (done) => {
         const user = {
           username: "TestUser",
-          password: "pass"
+          password: "pass",
         };
 
         chai
@@ -202,10 +202,10 @@ describe("User routes", () => {
     });
 
     describe("failed user login - bad password", () => {
-      it("should return 404 status and not log the user in", done => {
+      it("should return 404 status and not log the user in", (done) => {
         const user = {
           username: "TestUser",
-          password: "123"
+          password: "123",
         };
 
         chai
@@ -221,9 +221,9 @@ describe("User routes", () => {
     });
 
     describe("failed user login - bad request", () => {
-      it("should return 500 status because of bad request body", done => {
+      it("should return 500 status because of bad request body", (done) => {
         const user = {
-          password: "TestUser"
+          password: "TestUser",
         };
         const url = "/users/";
 
@@ -240,16 +240,16 @@ describe("User routes", () => {
     });
   });
 
-
   describe("Add New Room", () => {
     //Add room to user
     describe("successful CREATE room for user", () => {
-      it("should PUT one room to user", done => {
+      it("should PUT one room to user", (done) => {
         const username = "TestUser";
-        const url = "/users/room/" + username;
+        const url = usersUrl + "/room/" + username;
         const newRoom = {
           name: "Test Room",
-          deviceID: 42
+          deviceID: 42,
+          type: "kitchen",
         };
         chai
           .request(server)
@@ -264,17 +264,19 @@ describe("User routes", () => {
             rooms.length.should.eql(1);
             rooms[0].should.have.property("name").eql(newRoom.name);
             rooms[0].should.have.property("deviceID").eql(newRoom.deviceID);
+            rooms[0].should.have.property("type").eql(newRoom.type);
             done();
           });
       });
     });
 
     describe("failed add room - no room name", () => {
-      it("should not add new room to user and return status 500", done => {
+      it("should not add new room to user and return status 500", (done) => {
         const username = "TestUser";
-        const url = "/users/room/" + username;
+        const url = usersUrl + "/room/" + username;
+
         const newRoom = {
-          deviceID: 42
+          deviceID: 42,
         };
         chai
           .request(server)
@@ -289,11 +291,13 @@ describe("User routes", () => {
     });
 
     describe("failed add room - no deviceID", () => {
-      it("should not add new room to user and return status 500", done => {
+      it("should not add new room to user and return status 500", (done) => {
         const username = "TestUser";
-        const url = "/users/room/" + username;
+        // const url = "/users/room/" + username;
+        const url = usersUrl + "/room/" + username;
+
         const newRoom = {
-          name: "Room Name"
+          name: "Room Name",
         };
         chai
           .request(server)
@@ -308,12 +312,13 @@ describe("User routes", () => {
     });
 
     describe("failed add room - no auth token", () => {
-      it("should not add new room to user and return status 403", done => {
+      it("should not add new room to user and return status 403", (done) => {
         const username = "TestUser";
-        const url = "/users/room/" + username;
+        const url = usersUrl + "/room/" + username;
+
         const newRoom = {
           name: "Test Room",
-          deviceID: 42
+          deviceID: 42,
         };
         chai
           .request(server)
@@ -321,14 +326,14 @@ describe("User routes", () => {
           .end((err, res) => {
             res.should.have.status(403);
             done();
-          })
-      })
-    })
+          });
+      });
+    });
   });
 
   describe("Password change", () => {
     describe("successful password change", () => {
-      it("should send email with link and return status 200", done => {
+      it("should send email with link and return status 200", (done) => {
         const username = "TestUser";
         const url = usersUrl + "/forgotPass/" + username;
 
@@ -343,7 +348,7 @@ describe("User routes", () => {
     });
 
     describe("failed password change - bad username", () => {
-      it("should not send email and return status 500 - bad request", done => {
+      it("should not send email and return status 500 - bad request", (done) => {
         const username = "IDontExist";
         const url = usersUrl + "/forgotPass/" + username;
 
@@ -358,7 +363,7 @@ describe("User routes", () => {
     });
   });
 
-  after(done => {
+  after((done) => {
     server.close();
     done();
   });
