@@ -14,12 +14,14 @@ else if (process.env.NODE_ENV == "test")
   config.MONGODB_URI = "mongodb://localhost/testDB";
 else config.MONGODB_URI = process.env.MONGODB_URI;
 
-const fs = require("fs");
-let json = JSON.stringify(config);
-if (!fs.existsSync("config.json")) {
-  fs.writeFile("config.json", json, "utf8", (err) => {
-    console.log(err);
-  });
-  console.log("I made the config file! :)");
-}
-module.exports = config; //kad bi neko zeleo da koristi izvan ovog fajla
+console.log("hi from config");
+// const fs = require("fs");
+// let json = JSON.stringify(config);
+// if (!fs.existsSync("config.json")) {
+//   fs.writeFile("config.json", json, "utf8", (err) => {
+//     console.log(err);
+//   });
+//  console.log("I made the config file! :)");
+// }
+
+module.exports = config;

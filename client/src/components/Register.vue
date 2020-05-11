@@ -110,15 +110,16 @@
   import axios from "axios";
   // import { config } from "../../../config";
   // const config = require("../../../config");
-  const jsonConfig = require("../../../config.json");
-  const config = jsonConfig;
+  // const jsonConfig = require("../../../config.json");
+  // const config = jsonConfig;
   let url = `${config.DB_HOST}`;
-  // if (process.env.NODE_ENV === "development") {
-  //   url = `${config.DB_HOST}`;
-  // } else {
-  //   url = "https://daljinac-api.herokuapp.com/";
-  // }
+  if (process.env.NODE_ENV === "development") {
+    url = `${config.DB_HOST}`;
+  } else {
+    url = "https://daljinac-api.herokuapp.com/";
+  }
 
+  // const config2 = require("../../../config").config;
   console.log(url);
   export default {
     name: "Register",
