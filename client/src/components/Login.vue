@@ -98,7 +98,7 @@
 <script>
   import axios from "axios";
   //import router from "../main";
-  // const jsonConfig = require("../../../config.json");
+  const config = require("../../../config");
   // const config = jsonConfig;
 
   let url = `${config.DB_HOST}/users/login`;
