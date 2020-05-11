@@ -110,7 +110,12 @@
   import axios from "axios";
   // import { config } from "../../../config";
   const config = require("../../../config");
-  let url = `${config.DB_HOST}`;
+  let url;
+  if (process.env.NODE_ENV === "development") {
+    url = `${config.DB_HOST}`;
+  } else {
+    url = "https://daljinac-api.herokuapp.com/";
+  }
 
   console.log(url);
   export default {
