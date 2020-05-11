@@ -32,7 +32,7 @@
   if (process.env.NODE_ENV === "development") {
     url = `${config.DB_HOST}`;
   } else {
-    url = "https://daljinac-api.herokuapp.com/users/changePass";
+    url = "https://daljinac-api.herokuapp.com/api/users/changePass";
   }
 
   export default {
