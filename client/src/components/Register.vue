@@ -1,51 +1,64 @@
 <template>
-  
-    <v-dialog  v-model="dialog"  overlay-opacity="0.75" width="400px">
-      
-      <template v-slot:activator="{ on }">
-        <v-btn class="ma-4" color="blue accent-3" dark v-on="on">Register</v-btn>
-      </template>
-      <v-form
-      ref="form"
-      v-model="valid"
-      :lazy-validation="lazy"
-    >
+  <v-dialog v-model="dialog" overlay-opacity="0.75" width="400px">
+    <template v-slot:activator="{ on }">
+      <v-btn class="ma-4" color="blue accent-3" dark v-on="on">Register</v-btn>
+    </template>
+    <v-form ref="form" v-model="valid" :lazy-validation="lazy">
       <v-card>
         <v-card-title class="justify-center">
           <v-row>
             <v-col cols="10">
-          <span class="headline">Make user profile</span>
-          </v-col>
-          <v-col cols="2">
-          <v-btn  icon color="blue darken-1" v-on:click="close">
-            <v-icon medium>mdi-close</v-icon>
-          </v-btn>
-           </v-col>
+              <span class="headline">Make user profile</span>
+            </v-col>
+            <v-col cols="2">
+              <v-btn icon color="blue darken-1" v-on:click="close">
+                <v-icon medium>mdi-close</v-icon>
+              </v-btn>
+            </v-col>
           </v-row>
         </v-card-title>
         <v-card-text>
           <v-container>
             <v-row>
-              <v-col cols="12" >
-                <v-text-field label="Email*" v-model="email" :rules="emailRules" filled rounded dense required></v-text-field>
+              <v-col cols="12">
+                <v-text-field
+                  label="Email*"
+                  v-model="email"
+                  :rules="emailRules"
+                  filled
+                  rounded
+                  dense
+                  required
+                ></v-text-field>
               </v-col>
             </v-row>
             <v-row>
               <v-col cols="12">
-                <v-text-field 
-                  label="Username*" v-model="username"  :rules="usernameRules" required filled rounded dense></v-text-field>
+                <v-text-field
+                  label="Username*"
+                  v-model="username"
+                  filled
+                  rounded
+                  dense
+                  required
+                ></v-text-field>
               </v-col>
             </v-row>
             <v-row>
               <v-col cols="12">
-                <v-text-field  label="Password*"  required filled rounded dense
-                v-model="password"
-              :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
-              :rules="[rules.required, rules.min]"
-              :type="show1 ? 'text' : 'password'"
-              hint="At least 5 characters"
-              counter
-             @click:append="show1 = !show1"
+                <v-text-field
+                  label="Password*"
+                  required
+                  filled
+                  rounded
+                  dense
+                  v-model="password"
+                  :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+                  :rules="[rules.required, rules.min]"
+                  :type="show1 ? 'text' : 'password'"
+                  hint="At least 5 characters"
+                  counter
+                  @click:append="show1 = !show1"
                 ></v-text-field>
               </v-col>
             </v-row>
@@ -57,7 +70,6 @@
           <!--<v-btn icon color="blue darken-1" text v-on:click="reset">
             <v-icon medium>mdi-restore</v-icon>
           </v-btn>-->
-          
 
           
           <v-btn  color="blue darken-1" text v-on:click="registerUser"
@@ -90,7 +102,7 @@
     
     
 
-    <!--<v-container>
+  <!--<v-container>
       <v-row>
         <h1>Register</h1>
       </v-row>
@@ -114,71 +126,56 @@
           <v-btn v-on:click="registerUser">Register</v-btn>
         </v-col>
       </v-row>
-    </v-container>-->
-
- 
+  </v-container>-->
 </template>
 
 <script>
-import axios from "axios";
-import { config } from "../../config";
+  import axios from "axios";
+  // import { config } from "../../../config";
+  const config = require("../../../config");
+  // const jsonConfig = require("../../../config.json");
+  // const config = jsonConfig;
+  let url = `${config.DB_HOST}`;
+  if (process.env.NODE_ENV === "development") {
+    url = `${config.DB_HOST}`;
+  } else {
+    url = "https://daljinac-api.herokuapp.com/api";
+  }
 
-let url = `${config.DB_HOST}:${config.PORT}`;
-console.log(url);
-export default {
-  name: "Register",
-  data: () => ({
+  // const config2 = require("../../../config").config;
+  console.log(url);
+  export default {
+    name: "Register",
+    data: () => ({
       username: "",
       password: "",
       //email: "",
-      dialog:false,
-      alertReg:false,
-      alertLos:false,
+      dialog: false,
       valid: true,
       show1: false,
-       alert: false,
-       rules: {
-          required: value => !!value || 'Required.',
-          min: v => v.length >= 5 || 'Min 5 characters',
-        },
-      email: '',
-     emailRules : [
-        v => !!v || 'E-mail is required',
-        v => /.+@.+\..+/.test(v) || 'E-mail must be valid',
-      ],
-      usernameRules:[
-        value => !!value || 'Username is required.'
-      ],
-      lazy: false
-    }),
-  methods: {
-    
-    registerUser: async function() {
-
-      try {
-      console.log(url);
-     //if (this.username!="" &&  this.password!="" && this.email!=""){
-      const res = await axios.post(`${url}/users`, {
-        username: this.username,
-        password: this.password,
-        email: this.email,
-      
-      });
-      let mojStatus=res.status;
-       console.log(mojStatus);
-       if (mojStatus==202){
-          this.alertReg=true;
-       }
-     // } trenutno ne radi ovo if, treba videti u bazi da li se lepo napravi user ili ne
-    } catch(err){
-      console.log(err);
-      console.log("Ima vec isti user");
-      this.alertLos=true;
-      this.alertReg=false;
-      this.$refs.form.reset();
-    }
+      rules: {
+        required: (value) => !!value || "Required.",
+        min: (v) => v.length >= 5 || "Min 5 characters",
       },
-    /*validate () {
+      email: "",
+      emailRules: [
+        (v) => !!v || "E-mail is required",
+        (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+      ],
+      lazy: false,
+    }),
+    methods: {
+      registerUser: async function() {
+        console.log(url);
+        // console.log(jsonConfig);
+        let res = await axios.post(`./api/users`, {
+          username: this.username,
+          password: this.password,
+          email: this.email,
+        });
+        console.log(res);
+      },
+      /*validate () {
         this.$refs.form.validate()
       },*/
       reset () {
@@ -190,13 +187,13 @@ export default {
         this.alertReg=false;
         this.alertLos=false;
       },
-  }
-};
+    },
+  };
 </script>
 
 <style scoped>
-.headline{
-  align-content: center;
-  text-align: center;
-}
+  .headline {
+    align-content: center;
+    text-align: center;
+  }
 </style>
