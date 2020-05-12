@@ -47,7 +47,7 @@
               <v-alert v-model="alertFail"
                  :value="alert"
                   color="red"
-                  icon="mdi-check-circle-outline"
+                  icon="mdi-close-circle-outline"
                   transition="scale-transition"
                   dissmisible
               >There is already a user with this username! </v-alert>
@@ -68,15 +68,6 @@
                   counter
                   @click:append="show1 = !show1">
                   >
-                  <template v-slot:progress>
-                    <v-progress-linear
-                      v-model="custom"
-                      :value="progress"
-                      :color="color"
-                      absolute
-                      height="7">       
-                    </v-progress-linear>
-                    </template>
                 </v-text-field>
               </v-col>
             </v-row>
@@ -116,7 +107,7 @@
     <v-alert v-model="alertFail2"
       :value="alert"
       color="yellow"
-      icon="mdi-check-circle-outline"
+      icon="mdi-close-circle-outline"
       transition="scale-transition"
     >Server error! </v-alert>
 
@@ -173,8 +164,6 @@ export default {
       valid: true,
       show1: false,
        alert: false,
-       value: '',
-      custom: true,
        rules: {
           required: (value) => !!value || "Required.",
           min: (v) => v.length >= 5 || "Min 5 characters",
@@ -233,7 +222,7 @@ export default {
       },
       /*validate () {
         this.$refs.form.validate();
-        //this.$refs.username.validate();
+        
       },*/
       reset () {
         this.$refs.form.reset();
@@ -244,13 +233,7 @@ export default {
         this.alertReg=false;
         this.alertFail=false;
         this.alertFail2=false;
-      },
-      progress () {
-        return Math.min(100, this.value.length * 10)
-      },
-      color () {
-        return ['error', 'warning', 'success'][Math.floor(this.progress / 40)]
-      },
+      }
     },
   };
 </script>
