@@ -37,12 +37,20 @@
                 <v-text-field
                   label="Username*"
                   v-model="username"
+                  :rules="usernameRules"
                   filled
                   rounded
                   dense
                   required
                 ></v-text-field>
               </v-col>
+              <v-alert v-model="alertFail"
+                 :value="alert"
+                  color="red"
+                  icon="mdi-check-circle-outline"
+                  transition="scale-transition"
+                  dissmisible
+              >There is already a user with this username! </v-alert>
             </v-row>
             <v-row>
               <v-col cols="12">
@@ -58,8 +66,18 @@
                   :type="show1 ? 'text' : 'password'"
                   hint="At least 5 characters"
                   counter
-                  @click:append="show1 = !show1"
-                ></v-text-field>
+                  @click:append="show1 = !show1">
+                  >
+                  <template v-slot:progress>
+                    <v-progress-linear
+                      v-model="custom"
+                      :value="progress"
+                      :color="color"
+                      absolute
+                      height="7">       
+                    </v-progress-linear>
+                    </template>
+                </v-text-field>
               </v-col>
             </v-row>
           </v-container>
@@ -72,8 +90,11 @@
           </v-btn>-->
 
           
-          <v-btn  color="blue darken-1" text v-on:click="registerUser">
-             Register</v-btn>
+          <!--<v-btn  color="blue darken-1" text v-on:click="registerUser">
+             Register</v-btn>-->
+              <v-btn :disabled="!valid" color="blue darken-1"  text v-on:click="registerUser">
+                Register
+              </v-btn>
           
         </v-card-actions>
       </v-card>
@@ -85,19 +106,19 @@
       transition="scale-transition"
     >You are registred now! </v-alert>
 
-    <v-alert v-model="alertFail"
+    <!--<v-alert v-model="alertFail"
       :value="alert"
       color="red"
       icon="mdi-check-circle-outline"
       transition="scale-transition"
-    >There is already a user with this credentials! </v-alert>
+    >There is already a user with this username! </v-alert>-->
 
     <v-alert v-model="alertFail2"
       :value="alert"
       color="yellow"
       icon="mdi-check-circle-outline"
       transition="scale-transition"
-    >Enter data again! </v-alert>
+    >Server error! </v-alert>
 
     </v-dialog>
     
@@ -144,7 +165,6 @@ export default {
   data: () => ({
       username: "",
       password: "",
-      
       dialog:false,
       //showLoginForm:false,
       alertReg:false,
@@ -153,6 +173,8 @@ export default {
       valid: true,
       show1: false,
        alert: false,
+       value: '',
+      custom: true,
        rules: {
           required: (value) => !!value || "Required.",
           min: (v) => v.length >= 5 || "Min 5 characters",
@@ -163,18 +185,19 @@ export default {
         (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
       ],
       usernameRules:[
-        value => !!value || 'Username is required.'
+        (value) => !!value || 'Username is required.',
+        (value) => value.length >= 4 || "Min 4 characters",
       ],
       //lazy: false,
     }),
-    
   methods: {
     
     registerUser: async function() {
+      this.$refs.form.validate();
+      //this.$refs.username.validate();
       let res;
       try {
       console.log(url);
-     if (this.username!=="" &&  this.password!=="" && this.email!==""){
      res = await axios.post(`./api/users`, {
         username: this.username,
         password: this.password,
@@ -183,25 +206,23 @@ export default {
       });
       console.log(res);
        console.log(res.status);
-       if (res.status==201){
+       if (res.status===201 || res.status===202){
           this.alertReg=true;
+          this.alertFail=false;
           console.log("Usao u status 201");
        }
-     } //trenutno ne radi ovo if, treba videti u bazi da li se lepo napravi user ili ne
-    else if (this.username==="" ||  this.password==="" || this.email===""){
-       this.alertFail2=true;
-       console.log("Unesi ponovo podatke");
-     } 
     } catch(err){
       let res=err.response;
       //console.log("hello from catch");
       //console.log(err.response);
-      if (res.status==409){
+      if (res.status===409){
          this.alertFail=true;
          this.alertReg=false;
+         this.alertFail2=false;
+         this.username="";
          console.log("Usao u status 409");
        }
-       else if (res.status==500){
+       else if (res.status===500){
          this.alertFail2=true;
          this.alertFail=false;
          this.alertReg=false;
@@ -210,8 +231,9 @@ export default {
       
     }
       },
-    /*validate () {
-        this.$refs.form.validate()
+      /*validate () {
+        this.$refs.form.validate();
+        //this.$refs.username.validate();
       },*/
       reset () {
         this.$refs.form.reset();
@@ -222,6 +244,12 @@ export default {
         this.alertReg=false;
         this.alertFail=false;
         this.alertFail2=false;
+      },
+      progress () {
+        return Math.min(100, this.value.length * 10)
+      },
+      color () {
+        return ['error', 'warning', 'success'][Math.floor(this.progress / 40)]
       },
     },
   };
