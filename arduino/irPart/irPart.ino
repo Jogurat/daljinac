@@ -1,12 +1,14 @@
 #include <IRremote.h>
 #include <ArduinoJson.h>
-#include <avr/pgmspace.h>
+
+//Device
+const int deviceID = 1;
 
 int RECV_PIN = 2;
-unsigned int rawCodes[RAWBUF]; // The durations if raw
-int codeLen; // The length of the code
 IRrecv irrecv(RECV_PIN);
 decode_results results;
+unsigned int rawCodes[RAWBUF]; // The durations if raw
+int codeLen; // The length of the code
 
 //Boolean for getting codes
 boolean irRecieve = true;
@@ -16,7 +18,7 @@ void setup() {
   Serial.begin(115200);
 
   //JSON-----------------------------------
-  const char* input = "{\"idea\":\"data\",\"data\":[1,2,3,4,5,6,7,8,9]}";
+ /* const char* input = "{\"idea\":\"data\",\"data\":[1,2,3,4,5,6,7,8,9]}";
   StaticJsonDocument<200> doc;
 
   DeserializationError err = deserializeJson(doc,input);
@@ -39,7 +41,7 @@ void setup() {
   //int* num = doc["data"];
 
   //Serial.println(sensor);
-  serializeJson(doc, Serial);
+  serializeJson(doc, Serial); */
 
   //IR part---------------------------------
   irrecv.enableIRIn(); // Start the receiver
@@ -62,27 +64,30 @@ void loop() {
       //Serial.println(again);
       //ovde ide kod za slanje
     }
-    delay(1000);
+    makeJson("TempUp");
+    delay(3000);
     numberOfRecievedCodes++;
     again=true;
+
     
     //Drugi kod
     while(again){
       again = !recieve();
       //ovde ide kod za slanje
     }
-    delay(1000);
+    makeJson("TempDown");
+    delay(3000);
     numberOfRecievedCodes++;
     again=true;
+
     
     //Treci kod
     while(again){
       again = !recieve();
       //ovde ide kod za slanje
     }
+    makeJson("Power");
     numberOfRecievedCodes++;
-    again=true;
-    //Mora da se napise jos dva puta ova whiel petlja ali za sad samo jedna dok testiramo
     
     if(numberOfRecievedCodes == 3){
       irRecieve = false;
@@ -115,12 +120,13 @@ void storeCode(decode_results *results){
         rawCodes[i - 1] = results->rawbuf[i]*USECPERTICK + MARK_EXCESS;
         Serial.print(" s");
       }
-      Serial.print(rawCodes[i - 1], DEC);
+      //Serial.print(rawCodes[i - 1], DEC);
   }
   Serial.println("");
   //Print treba izbrisati posel testiranja
 }
 
+//Vraca da li je uspesno skenirao kod i sacuvao ga ako jeste
 boolean recieve(){
   boolean returnVal;
   //irrecv.enableIRIn();
@@ -131,4 +137,30 @@ boolean recieve(){
   }
 
   return returnVal;
+}
+
+void makeJson(char* commandName){
+  size_t capacity = JSON_ARRAY_SIZE(125) + JSON_OBJECT_SIZE(3); //125 kao solidan broj mesta
+  DynamicJsonDocument doc(capacity);
+
+  doc["deviceID"] = 1;
+  doc["code"] = commandName;
+  JsonArray bits = doc.createNestedArray("bits");
+  
+  for(int i=0; i < codeLen; i++){
+    bits.add(rawCodes[i]);
+  }
+  
+  Serial.print("Array size = ");
+  Serial.println(bits.size());
+  serializeJsonPretty(doc, Serial);
+  Serial.println();
+  doc.clear();
+  Serial.print("JsonDocument size = ");
+  Serial.println(doc.memoryUsage());
+}
+
+void clearRawCodeBuffer(){
+  for(int i = 0; i < RAWBUF; i++)
+    rawCodes[i] = 0;
 }
