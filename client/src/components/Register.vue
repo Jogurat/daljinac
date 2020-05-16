@@ -37,12 +37,20 @@
                 <v-text-field
                   label="Username*"
                   v-model="username"
+                  :rules="usernameRules"
                   filled
                   rounded
                   dense
                   required
                 ></v-text-field>
               </v-col>
+              <v-alert v-model="alertFail"
+                 :value="alert"
+                  color="red"
+                  icon="mdi-close-circle-outline"
+                  transition="scale-transition"
+                  dissmisible
+              >There is already a user with this username! </v-alert>
             </v-row>
             <v-row>
               <v-col cols="12">
@@ -53,13 +61,15 @@
                   rounded
                   dense
                   v-model="password"
+                  color="green"
                   :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                   :rules="[rules.required, rules.min]"
                   :type="show1 ? 'text' : 'password'"
                   hint="At least 5 characters"
                   counter
                   @click:append="show1 = !show1"
-                ></v-text-field>
+                  >
+                </v-text-field>
               </v-col>
             </v-row>
           </v-container>
@@ -72,10 +82,11 @@
           </v-btn>-->
 
           
-          <v-btn  color="blue darken-1" text v-on:click="registerUser"
-          @click="alert = !alert">
-            Register</v-btn>
-            
+          <!--<v-btn  color="blue darken-1" text v-on:click="registerUser">
+             Register</v-btn>-->
+              <v-btn :disabled="!valid" color="blue darken-1"  text v-on:click="registerUser">
+                Register
+              </v-btn>
           
         </v-card-actions>
       </v-card>
@@ -85,24 +96,25 @@
       color="green"
       icon="mdi-check-circle-outline"
       transition="scale-transition"
-    >
-    You are registred now! </v-alert>
+    >You are registred now! </v-alert>
 
-
-    <v-alert v-model="alertLos"
+    <!--<v-alert v-model="alertFail"
       :value="alert"
       color="red"
       icon="mdi-check-circle-outline"
       transition="scale-transition"
-    >
-    There is already a user with this credentials! </v-alert>
+    >There is already a user with this username! </v-alert>-->
+
+    <v-alert v-model="alertFail2"
+      :value="alert"
+      color="yellow"
+      icon="mdi-close-circle-outline"
+      transition="scale-transition"
+    >Server error! </v-alert>
 
     </v-dialog>
     
-    
-    
-
-  <!--<v-container>
+    <!--<v-container>
       <v-row>
         <h1>Register</h1>
       </v-row>
@@ -130,53 +142,88 @@
 </template>
 
 <script>
-  import axios from "axios";
-  // import { config } from "../../../config";
-  const config = require("../../../config");
-  // const jsonConfig = require("../../../config.json");
-  // const config = jsonConfig;
-  let url = `${config.DB_HOST}`;
-  if (process.env.NODE_ENV === "development") {
+import axios from "axios";
+//import { config } from "../../config";
+const config = require("../../../config");
+let url = `${config.DB_HOST}`;
+ if (process.env.NODE_ENV === "development") {
     url = `${config.DB_HOST}`;
   } else {
     url = "https://daljinac-api.herokuapp.com/api";
   }
-
-  // const config2 = require("../../../config").config;
-  console.log(url);
-  export default {
-    name: "Register",
-    data: () => ({
+console.log(url);
+export default {
+  name: "Register",
+  data: () => ({
       username: "",
       password: "",
-      //email: "",
-      dialog: false,
+      dialog:false,
+      //showLoginForm:false,
+      alertReg:false,
+      alertFail:false,
+      alertFail2:false,
       valid: true,
       show1: false,
-      rules: {
-        required: (value) => !!value || "Required.",
-        min: (v) => v.length >= 5 || "Min 5 characters",
-      },
+       alert: false,
+       rules: {
+          required: (value) => !!value || "Required.",
+          min: (v) => v.length >= 5 || "Min 5 characters",
+        },
       email: "",
-      emailRules: [
+     emailRules : [
         (v) => !!v || "E-mail is required",
         (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
       ],
-      lazy: false,
+      usernameRules:[
+        (value) => !!value || 'Username is required.',
+        (value) => value.length >= 4 || "Min 4 characters",
+      ],
+      //lazy: false,
     }),
-    methods: {
-      registerUser: async function() {
-        console.log(url);
-        // console.log(jsonConfig);
-        let res = await axios.post(`./api/users`, {
-          username: this.username,
-          password: this.password,
-          email: this.email,
-        });
-        console.log(res);
+  methods: {
+    
+    registerUser: async function() {
+      this.$refs.form.validate();
+      //this.$refs.username.validate();
+      let res;
+      try {
+      console.log(url);
+     res = await axios.post(`./api/users`, {
+        username: this.username,
+        password: this.password,
+        email: this.email,
+      
+      });
+      console.log(res);
+       console.log(res.status);
+       if (res.status===201 || res.status===202){
+          this.alertReg=true;
+          this.alertFail=false;
+          console.log("Usao u status 201");
+       }
+    } catch(err){
+      let res=err.response;
+      //console.log("hello from catch");
+      //console.log(err.response);
+      if (res.status===409){
+         this.alertFail=true;
+         this.alertReg=false;
+         this.alertFail2=false;
+         this.username="";
+         console.log("Usao u status 409");
+       }
+       else if (res.status===500){
+         this.alertFail2=true;
+         this.alertFail=false;
+         this.alertReg=false;
+         console.log("Usao u status 500");
+       }
+      
+    }
       },
       /*validate () {
-        this.$refs.form.validate()
+        this.$refs.form.validate();
+        
       },*/
       reset () {
         this.$refs.form.reset();
@@ -185,8 +232,9 @@
         this.$refs.form.reset();
         this.dialog=false;
         this.alertReg=false;
-        this.alertLos=false;
-      },
+        this.alertFail=false;
+        this.alertFail2=false;
+      }
     },
   };
 </script>

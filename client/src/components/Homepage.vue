@@ -1,8 +1,7 @@
 <template>
- <v-app style=" background: rgba(0,0,0,0);">
-   <div id="bod">
-      
-        <!--<v-toolbar-title>
+  <v-app style=" background: rgba(0,0,0,0);">
+    <div id="bod">
+      <!--<v-toolbar-title>
        <div class="text-no-wrap text-example" style="width: 8rem;">
          Daljina.cc
        </div>
@@ -13,53 +12,41 @@
             <v-col  cols="8">
               <router-link to="/Homepage">
               <v-img
-                
                 src="../assets/e.svg"
                 max-width="240px"
                 max-height="70px"
-                
               ></v-img>
-              </router-link>
-            </v-col>
-            <v-col cols="4" padding-top="20px" align="right">
-              
-      
-            
+            </router-link>
+          </v-col>
+          <v-col cols="4" padding-top="20px" align="right">
             <Register></Register>
             <Login></Login>
             <!--<v-btn class="ma-4" color="blue accent-3">Contact us</v-btn>-->
           </v-col>
-          
-          </v-row>
-          
-        </v-container>
-        <v-spacer></v-spacer>
-        <v-card-text>
-          
-        </v-card-text>
-  <v-content>
+        </v-row>
+      </v-container>
+      <v-spacer></v-spacer>
+      <v-card-text> </v-card-text>
+      <v-content>
         <router-view></router-view>
       </v-content>
-     
-     </div>
+    </div>
   </v-app>
-
 </template>
 
 <script>
   import Vue from "vue";
   //import VueRouter from "vue-router";
-  import { library } from "@fortawesome/fontawesome-svg-core";
-  import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
-  import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+  // import { library } from "@fortawesome/fontawesome-svg-core";
+  // import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
+  // import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
   import Register from "./Register";
   import Login from "./Login";
   //import router from "../main";
-  library.add(faUserSecret);
-  Vue.component("font-awesome-icon", FontAwesomeIcon);
+  // library.add(faUserSecret);
+  // Vue.component("font-awesome-icon", FontAwesomeIcon);
 
-
-    /*data: function() {
+  /*data: function() {
       return {
          dialog:false,
          dialog2:false,
@@ -70,22 +57,22 @@
          password: ""
       };
     },*/
-   
+
   export default {
-  name: "Homepage",
-  components: {
-    Login,
-    Register
-  },
-    
-  data: () => ({
-    //username: "",
-    //password: "",
-    dialog:false,
-    //dialog2:false
-  }),
-  
-  /*methods: {
+    name: "Homepage",
+    components: {
+      Login,
+      Register,
+    },
+
+    data: () => ({
+      //username: "",
+      //password: "",
+      dialog: false,
+      //dialog2:false
+    }),
+
+    /*methods: {
     async loginUser() {
       //PROMISE
       // axios
@@ -114,16 +101,16 @@
       }
     }
   }*/
-};
+  };
 </script>
 
 <style scoped>
   .test {
     padding-left: 150px;
   }
-  #bod{
-background-image: url('../assets/pexels-plavadevojka.jpeg');
-     /* background-color: #8f2c2c; */
+  #bod {
+    background-image: url("../assets/pexels-plavadevojka.jpeg");
+    /* background-color: #8f2c2c; */
     height: 100vh;
     background-position: center;
     background-repeat: no-repeat;

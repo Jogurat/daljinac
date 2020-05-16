@@ -4,16 +4,17 @@ import vuetify from "./plugins/vuetify";
 import "material-design-icons-iconfont/dist/material-design-icons.css";
 import VueRouter from "vue-router";
 import Register from "./components/Register";
-import Homepage from "./components/Homepage"
+import Homepage from "./components/Homepage";
 import Login from "./components/Login";
 import NotFound from "./components/NotFound";
 import User from "./components/User";
 import ForgotPass from "./components/ForgotPass";
 import ChangePass from "./components/ChangePass";
-import Vuetify from "vuetify";
+// import Vuetify from "vuetify";
+// import 'vuetify/dist/vuetify.min.css'
 
 Vue.config.productionTip = false;
-Vue.use(Vuetify);
+// Vue.use(Vuetify);
 Vue.use(VueRouter);
 
 const routes = [
@@ -29,11 +30,11 @@ const routes = [
 
 const router = new VueRouter({
   routes,
-  mode: "history"
+  mode: "history",
 });
 
 new Vue({
   vuetify,
   router,
-  render: h => h(App)
+  render: (h) => h(App),
 }).$mount("#app");
