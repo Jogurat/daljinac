@@ -69,7 +69,7 @@
                   hint="At least 5 characters"
                   counter
                   @click:append="show1 = !show1"
-                  >
+                  @keyup.enter="registerUser"                   >
                 </v-text-field>
               </v-col>
             </v-row>

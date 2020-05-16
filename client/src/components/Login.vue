@@ -35,6 +35,7 @@
                   :type="show1 ? 'text' : 'password'"
                   counter
                   @click:append="show1 = !show1"
+                   @keyup.enter="loginUser" 
                 ></v-text-field>
               </v-col>
               <v-row>
