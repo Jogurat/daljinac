@@ -143,11 +143,16 @@ export default {
   //   }
   mounted: function() {
     this.username = localStorage.getItem("username");
+    const token = localStorage.getItem("token");
 
-    axios.get(`/api/users/${this.username}`).then(res => {
-      this.user = res.data;
-      this.dataReady = true;
-    });
+    axios
+      .get(`/api/users/${this.username}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      .then(res => {
+        this.user = res.data;
+        this.dataReady = true;
+      });
   }
 };
 </script>

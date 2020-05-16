@@ -124,7 +124,7 @@ export default {
       //   });
       try {
         console.log(url);
-        const res = await axios.post("/api/users/login", {
+        const res = await axios.post("/api/auth/login", {
           username: this.username,
           password: this.password
         });
