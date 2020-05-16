@@ -4,14 +4,18 @@
     <template v-slot="{ hover }">
       <v-card :elevation="hover ? 24 : 6" class="mx-auto my-12" max-width="300">
         <v-img height="150" :src="require(`../assets/${roomType}.jpeg`)"></v-img>
-
-        <!-- <v-img
-          height="150"
-          src="https://www.thespruce.com/thmb/_iITA9xgfLDWyLjzF5xwBDTzdgI=/960x0/filters:no_upscale():max_bytes(150000):strip_icc():format(webp)/GettyImages-842254818-5bfc267446e0fb00260a3348.jpg"
-        ></v-img>-->
-
-        <v-card-title>{{ $props.title }}</v-card-title>
-
+<div class="row">
+<div class="col-md-8 col-sm-8 col-xs-4">
+<v-card-title>{{ $props.title }}</v-card-title>
+</div>
+        
+<div class="col-md-4 col-sm-4 col-xs-2">
+          <v-btn class="ma-4" icon color="grey">
+              <v-icon medium>mdi-pencil</v-icon>
+              <!--mdi-chevron-up-circle-->
+            </v-btn>
+</div>
+</div>
         <v-card-text>
           <v-row align="center">
             <v-col class="display-2" cols="6">23&deg;C</v-col>
