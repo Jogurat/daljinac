@@ -46,7 +46,7 @@ export default {
     sendEmail: async function() {
       const url = "http://localhost:3000/users/forgotPass/";
       try {
-        const res = await axios.get(`./api/users/forgotPass/${this.username}`);
+        const res = await axios.get(`/api/users/forgotPass/${this.username}`);
         console.log(res);
         //const user = res.data;
         //const email = user.email;
