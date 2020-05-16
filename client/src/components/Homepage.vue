@@ -6,10 +6,11 @@
          Daljina.cc
        </div>
         </v-toolbar-title>-->
-      <v-container>
-        <v-row>
-          <v-col cols="8">
-            <router-link to="/Homepage">
+        <v-container>
+             <v-row>
+              
+            <v-col  cols="8">
+              <router-link to="/Homepage">
               <v-img
                 src="../assets/e.svg"
                 max-width="240px"

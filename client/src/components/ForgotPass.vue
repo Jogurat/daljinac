@@ -32,8 +32,7 @@
 
 <script>
 import axios from "axios";
-import NavigationBar from "./NavigationBar";
-
+import NavigationBar from "./NavigationBar"
 export default {
   name: "ForgotPass",
   data: function() {
