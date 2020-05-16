@@ -73,8 +73,12 @@ export default {
     },
     logOut: function() {
       localStorage.removeItem("token");
-    }
+      if(localStorage.getItem("token") == null){
+      this.$router.push('Homepage'); // redirect to home, for example
+      localStorage.removeItem("username");
   }
+}
+ }
 };
 </script>
 
