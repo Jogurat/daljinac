@@ -61,12 +61,13 @@
                   rounded
                   dense
                   v-model="password"
+                  color="green"
                   :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                   :rules="[rules.required, rules.min]"
                   :type="show1 ? 'text' : 'password'"
                   hint="At least 5 characters"
                   counter
-                  @click:append="show1 = !show1">
+                  @click:append="show1 = !show1"
                   >
                 </v-text-field>
               </v-col>
