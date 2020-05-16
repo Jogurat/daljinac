@@ -156,7 +156,7 @@ export default {
     registerUser: async function() {
       console.log(url);
       // console.log(jsonConfig);
-      let res = await axios.post(`/api/users`, {
+      let res = await axios.post(`/api/auth`, {
         username: this.username,
         password: this.password,
         email: this.email
