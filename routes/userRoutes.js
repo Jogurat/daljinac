@@ -5,6 +5,7 @@ const Action = require("../models/actions");
 const User = require("../models/users");
 const jwt = require("jsonwebtoken");
 const nodemailer = require("nodemailer");
+const checkAuth = require("../middleware/middleware");
 
 const helper = require("../pages/changePassPage");
 const config = require("../config.js");
@@ -19,8 +20,8 @@ let transporter = nodemailer.createTransport({
   port: 587,
   secure: false, // true for 465, false for other ports
   auth: {
-    user: "daljinaccc@gmail.com", // generated ethereal user
-    pass: "daljinacc123", // generated ethereal password
+    user: process.env.EMAIL_USERNAME, // generated ethereal user
+    pass: process.env.EMAIL_PASS, // generated ethereal password
   },
   tls: {
     rejectUnauthorized: false,
@@ -55,7 +56,11 @@ const addRoom = router.put("/room/:username", checkAuth, async (req, res) => {
     const user = await User.findOne({ username: req.params.username });
 
     let newRooms = user.rooms;
-    newRooms.push({ name: req.body.name, deviceID: req.body.deviceID, type: req.body.type });
+    newRooms.push({
+      name: req.body.name,
+      deviceID: req.body.deviceID,
+      type: req.body.type,
+    });
     user.rooms = newRooms;
     await user.save();
     res.status(202).json(user);
@@ -88,7 +93,7 @@ const createUser = router.post("/", async (req, res) => {
           });
           try {
             const newUser = await user.save();
-            res.status(202).json(newUser);            
+            res.status(202).json(newUser);
           } catch (err) {
             res.status(500).json({ message: err });
           }
@@ -128,7 +133,6 @@ const loginUser = router.post("/login", async (req, res) => {
     res.status(500).json({ message: err.message });
   }
 });
-
 
 //Create link for changing pass with JWT
 const forgotPassMail = router.get("/forgotPass/:username", async (req, res) => {
@@ -183,23 +187,23 @@ const changePass = router.put("/changePass", (req, res) => {
   });
 });
 
-function checkAuth(req, res, next) {
-  const bearerHeader = req.headers["authorization"];
-  if (typeof bearerHeader !== "undefined") {
-    //console.log(req);
-    const bearer = bearerHeader.split(" ");
-    const bearerToken = bearer[1];
-    //req.token = bearerToken;
-    jwt.verify(bearerToken, SECRET_KEY, (err, decoded) => {
-      if (decoded) next();
-      else res.sendStatus(403);
-    });
-    //next();
-  } else {
-    //console.log(req);
-    res.sendStatus(403);
-  }
-}
+// function checkAuth(req, res, next) {
+//   const bearerHeader = req.headers["authorization"];
+//   if (typeof bearerHeader !== "undefined") {
+//     //console.log(req);
+//     const bearer = bearerHeader.split(" ");
+//     const bearerToken = bearer[1];
+//     //req.token = bearerToken;
+//     jwt.verify(bearerToken, SECRET_KEY, (err, decoded) => {
+//       if (decoded) next();
+//       else res.sendStatus(403);
+//     });
+//     //next();
+//   } else {
+//     //console.log(req);
+//     res.sendStatus(403);
+//   }
+// }
 
 function isLogged(req, res, next) {}
 

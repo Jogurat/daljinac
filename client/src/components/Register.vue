@@ -34,14 +34,7 @@
             </v-row>
             <v-row>
               <v-col cols="12">
-                <v-text-field
-                  label="Username*"
-                  v-model="username"
-                  filled
-                  rounded
-                  dense
-                  required
-                ></v-text-field>
+                <v-text-field label="Username*" v-model="username" filled rounded dense required></v-text-field>
               </v-col>
             </v-row>
             <v-row>
@@ -71,36 +64,31 @@
             <v-icon medium>mdi-restore</v-icon>
           </v-btn>-->
 
-          
-          <v-btn  color="blue darken-1" text v-on:click="registerUser"
-          @click="alert = !alert">
-            Register</v-btn>
-            
-          
+          <v-btn
+            color="blue darken-1"
+            text
+            v-on:click="registerUser"
+            @click="alert = !alert"
+          >Register</v-btn>
         </v-card-actions>
       </v-card>
-     </v-form>
-     <v-alert v-model="alertReg"
+    </v-form>
+    <v-alert
+      v-model="alertReg"
       :value="alert"
       color="green"
       icon="mdi-check-circle-outline"
       transition="scale-transition"
-    >
-    You are registred now! </v-alert>
+    >You are registred now!</v-alert>
 
-
-    <v-alert v-model="alertLos"
+    <v-alert
+      v-model="alertLos"
       :value="alert"
       color="red"
       icon="mdi-check-circle-outline"
       transition="scale-transition"
-    >
-    There is already a user with this credentials! </v-alert>
-
-    </v-dialog>
-    
-    
-    
+    >There is already a user with this credentials!</v-alert>
+  </v-dialog>
 
   <!--<v-container>
       <v-row>
@@ -130,70 +118,70 @@
 </template>
 
 <script>
-  import axios from "axios";
-  // import { config } from "../../../config";
-  const config = require("../../../config");
-  // const jsonConfig = require("../../../config.json");
-  // const config = jsonConfig;
-  let url = `${config.DB_HOST}`;
-  if (process.env.NODE_ENV === "development") {
-    url = `${config.DB_HOST}`;
-  } else {
-    url = "https://daljinac-api.herokuapp.com/api";
-  }
+import axios from "axios";
+// import { config } from "../../../config";
+const config = require("../../../config");
+// const jsonConfig = require("../../../config.json");
+// const config = jsonConfig;
+let url = `${config.DB_HOST}`;
+if (process.env.NODE_ENV === "development") {
+  url = `${config.DB_HOST}`;
+} else {
+  url = "https://daljinac-api.herokuapp.com/api";
+}
 
-  // const config2 = require("../../../config").config;
-  console.log(url);
-  export default {
-    name: "Register",
-    data: () => ({
-      username: "",
-      password: "",
-      //email: "",
-      dialog: false,
-      valid: true,
-      show1: false,
-      rules: {
-        required: (value) => !!value || "Required.",
-        min: (v) => v.length >= 5 || "Min 5 characters",
-      },
-      email: "",
-      emailRules: [
-        (v) => !!v || "E-mail is required",
-        (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
-      ],
-      lazy: false,
-    }),
-    methods: {
-      registerUser: async function() {
-        console.log(url);
-        // console.log(jsonConfig);
-        let res = await axios.post(`./api/users`, {
-          username: this.username,
-          password: this.password,
-          email: this.email,
-        });
-        console.log(res);
-      },
-      /*validate () {
+// const config2 = require("../../../config").config;
+console.log(url);
+export default {
+  name: "Register",
+  data: () => ({
+    username: "",
+    password: "",
+    //email: "",
+    dialog: false,
+    valid: true,
+    show1: false,
+    rules: {
+      required: value => !!value || "Required.",
+      min: v => v.length >= 5 || "Min 5 characters"
+    },
+    email: "",
+    emailRules: [
+      v => !!v || "E-mail is required",
+      v => /.+@.+\..+/.test(v) || "E-mail must be valid"
+    ],
+    lazy: false
+  }),
+  methods: {
+    registerUser: async function() {
+      console.log(url);
+      // console.log(jsonConfig);
+      let res = await axios.post(`/api/users`, {
+        username: this.username,
+        password: this.password,
+        email: this.email
+      });
+      console.log(res);
+    },
+    /*validate () {
         this.$refs.form.validate()
       },*/
-      reset () {
-        this.$refs.form.reset();
-      },
-      close(){
-        this.$refs.form.reset();
-        this.dialog=false;
-        this.alertReg=false;
-        this.alertLos=false;
-      },
+    reset() {
+      this.$refs.form.reset();
     },
-  };
+    close() {
+      this.$refs.form.reset();
+      this.dialog = false;
+      this.alertReg = false;
+      this.alertLos = false;
+    }
+  }
+};
 </script>
 
 <style scoped>
-  .headline {
-    align-content: center;
-    text-align: center;
-  }
+.headline {
+  align-content: center;
+  text-align: center;
+}
 </style>

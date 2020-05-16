@@ -22,10 +22,13 @@ db.once("open", () => console.log("Connected to Database"));
 
 app.use(express.json());
 app.use(cors());
+
+const authRouter = require("./routes/authRoutes");
 const actionsRouter = require("./routes/actionRoutes");
 const userRouter = require("./routes/userRoutes");
 const codesRouter = require("./routes/codesRoutes");
 
+app.use("/api/auth", authRouter);
 app.use("/api/actions", actionsRouter);
 app.use("/api/users", userRouter.router);
 app.use("/api/codes", codesRouter);
