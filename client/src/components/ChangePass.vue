@@ -6,11 +6,7 @@
       </v-row>
       <v-row>
         <v-col cols="3">
-          <v-text-field
-            outlined
-            label="New Password"
-            v-model="newPass"
-          ></v-text-field>
+          <v-text-field outlined label="New Password" v-model="newPass"></v-text-field>
         </v-col>
       </v-row>
       <v-row>
@@ -24,38 +20,38 @@
 </template>
 
 <script>
-  import axios from "axios";
-  const config = require("../../../config");
-  // const config = jsonConfig;
-  let url = `${config.DB_HOST}/users/changePass`;
+import axios from "axios";
+const config = require("../../../config");
+// const config = jsonConfig;
+let url = `${config.DB_HOST}/users/changePass`;
 
-  if (process.env.NODE_ENV === "development") {
-    url = `${config.DB_HOST}`;
-  } else {
-    url = "https://daljinac-api.herokuapp.com/api/users/changePass";
+if (process.env.NODE_ENV === "development") {
+  url = `${config.DB_HOST}`;
+} else {
+  url = "https://daljinac-api.herokuapp.com/api/users/changePass";
+}
+
+export default {
+  name: "ChangePass",
+  data: function() {
+    return {
+      newPass: ""
+    };
+  },
+  methods: {
+    changePass: async function() {
+      console.log(this.$route.params.token);
+      try {
+        await axios.put(`/api/auth/changePass`, {
+          token: this.$route.params.token,
+          newPass: this.newPass
+        });
+      } catch (err) {
+        console.log(err);
+      }
+    }
   }
-
-  export default {
-    name: "ChangePass",
-    data: function() {
-      return {
-        newPass: "",
-      };
-    },
-    methods: {
-      changePass: async function() {
-        console.log(this.$route.params.token);
-        try {
-          await axios.put("./api/users/changePass", {
-            token: this.$route.params.token,
-            newPass: this.newPass,
-          });
-        } catch (err) {
-          console.log(err);
-        }
-      },
-    },
-  };
+};
 </script>
 
 <style></style>

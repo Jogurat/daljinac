@@ -54,6 +54,7 @@
             </v-row>
             <v-row>
               <v-col cols="12">
+                
                 <v-text-field
                   label="Password*"
                   required
@@ -90,20 +91,14 @@
           
         </v-card-actions>
       </v-card>
-     </v-form>
-     <v-alert v-model="alertReg"
+    </v-form>
+    <v-alert
+      v-model="alertReg"
       :value="alert"
       color="green"
       icon="mdi-check-circle-outline"
       transition="scale-transition"
     >You are registred now! </v-alert>
-
-    <!--<v-alert v-model="alertFail"
-      :value="alert"
-      color="red"
-      icon="mdi-check-circle-outline"
-      transition="scale-transition"
-    >There is already a user with this username! </v-alert>-->
 
     <v-alert v-model="alertFail2"
       :value="alert"
@@ -143,14 +138,18 @@
 
 <script>
 import axios from "axios";
-//import { config } from "../../config";
+// import { config } from "../../../config";
 const config = require("../../../config");
+// const jsonConfig = require("../../../config.json");
+// const config = jsonConfig;
 let url = `${config.DB_HOST}`;
- if (process.env.NODE_ENV === "development") {
-    url = `${config.DB_HOST}`;
-  } else {
-    url = "https://daljinac-api.herokuapp.com/api";
-  }
+if (process.env.NODE_ENV === "development") {
+  url = `${config.DB_HOST}`;
+} else {
+  url = "https://daljinac-api.herokuapp.com/api";
+}
+
+// const config2 = require("../../../config").config;
 console.log(url);
 export default {
   name: "Register",
@@ -188,7 +187,7 @@ export default {
       let res;
       try {
       console.log(url);
-     res = await axios.post(`./api/users`, {
+      let res = await axios.post(`/api/auth`, {
         username: this.username,
         password: this.password,
         email: this.email,
@@ -236,12 +235,18 @@ export default {
         this.alertFail2=false;
       }
     },
-  };
+    close() {
+      this.$refs.form.reset();
+      this.dialog = false;
+      this.alertReg = false;
+      this.alertLos = false;
+    }
+};
 </script>
 
 <style scoped>
-  .headline {
-    align-content: center;
-    text-align: center;
-  }
+.headline {
+  align-content: center;
+  text-align: center;
+}
 </style>
