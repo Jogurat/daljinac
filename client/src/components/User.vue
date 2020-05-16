@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="dataReady">
     <NavigationBar></NavigationBar>
     <v-container>
       <br />
@@ -37,16 +37,10 @@
               <v-row>
                 <v-col cols="1"></v-col>
                 <v-col cols="5">
-                  <v-text-field
-                    label="Room name"
-                    v-model="newRoomName"
-                  ></v-text-field>
+                  <v-text-field label="Room name" v-model="newRoomName"></v-text-field>
                 </v-col>
                 <v-col cols="5">
-                  <v-text-field
-                    label="Device ID"
-                    v-model="newDeviceID"
-                  ></v-text-field>
+                  <v-text-field label="Device ID" v-model="newDeviceID"></v-text-field>
                 </v-col>
               </v-row>
 
@@ -55,9 +49,9 @@
                 <v-col>
                   <v-radio-group v-model="dialogm1" column label="Room type">
                     <v-radio label="Living room" value="livingroom"></v-radio>
-                    <v-radio   label="Bedrooom" value="bedroom"></v-radio>
-                    <v-radio  label="Kitchen" value="kitchen"></v-radio>
-                    <v-radio  label="Kids room" value="kidsroom"></v-radio>
+                    <v-radio label="Bedrooom" value="bedroom"></v-radio>
+                    <v-radio label="Kitchen" value="kitchen"></v-radio>
+                    <v-radio label="Kids room" value="kidsroom"></v-radio>
                   </v-radio-group>
                 </v-col>
               </v-row>
@@ -77,14 +71,14 @@
 </template>
 
 <script>
-  import axios from "axios";
-  import jwt from "jsonwebtoken";
-  import Card from "./Card";
-  import NavigationBar from "./NavigationBar";
-  const jsonConfig = require("../../../config");
-  const config = jsonConfig;
+import axios from "axios";
+import jwt from "jsonwebtoken";
+import Card from "./Card";
+import NavigationBar from "./NavigationBar";
+const jsonConfig = require("../../../config");
+const config = jsonConfig;
 
-  let url = `${config.DB_HOST}/users/`;
+let url = `${config.DB_HOST}/users/`;
 
 //const url = "http://localhost:3000/users/";
 const roomUrl = `${url}/room/`;
@@ -104,62 +98,67 @@ export default {
     };
   },
   components: {
-    Card, 
+    Card,
     NavigationBar
   },
-    methods: {
-      newRoom: function() {
-        //console.log(config);
-        const token = localStorage.getItem("token");
-        axios
-          .put(
-            `./api/users/room/${this.username}`,
-            {
-              name: this.newRoomName,
-              deviceID: this.newDeviceID,
-              type: this.dialogm1,
-            },
-            { headers: { authorization: `Bearer ${token}` } }
-          )
-          .then((res) => {
-            console.log(res);
-            axios
-              .get(`./api/users/${this.username}`, {
-                headers: { Authorization: `Bearer ${token}` },
-              })
-              .then((res) => {
-                this.user = res.data;
-                this.dataReady = true;
-                console.log(res.data.rooms);
-              });
-          });
-      },
-      loggedIn: function() {
-        if (localStorage.getItem("token")) return true;
-        else return false;
-      },
-      logOut: function() {
-        localStorage.removeItem("token");
-      },
+  methods: {
+    newRoom: function() {
+      //console.log(config);
+      const token = localStorage.getItem("token");
+      axios
+        .put(
+          `/api/users/room/${this.username}`,
+          {
+            name: this.newRoomName,
+            deviceID: this.newDeviceID,
+            type: this.dialogm1
+          },
+          { headers: { authorization: `Bearer ${token}` } }
+        )
+        .then(res => {
+          console.log(res);
+          axios
+            .get(`/api/users/${this.username}`, {
+              headers: { Authorization: `Bearer ${token}` }
+            })
+            .then(res => {
+              this.user = res.data;
+              this.dataReady = true;
+              console.log(res.data.rooms);
+            });
+        });
     },
-    //   mounted: async function() {
-    //     const resp = await axios.get(url);
-    //     this.user = resp.data;
-    //     if (this.user) this.dataReady = true;
-    //   }
-    mounted: function() {
-      this.username = localStorage.getItem("username");
+    loggedIn: function() {
+      if (localStorage.getItem("token")) return true;
+      else return false;
+    },
+    logOut: function() {
+      localStorage.removeItem("token");
+    }
+  },
+  //   mounted: async function() {
+  //     const resp = await axios.get(url);
+  //     this.user = resp.data;
+  //     if (this.user) this.dataReady = true;
+  //   }
+  mounted: function() {
+    this.username = localStorage.getItem("username");
+    const token = localStorage.getItem("token");
 
-      axios.get(`./api/users/${this.username}`).then((res) => {
+    axios
+      .get(`/api/users/${this.username}`, {
+        headers: { Authorization: `Bearer ${token}` }
+      })
+      .then(res => {
         this.user = res.data;
         this.dataReady = true;
       });
-    },
+  }
 };
 </script>
 
 <style>
-  li {
-    text-decoration: black;
-  }
+li {
+  text-decoration: black;
+}
 </style>

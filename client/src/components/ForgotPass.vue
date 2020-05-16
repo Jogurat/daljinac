@@ -2,21 +2,28 @@
   <div>
     <NavigationBar></NavigationBar>
     <v-container>
-      <br>
-      <br>
-      <br>
+      <br />
+      <br />
+      <br />
       <v-form>
-      <v-row>
-        <v-col cols="4">
-        <v-text-field label="Enter your e-mail address" v-model="username" filled rounded dense required></v-text-field>
-        </v-col>
-      </v-row>
-    <div>
-      <v-row> 
-        <v-col cols="4" align="center">
-        <v-btn  color="blue accent-3" dark @click="sendEmail">Send E-mail</v-btn>
-        </v-col>
-      </v-row>
+        <v-row>
+          <v-col cols="4">
+            <v-text-field
+              label="Enter your username"
+              v-model="username"
+              filled
+              rounded
+              dense
+              required
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <div>
+          <v-row>
+            <v-col cols="4" align="center">
+              <v-btn color="blue accent-3" dark @click="sendEmail">Send E-mail</v-btn>
+            </v-col>
+          </v-row>
         </div>
       </v-form>
     </v-container>
@@ -33,12 +40,11 @@ export default {
       username: ""
     };
   },
-  components: {NavigationBar},
+  components: { NavigationBar },
   methods: {
     sendEmail: async function() {
-      const url = "http://localhost:3000/users/forgotPass/";
       try {
-        const res = await axios.get(url + this.username);
+        const res = await axios.get(`/api/auth/forgotPass/${this.username}`);
         console.log(res);
         //const user = res.data;
         //const email = user.email;
