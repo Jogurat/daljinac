@@ -9,7 +9,7 @@
         <v-row>
           <v-col cols="4">
             <v-text-field
-              label="Enter your e-mail address"
+              label="Enter your username"
               v-model="username"
               filled
               rounded
