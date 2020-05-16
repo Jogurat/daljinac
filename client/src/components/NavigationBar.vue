@@ -59,16 +59,13 @@
         if (localStorage.getItem("token")) return true;
         else return false;
       },
-      logOut: function() {
-        localStorage.removeItem("token");
-      },
-    },
     logOut: function() {
       localStorage.removeItem("token");
       if(localStorage.getItem("token") == null){
       this.$router.push('Homepage'); // redirect to home, for example
       localStorage.removeItem("username");
   }
+}
 }
 };
 </script>
