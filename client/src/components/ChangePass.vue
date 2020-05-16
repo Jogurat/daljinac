@@ -42,7 +42,7 @@ export default {
     changePass: async function() {
       console.log(this.$route.params.token);
       try {
-        await axios.put(`/api/users/changePass`, {
+        await axios.put(`/api/auth/changePass`, {
           token: this.$route.params.token,
           newPass: this.newPass
         });
