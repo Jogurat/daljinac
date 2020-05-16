@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div v-if="dataReady">
     <NavigationBar></NavigationBar>
     <v-container>
       <br />
