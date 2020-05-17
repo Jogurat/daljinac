@@ -9,7 +9,8 @@ const server = require("../server");
 let should = chai.should();
 
 const usersUrl = "/api/users/";
-const loginUrl = usersUrl + "login";
+const authUrl = "/api/auth/";
+const loginUrl = authUrl + "login";
 
 chai.use(chaiHttp);
 
@@ -18,21 +19,6 @@ describe("User routes", () => {
   before((done) => {
     User.deleteMany({}, (err) => {
       done();
-    });
-  });
-
-  //GET all users
-  describe("GET all users", () => {
-    it("should GET all users", (done) => {
-      chai
-        .request(server)
-        .get(usersUrl)
-        .end((err, res) => {
-          res.should.have.status(200);
-          res.body.should.be.an("array");
-          res.body.length.should.be.eql(0);
-          done();
-        });
     });
   });
 
@@ -48,7 +34,7 @@ describe("User routes", () => {
 
         chai
           .request(server)
-          .post(usersUrl) //http://localhost:3000/users
+          .post(authUrl) //http://localhost:3000/users
           .send(user)
           .end((err, res) => {
             res.should.have.status(201);
@@ -71,7 +57,7 @@ describe("User routes", () => {
 
         chai
           .request(server)
-          .post(usersUrl)
+          .post(authUrl)
           .send(user)
           .end((err, res) => {
             res.should.have.status(409);
@@ -92,7 +78,7 @@ describe("User routes", () => {
         };
         chai
           .request(server)
-          .post(usersUrl)
+          .post(authUrl)
           .send(user)
           .end((err, res) => {
             res.should.have.status(500);
@@ -110,7 +96,7 @@ describe("User routes", () => {
         };
         chai
           .request(server)
-          .post(usersUrl)
+          .post(authUrl)
           .send(user)
           .end((err, res) => {
             res.should.have.status(500);
@@ -128,49 +114,11 @@ describe("User routes", () => {
         };
         chai
           .request(server)
-          .post(usersUrl)
+          .post(authUrl)
           .send(user)
           .end((err, res) => {
             res.should.have.status(500);
             res.body.should.have.property("message");
-            done();
-          });
-      });
-    });
-  });
-
-  //Get user by username
-  describe("GET one user", () => {
-    describe("successful GET one user", () => {
-      it("should GET one user by username", (done) => {
-        const username = "TestUser";
-        const url = usersUrl + username;
-        chai
-          .request(server)
-          .get(url)
-          .end((err, res) => {
-            res.should.have.status(200);
-            res.should.be.an("object");
-            res.body.should.have.property("username").eql("TestUser");
-            res.body.should.have.property("password");
-            res.body.should.have.property("email").eql("test@gmail.com");
-            done();
-          });
-      });
-    });
-
-    //Get user by username - nonexisting user
-    describe("failed GET one user - bad username", () => {
-      it("should return status 404 - user not found with given username", (done) => {
-        const username = "IDontExist";
-        const url = usersUrl + username;
-        chai
-          .request(server)
-          .get(url)
-          .end((err, res) => {
-            res.should.have.status(404);
-            res.body.should.not.have.property("username");
-            res.body.should.not.have.property("password");
             done();
           });
       });
@@ -234,6 +182,62 @@ describe("User routes", () => {
           .end((err, res) => {
             res.should.have.status(500);
             res.body.should.have.property("message");
+            done();
+          });
+      });
+    });
+  });
+
+  //GET all users
+  describe("GET all users", () => {
+    it("should GET all users", (done) => {
+      chai
+        .request(server)
+        .get(usersUrl)
+        .set({ Authorization: `Bearer ${token}` })
+        .end((err, res) => {
+          res.should.have.status(200);
+          res.body.should.be.an("array");
+          res.body.length.should.be.eql(1);
+          done();
+        });
+    });
+  });
+
+  //Get user by username
+  describe("GET one user", () => {
+    describe("successful GET one user", () => {
+      it("should GET one user by username", (done) => {
+        const username = "TestUser";
+        const url = usersUrl + username;
+        chai
+          .request(server)
+          .get(url)
+          .set({ Authorization: `Bearer ${token}` })
+          .end((err, res) => {
+            res.should.have.status(200);
+            res.should.be.an("object");
+            res.body.should.have.property("username").eql("TestUser");
+            res.body.should.have.property("password");
+            res.body.should.have.property("email").eql("test@gmail.com");
+            done();
+          });
+      });
+    });
+
+    //Get user by username - nonexisting user
+    describe("failed GET one user - bad username", () => {
+      it("should return status 404 - user not found with given username", (done) => {
+        const username = "IDontExist";
+        const url = usersUrl + username;
+        chai
+          .request(server)
+          .get(url)
+          .set({ Authorization: `Bearer ${token}` })
+          .end((err, res) => {
+            res.should.have.status(404);
+            res.body.should.not.have.property("username");
+            res.body.should.not.have.property("password");
             done();
           });
       });
@@ -335,7 +339,7 @@ describe("User routes", () => {
     describe("successful password change", () => {
       it("should send email with link and return status 200", (done) => {
         const username = "TestUser";
-        const url = usersUrl + "/forgotPass/" + username;
+        const url = authUrl + "/forgotPass/" + username;
 
         chai
           .request(server)
@@ -350,7 +354,7 @@ describe("User routes", () => {
     describe("failed password change - bad username", () => {
       it("should not send email and return status 500 - bad request", (done) => {
         const username = "IDontExist";
-        const url = usersUrl + "/forgotPass/" + username;
+        const url = authUrl + "/forgotPass/" + username;
 
         chai
           .request(server)

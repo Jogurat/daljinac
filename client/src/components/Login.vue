@@ -3,7 +3,7 @@
     <template v-slot:activator="{ on }">
       <v-btn class="ma-4" color="blue accent-3" dark v-on="on">Log in</v-btn>
     </template>
-    <v-form ref="form" v-model="valid" :lazy-validation="lazy">
+    <v-form ref="form" v-model="valid">
       <v-card>
         <v-card-title class="justify-center">
           <v-row>
