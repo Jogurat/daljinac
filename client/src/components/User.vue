@@ -1,5 +1,6 @@
 <template>
   <div v-if="dataReady">
+    <div v-if="user">
     <NavigationBar></NavigationBar>
     <v-container>
       <br />
@@ -67,6 +68,10 @@
         </v-dialog>
       </v-row>
     </v-container>
+    </div>
+    <div v-else>
+      <h1>Please log in!</h1>
+    </div>
   </div>
 </template>
 

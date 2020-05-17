@@ -3,7 +3,7 @@
     <template v-slot:activator="{ on }">
       <v-btn class="ma-4" color="blue accent-3" dark v-on="on">Register</v-btn>
     </template>
-    <v-form ref="form" v-model="valid" :lazy-validation="lazy">
+    <v-form ref="form" v-model="valid">
       <v-card>
         <v-card-title class="justify-center">
           <v-row>
@@ -44,17 +44,18 @@
                   required
                 ></v-text-field>
               </v-col>
-              <v-alert v-model="alertFail"
-                 :value="alert"
-                  color="red"
-                  icon="mdi-close-circle-outline"
-                  transition="scale-transition"
-                  dissmisible
-              >There is already a user with this username! </v-alert>
+              <v-alert
+                v-model="alertFail"
+                :value="alert"
+                color="red"
+                icon="mdi-close-circle-outline"
+                transition="scale-transition"
+                dissmisible
+                >There is already a user with this username!
+              </v-alert>
             </v-row>
             <v-row>
               <v-col cols="12">
-                
                 <v-text-field
                   label="Password*"
                   required
@@ -69,7 +70,7 @@
                   hint="At least 5 characters"
                   counter
                   @click:append="show1 = !show1"
-                  >
+                >
                 </v-text-field>
               </v-col>
             </v-row>
@@ -82,13 +83,16 @@
             <v-icon medium>mdi-restore</v-icon>
           </v-btn>-->
 
-          
           <!--<v-btn  color="blue darken-1" text v-on:click="registerUser">
              Register</v-btn>-->
-              <v-btn :disabled="!valid" color="blue darken-1"  text v-on:click="registerUser">
-                Register
-              </v-btn>
-          
+          <v-btn
+            :disabled="!valid"
+            color="blue darken-1"
+            text
+            v-on:click="registerUser"
+          >
+            Register
+          </v-btn>
         </v-card-actions>
       </v-card>
     </v-form>
@@ -98,18 +102,20 @@
       color="green"
       icon="mdi-check-circle-outline"
       transition="scale-transition"
-    >You are registred now! </v-alert>
+      >You are registred now!
+    </v-alert>
 
-    <v-alert v-model="alertFail2"
+    <v-alert
+      v-model="alertFail2"
       :value="alert"
       color="yellow"
       icon="mdi-close-circle-outline"
       transition="scale-transition"
-    >Server error! </v-alert>
+      >Server error!
+    </v-alert>
+  </v-dialog>
 
-    </v-dialog>
-    
-    <!--<v-container>
+  <!--<v-container>
       <v-row>
         <h1>Register</h1>
       </v-row>
@@ -154,93 +160,88 @@ console.log(url);
 export default {
   name: "Register",
   data: () => ({
-      username: "",
-      password: "",
-      dialog:false,
-      //showLoginForm:false,
-      alertReg:false,
-      alertFail:false,
-      alertFail2:false,
-      valid: true,
-      show1: false,
-       alert: false,
-       rules: {
-          required: (value) => !!value || "Required.",
-          min: (v) => v.length >= 5 || "Min 5 characters",
-        },
-      email: "",
-     emailRules : [
-        (v) => !!v || "E-mail is required",
-        (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
-      ],
-      usernameRules:[
-        (value) => !!value || 'Username is required.',
-        (value) => value.length >= 4 || "Min 4 characters",
-      ],
-      //lazy: false,
-    }),
+    username: "",
+    password: "",
+    dialog: false,
+    //showLoginForm:false,
+    alertReg: false,
+    alertFail: false,
+    alertFail2: false,
+    valid: true,
+    show1: false,
+    alert: false,
+    rules: {
+      required: (value) => !!value || "Required.",
+      min: (v) => v.length >= 5 || "Min 5 characters",
+    },
+    email: "",
+    emailRules: [
+      (v) => !!v || "E-mail is required",
+      (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+    ],
+    usernameRules: [
+      (value) => !!value || "Username is required.",
+      (value) => value.length >= 4 || "Min 4 characters",
+    ],
+  }),
   methods: {
-    
     registerUser: async function() {
       this.$refs.form.validate();
       //this.$refs.username.validate();
       let res;
       try {
-      console.log(url);
-      let res = await axios.post(`/api/auth`, {
-        username: this.username,
-        password: this.password,
-        email: this.email,
-      
-      });
-      console.log(res);
-       console.log(res.status);
-       if (res.status===201 || res.status===202){
-          this.alertReg=true;
-          this.alertFail=false;
+        console.log(url);
+        let res = await axios.post(`/api/auth`, {
+          username: this.username,
+          password: this.password,
+          email: this.email,
+        });
+        console.log(res);
+        console.log(res.status);
+        if (res.status === 201 || res.status === 202) {
+          this.alertReg = true;
+          this.alertFail = false;
           console.log("Usao u status 201");
-       }
-    } catch(err){
-      let res=err.response;
-      //console.log("hello from catch");
-      //console.log(err.response);
-      if (res.status===409){
-         this.alertFail=true;
-         this.alertReg=false;
-         this.alertFail2=false;
-         this.username="";
-         console.log("Usao u status 409");
-       }
-       else if (res.status===500){
-         this.alertFail2=true;
-         this.alertFail=false;
-         this.alertReg=false;
-         console.log("Usao u status 500");
-       }
-      
-    }
-      },
-      /*validate () {
+        }
+      } catch (err) {
+        let res = err.response;
+        //console.log("hello from catch");
+        //console.log(err.response);
+        if (res.status === 409) {
+          this.alertFail = true;
+          this.alertReg = false;
+          this.alertFail2 = false;
+          this.username = "";
+          console.log("Usao u status 409");
+        } else if (res.status === 500) {
+          this.alertFail2 = true;
+          this.alertFail = false;
+          this.alertReg = false;
+          console.log("Usao u status 500");
+        }
+      }
+    },
+    /*validate () {
         this.$refs.form.validate();
         
       },*/
-      reset () {
-        this.$refs.form.reset();
-      },
-      close(){
-        this.$refs.form.reset();
-        this.dialog=false;
-        this.alertReg=false;
-        this.alertFail=false;
-        this.alertFail2=false;
-      }
+    reset() {
+      this.$refs.form.reset();
     },
     close() {
       this.$refs.form.reset();
       this.dialog = false;
       this.alertReg = false;
-      this.alertLos = false;
-    }
+      this.alertFail = false;
+      this.alertFail2 = false;
+    },
+  },
+  close() {
+    this.$refs.form.reset();
+    this.dialog = false;
+    this.alertReg = false;
+    this.alertLos = false;
+  },
 };
 </script>
 

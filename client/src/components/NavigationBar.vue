@@ -61,9 +61,10 @@
       },
     logOut: function() {
       localStorage.removeItem("token");
+      localStorage.removeItem("username");
       if(localStorage.getItem("token") == null){
       this.$router.push('Homepage'); // redirect to home, for example
-      localStorage.removeItem("username");
+      
   }
 }
 }
