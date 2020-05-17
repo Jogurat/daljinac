@@ -7,7 +7,7 @@
       <br />
       <v-row>
         <v-col cols="4" align="center">
-          <h1>{{ username }} 's home</h1>
+          <h1>{{ username }}'s home</h1>
         </v-col>
       </v-row>
 

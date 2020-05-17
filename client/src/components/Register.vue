@@ -51,8 +51,7 @@
                 icon="mdi-close-circle-outline"
                 transition="scale-transition"
                 dissmisible
-                >There is already a user with this username!
-              </v-alert>
+              >There is already a user with this username!</v-alert>
             </v-row>
             <v-row>
               <v-col cols="12">
@@ -70,8 +69,8 @@
                   hint="At least 5 characters"
                   counter
                   @click:append="show1 = !show1"
-                >
-                </v-text-field>
+                  @keyup.enter="registerUser"
+                ></v-text-field>
               </v-col>
             </v-row>
           </v-container>
@@ -84,15 +83,8 @@
           </v-btn>-->
 
           <!--<v-btn  color="blue darken-1" text v-on:click="registerUser">
-             Register</v-btn>-->
-          <v-btn
-            :disabled="!valid"
-            color="blue darken-1"
-            text
-            v-on:click="registerUser"
-          >
-            Register
-          </v-btn>
+          Register</v-btn>-->
+          <v-btn :disabled="!valid" color="blue darken-1" text v-on:click="registerUser">Register</v-btn>
         </v-card-actions>
       </v-card>
     </v-form>
@@ -102,8 +94,7 @@
       color="green"
       icon="mdi-check-circle-outline"
       transition="scale-transition"
-      >You are registred now!
-    </v-alert>
+    >You are registred now!</v-alert>
 
     <v-alert
       v-model="alertFail2"
@@ -111,8 +102,7 @@
       color="yellow"
       icon="mdi-close-circle-outline"
       transition="scale-transition"
-      >Server error!
-    </v-alert>
+    >Server error!</v-alert>
   </v-dialog>
 
   <!--<v-container>
@@ -171,18 +161,18 @@ export default {
     show1: false,
     alert: false,
     rules: {
-      required: (value) => !!value || "Required.",
-      min: (v) => v.length >= 5 || "Min 5 characters",
+      required: value => !!value || "Required.",
+      min: v => v.length >= 5 || "Min 5 characters"
     },
     email: "",
     emailRules: [
-      (v) => !!v || "E-mail is required",
-      (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+      v => !!v || "E-mail is required",
+      v => /.+@.+\..+/.test(v) || "E-mail must be valid"
     ],
     usernameRules: [
-      (value) => !!value || "Username is required.",
-      (value) => value.length >= 4 || "Min 4 characters",
-    ],
+      value => !!value || "Username is required.",
+      value => value.length >= 4 || "Min 4 characters"
+    ]
   }),
   methods: {
     registerUser: async function() {
@@ -194,7 +184,7 @@ export default {
         let res = await axios.post(`/api/auth`, {
           username: this.username,
           password: this.password,
-          email: this.email,
+          email: this.email
         });
         console.log(res);
         console.log(res.status);
@@ -234,14 +224,14 @@ export default {
       this.alertReg = false;
       this.alertFail = false;
       this.alertFail2 = false;
-    },
+    }
   },
   close() {
     this.$refs.form.reset();
     this.dialog = false;
     this.alertReg = false;
     this.alertLos = false;
-  },
+  }
 };
 </script>
 
