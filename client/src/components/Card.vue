@@ -107,7 +107,8 @@ export default {
       dialog1: false,
       dialogm2: null,
       editRoomName: "",
-      editDeviceID: ""
+      editDeviceID: "",
+      dialog: false
     };
   },
   props: {
@@ -118,7 +119,7 @@ export default {
   },
   methods: {
     editRoom: function() {
-      //dialog1 = true;
+      //console.log(config);
       const token = localStorage.getItem("token");
       axios
         .put(
@@ -126,7 +127,7 @@ export default {
           {
             name: this.editRoomName,
             deviceID: this.editDeviceID,
-            type: this.dialogm2
+            type: this.dialogm1
           },
           { headers: { authorization: `Bearer ${token}` } }
         )
