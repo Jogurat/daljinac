@@ -17,10 +17,7 @@
       <v-spacer></v-spacer>
       <v-card-text>
         <div align="right">
-          <v-btn class="ma-4" icon>
-            <v-icon large>mdi-magnify</v-icon>
-            <!--mdi-chevron-up-circle-->
-          </v-btn>
+          
 
           <v-btn class="ma-4" color="blue accent-3" v-if="!loggedIn()"
             >Login</v-btn
@@ -61,9 +58,10 @@
       },
     logOut: function() {
       localStorage.removeItem("token");
+      localStorage.removeItem("username");
       if(localStorage.getItem("token") == null){
       this.$router.push('Homepage'); // redirect to home, for example
-      localStorage.removeItem("username");
+      
   }
 }
 }

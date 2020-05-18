@@ -3,7 +3,7 @@
     <template v-slot:activator="{ on }">
       <v-btn class="ma-4" color="blue accent-3" dark v-on="on">Register</v-btn>
     </template>
-    <v-form ref="form" v-model="valid" :lazy-validation="lazy">
+    <v-form ref="form" v-model="valid">
       <v-card>
         <v-card-title class="justify-center">
           <v-row>
@@ -69,7 +69,7 @@
                   hint="At least 5 characters"
                   counter
                   @click:append="show1 = !show1"
-                  >
+                  @keyup.enter="registerUser"                   >
                 </v-text-field>
               </v-col>
             </v-row>
@@ -177,7 +177,6 @@ export default {
         (value) => !!value || 'Username is required.',
         (value) => value.length >= 4 || "Min 4 characters",
       ],
-      //lazy: false,
     }),
   methods: {
     
