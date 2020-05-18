@@ -4,14 +4,21 @@
       <v-row>
         <h1>Change Pass</h1>
       </v-row>
-      <v-row>
-        <v-col cols="3">
-          <v-text-field outlined label="New Password" v-model="newPass"></v-text-field>
+      <v-row class="mb-6">
+        <v-col md="3" sm="3" lg="3" offset-sm="4" offset-md="4" offset-lg="4">
+          <v-text-field
+            outlined
+            label="New Password"
+            v-model="newPass"
+            filled
+            rounded
+            dense
+            required
+          ></v-text-field>
         </v-col>
       </v-row>
-      <v-row>
-        <v-col cols="1"></v-col>
-        <v-col>
+      <v-row class="mb-6">
+        <v-col md="3" sm="3" lg="3" offset-sm="4" offset-md="4" offset-lg="4" align="center">
           <v-btn v-on:click="changePass">Change password</v-btn>
         </v-col>
       </v-row>
