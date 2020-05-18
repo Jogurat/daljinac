@@ -4,18 +4,18 @@
     <template v-slot="{ hover }">
       <v-card :elevation="hover ? 24 : 6" class="mx-auto my-12" max-width="300">
         <v-img height="150" :src="require(`../assets/${roomType}.jpeg`)"></v-img>
-<div class="row">
-<div class="col-md-8 col-sm-8 col-xs-4">
-<v-card-title>{{ $props.title }}</v-card-title>
-</div>
-        
-<div class="col-md-4 col-sm-4 col-xs-2">
-          <v-btn class="ma-4" icon color="grey">
+        <div class="row">
+          <div class="col-md-8 col-sm-8 col-xs-4">
+            <v-card-title>{{ $props.title }}</v-card-title>
+          </div>
+
+          <div class="col-md-4 col-sm-4 col-xs-2">
+            <v-btn class="ma-4" icon color="grey" @click="dialog1 = !dialog1">
               <v-icon medium>mdi-pencil</v-icon>
               <!--mdi-chevron-up-circle-->
             </v-btn>
-</div>
-</div>
+          </div>
+        </div>
         <v-card-text>
           <v-row align="center">
             <v-col class="display-2" cols="6">23&deg;C</v-col>
@@ -40,6 +40,42 @@
           </div>
         </v-card-text>
 
+        <v-row>
+          <v-dialog v-model="dialog1" max-width="400px">
+            <v-card>
+              <v-card-title>Edit Room</v-card-title>
+              <v-container>
+                <v-row>
+                  <v-col cols="1"></v-col>
+                  <v-col cols="5">
+                    <v-text-field label="Room name" v-model="editRoomName"></v-text-field>
+                  </v-col>
+                  <v-col cols="5">
+                    <v-text-field label="Device ID" v-model="editDeviceID"></v-text-field>
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col cols="4"></v-col>
+                  <v-col>
+                    <v-radio-group v-model="dialogm2" column label="Room type">
+                      <v-radio label="Living room" value="livingroom"></v-radio>
+                      <v-radio label="Bedrooom" value="bedroom"></v-radio>
+                      <v-radio label="Kitchen" value="kitchen"></v-radio>
+                      <v-radio label="Kids room" value="kidsroom"></v-radio>
+                    </v-radio-group>
+                  </v-col>
+                </v-row>
+                <v-row>
+                  <v-col cols="4"></v-col>
+                  <v-col>
+                    <v-btn @click="editRoom">Edit Room</v-btn>
+                  </v-col>
+                </v-row>
+              </v-container>
+            </v-card>
+          </v-dialog>
+        </v-row>
+
         <!-- <v-card-actions>
       <v-btn
         color="deep-purple lighten-2"
@@ -56,18 +92,57 @@
 
 
 <script>
+import axios from "axios";
+import jwt from "jsonwebtoken";
+const jsonConfig = require("../../../config");
+const config = jsonConfig;
+
+let url = `${config.DB_HOST}/users/`;
+const roomUrl = `${url}/room/`;
 export default {
   name: "Card",
   data: function() {
     return {
       //title: ""
+      dialog1: false,
+      dialogm2: null,
+      editRoomName: "",
+      editDeviceID: ""
     };
   },
   props: {
-    // props: {['title', 'deviceID']}
+    // props: {['title', 'deviceID', roomType]}
     title: String,
     deviceID: Number,
     roomType: String
+  },
+  methods: {
+    editRoom: function() {
+      //dialog1 = true;
+      const token = localStorage.getItem("token");
+      axios
+        .put(
+          `/api/users/room/${this.username}`,
+          {
+            name: this.editRoomName,
+            deviceID: this.editDeviceID,
+            type: this.dialogm2
+          },
+          { headers: { authorization: `Bearer ${token}` } }
+        )
+        .then(res => {
+          console.log(res);
+          axios
+            .get(`/api/users/${this.username}`, {
+              headers: { Authorization: `Bearer ${token}` }
+            })
+            .then(res => {
+              this.user = res.data;
+              this.dataReady = true;
+              console.log(res.data.rooms);
+            });
+        });
+    }
   }
 };
 </script>

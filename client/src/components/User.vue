@@ -1,73 +1,73 @@
 <template>
   <div v-if="dataReady">
     <div v-if="user">
-    <NavigationBar></NavigationBar>
-    <v-container>
-      <br />
-      <br />
-      <v-row>
-        <v-col cols="4" align="center">
-          <h1>{{ username }}'s home</h1>
-        </v-col>
-      </v-row>
+      <NavigationBar></NavigationBar>
+      <v-container>
+        <br />
+        <br />
+        <v-row>
+          <v-col cols="4" align="center">
+            <h1>{{ username }}'s home</h1>
+          </v-col>
+        </v-row>
 
-      <v-row>
-        <v-col cols="4" align="center">
-          <v-btn @click="dialog = !dialog">New room</v-btn>
-        </v-col>
-      </v-row>
+        <v-row>
+          <v-col cols="4" align="center">
+            <v-btn @click="dialog = !dialog">New room</v-btn>
+          </v-col>
+        </v-row>
 
-      <v-row>
-        <Card
-          hover
-          v-for="room in user.rooms"
-          :key="room._id"
-          max-width="100px"
-          v-bind:title="room.name"
-          v-bind:deviceID="room.deviceID"
-          :room-type="room.type"
-        ></Card>
-      </v-row>
-      <!--Test-->
-      <v-row></v-row>
-      <v-row>
-        <v-dialog v-model="dialog" max-width="400px">
-          <v-card>
-            <v-card-title>New Room</v-card-title>
-            <v-container>
-              <v-row>
-                <v-col cols="1"></v-col>
-                <v-col cols="5">
-                  <v-text-field label="Room name" v-model="newRoomName"></v-text-field>
-                </v-col>
-                <v-col cols="5">
-                  <v-text-field label="Device ID" v-model="newDeviceID"></v-text-field>
-                </v-col>
-              </v-row>
+        <v-row>
+          <Card
+            hover
+            v-for="room in user.rooms"
+            :key="room._id"
+            max-width="100px"
+            v-bind:title="room.name"
+            v-bind:deviceID="room.deviceID"
+            :room-type="room.type"
+          ></Card>
+        </v-row>
+        <!--Test-->
+        <v-row></v-row>
+        <v-row>
+          <v-dialog v-model="dialog" max-width="400px">
+            <v-card>
+              <v-card-title>New Room</v-card-title>
+              <v-container>
+                <v-row>
+                  <v-col cols="1"></v-col>
+                  <v-col cols="5">
+                    <v-text-field label="Room name" v-model="newRoomName"></v-text-field>
+                  </v-col>
+                  <v-col cols="5">
+                    <v-text-field label="Device ID" v-model="newDeviceID"></v-text-field>
+                  </v-col>
+                </v-row>
 
-              <v-row>
-                <v-col cols="4"></v-col>
-                <v-col>
-                  <v-radio-group v-model="dialogm1" column label="Room type">
-                    <v-radio label="Living room" value="livingroom"></v-radio>
-                    <v-radio label="Bedrooom" value="bedroom"></v-radio>
-                    <v-radio label="Kitchen" value="kitchen"></v-radio>
-                    <v-radio label="Kids room" value="kidsroom"></v-radio>
-                  </v-radio-group>
-                </v-col>
-              </v-row>
+                <v-row>
+                  <v-col cols="4"></v-col>
+                  <v-col>
+                    <v-radio-group v-model="dialogm1" column label="Room type">
+                      <v-radio label="Living room" value="livingroom"></v-radio>
+                      <v-radio label="Bedrooom" value="bedroom"></v-radio>
+                      <v-radio label="Kitchen" value="kitchen"></v-radio>
+                      <v-radio label="Kids room" value="kidsroom"></v-radio>
+                    </v-radio-group>
+                  </v-col>
+                </v-row>
 
-              <v-row>
-                <v-col cols="4"></v-col>
-                <v-col>
-                  <v-btn @click="newRoom">Add Room</v-btn>
-                </v-col>
-              </v-row>
-            </v-container>
-          </v-card>
-        </v-dialog>
-      </v-row>
-    </v-container>
+                <v-row>
+                  <v-col cols="4"></v-col>
+                  <v-col>
+                    <v-btn @click="newRoom">Add Room</v-btn>
+                  </v-col>
+                </v-row>
+              </v-container>
+            </v-card>
+          </v-dialog>
+        </v-row>
+      </v-container>
     </div>
     <div v-else>
       <h1>Please log in!</h1>
