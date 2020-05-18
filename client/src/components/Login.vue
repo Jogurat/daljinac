@@ -21,7 +21,15 @@
           <v-container>
             <v-row>
               <v-col cols="12">
-                <v-text-field label="Username*" v-model="username" filled rounded dense required></v-text-field>
+                <v-text-field
+                  label="Username*"
+                  v-model="username"
+                  :rules="rules"
+                  filled
+                  rounded
+                  dense
+                  required
+                ></v-text-field>
               </v-col>
               <v-col cols="12">
                 <v-text-field
@@ -31,11 +39,12 @@
                   rounded
                   dense
                   required
+                  :rules="rules"
                   :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
                   :type="show1 ? 'text' : 'password'"
                   counter
                   @click:append="show1 = !show1"
-                   @keyup.enter="loginUser" 
+                  @keyup.enter="loginUser"
                 ></v-text-field>
               </v-col>
               <v-row>
@@ -49,10 +58,25 @@
         </v-card-text>
         <v-card-actions>
           <v-spacer></v-spacer>
-          <v-btn color="blue darken-1" text v-on:click="loginUser">Log in</v-btn>
+          <v-btn :disabled="!valid" color="blue darken-1" text v-on:click="loginUser">Log in</v-btn>
         </v-card-actions>
       </v-card>
     </v-form>
+    <v-alert
+      v-model="alertFail"
+      :value="alert"
+      color="red"
+      icon="mdi-close-circle-outline"
+      transition="scale-transition"
+    >Wrong username or password!</v-alert>
+
+    <v-alert
+      v-model="alertFailServer"
+      :value="alert"
+      color="yellow"
+      icon="mdi-close-circle-outline"
+      transition="scale-transition"
+    >Server error!</v-alert>
   </v-dialog>
 
   <!--<div>
@@ -106,10 +130,14 @@ export default {
     password: "",
     dialog2: false,
     show1: false,
-    valid: true
+    valid: true,
+    alertFail: false,
+    alertFailServer: false,
+    rules: [value => !!value || "All fields are required."]
   }),
   methods: {
     async loginUser() {
+      this.$refs.form.validate();
       //PROMISE
       // axios
       //   .post(url, {
@@ -129,6 +157,9 @@ export default {
           username: this.username,
           password: this.password
         });
+        if (res.status === 201) {
+          console.log("Usao u status 201");
+        }
         const token = res.data;
         //console.log("TOKEN U LOGIN " + token);
         localStorage.setItem("token", token);
@@ -136,14 +167,31 @@ export default {
         this.$router.push("/user");
       } catch (err) {
         console.log(err);
+        let res = err.response;
+        //console.log("hello from catch");
+        //console.log(err.response);
+        if (res.status === 404) {
+          this.alertFail = true;
+          this.alertFailServer = false;
+          this.username = "";
+          this.password = "";
+          console.log("Usao u status 404");
+        } else if (res.status === 500) {
+          this.alertFailServer = true;
+          this.alertFail = false;
+          console.log("Usao u status 500");
+        }
       }
     },
+
     reset() {
       this.$refs.form.reset();
     },
     close() {
       this.$refs.form.reset();
       this.dialog2 = false;
+      this.alertFailServer = false;
+      this.alertFail = false;
     }
   }
 };
