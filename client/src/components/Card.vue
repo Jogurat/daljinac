@@ -10,7 +10,7 @@
           </div>
 
           <div class="col-md-4 col-sm-4 col-xs-2">
-            <v-btn class="ma-4" icon color="grey" @click="editRoom">
+            <v-btn class="ma-4" icon color="grey" @click="dialog = !dialog">
               <v-icon medium>mdi-pencil</v-icon>
               <!--mdi-chevron-up-circle-->
             </v-btn>
@@ -39,7 +39,41 @@
             </v-btn>
           </div>
         </v-card-text>
+        <v-dialog v-model="dialog" max-width="400px">
+          <v-card>
+            <v-card-title>Edit Room</v-card-title>
+            <v-container>
+              <v-row>
+                <v-col cols="1"></v-col>
+                <v-col cols="5">
+                  <v-text-field label="Room name" v-model="title"></v-text-field>
+                </v-col>
+                <v-col cols="5">
+                  <v-text-field label="Device ID" v-model="deviceID"></v-text-field>
+                </v-col>
+              </v-row>
 
+              <v-row>
+                <v-col cols="4"></v-col>
+                <v-col>
+                  <v-radio-group v-model="roomType" column label="Room type">
+                    <v-radio label="Living room" value="livingroom"></v-radio>
+                    <v-radio label="Bedrooom" value="bedroom"></v-radio>
+                    <v-radio label="Kitchen" value="kitchen"></v-radio>
+                    <v-radio label="Kids room" value="kidsroom"></v-radio>
+                  </v-radio-group>
+                </v-col>
+              </v-row>
+
+              <v-row>
+                <v-col cols="4"></v-col>
+                <v-col>
+                  <v-btn @click="editRoom">Edit Room</v-btn>
+                </v-col>
+              </v-row>
+            </v-container>
+          </v-card>
+        </v-dialog>
         <!-- <v-card-actions>
       <v-btn
         color="deep-purple lighten-2"
