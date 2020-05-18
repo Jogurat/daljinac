@@ -187,11 +187,7 @@ export default {
         });
         console.log(res);
         console.log(res.status);
-<<<<<<< HEAD
         if (res.status === 201) {
-=======
-        if (res.status === 201 || res.status === 202) {
->>>>>>> 90d450b0235808e97d78451ec39b56e8c783fe1e
           this.alertReg = true;
           this.alertFail = false;
           console.log("Usao u status 201");
