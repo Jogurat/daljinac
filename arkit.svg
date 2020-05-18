@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="218px" preserveAspectRatio="none" style="width:601px;height:218px;" version="1.1" viewBox="0 0 601 218" width="601px" zoomAndPan="magnify"><defs/><g><ellipse cx="233.9903" cy="81.4981" fill="#F8F8F8" rx="55.4903" ry="13.4981" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="76" x="195.9903" y="85.2402">actionRoutes</text><ellipse cx="253.9056" cy="194.242" fill="#F8F8F8" rx="33.4056" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="43" x="232.4056" y="197.9842">actions</text><ellipse cx="114.9619" cy="81.742" fill="#F8F8F8" rx="48.9619" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="65" x="82.4619" y="85.4842">authRoutes</text><ellipse cx="69.9281" cy="138.1856" fill="#F8F8F8" rx="63.9281" ry="15.1856" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="98" x="20.9281" y="141.9278">changePassPage</text><ellipse cx="531.9558" cy="138.242" fill="#F8F8F8" rx="28.4558" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="36" x="513.9558" y="141.9842">codes</text><ellipse cx="531.9903" cy="81.4981" fill="#F8F8F8" rx="55.4903" ry="13.4981" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="76" x="493.9903" y="85.2402">codesRoutes</text><ellipse cx="355.9558" cy="194.242" fill="#F8F8F8" rx="28.4558" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="36" x="337.9558" y="197.9842">config</text><ellipse cx="172.1127" cy="194.242" fill="#F8F8F8" rx="34.1127" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="44" x="150.1127" y="197.9842">devices</text><ellipse cx="382.9619" cy="138.242" fill="#F8F8F8" rx="48.9619" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="65" x="350.4619" y="141.9842">middleware</text><ellipse cx="451.8275" cy="23.8655" fill="#F8F8F8" rx="57.3275" ry="13.8655" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="81" x="411.3275" y="27.6077">roomRoutes</text><ellipse cx="556.9056" cy="24.242" fill="#F8F8F8" rx="33.4056" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="43" x="535.4056" y="27.9842">rooms</text><ellipse cx="353.2487" cy="24.242" fill="#F8F8F8" rx="27.7487" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="35" x="335.7487" y="27.9842">server</text><ellipse cx="352.9619" cy="81.742" fill="#F8F8F8" rx="48.9619" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="65" x="320.4619" y="85.4842">userRoutes</text><ellipse cx="143.7768" cy="23.7554" fill="#F8F8F8" rx="66.7768" ry="15.7554" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="105" x="91.2768" y="27.4976">userRoutes.test</text><ellipse cx="174.1274" cy="138.242" fill="#F8F8F8" rx="25.6274" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="32" x="158.1274" y="141.9842">users</text><!--MD5=[4427b4d8d33179b6013b4fb12561dc63]
+link actionRoutes to actions--><path d="M236.294,95.176 C239.885,115.0138 246.839,153.4328 250.881,175.7656 " fill="none" id="actionRoutes-&gt;actions" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="251.793,180.8088,254.126,171.2403,250.9024,175.8888,246.2539,172.6652,251.793,180.8088" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[a4ffb90196b6f1cf23e58bef0dc4a950]
+link actionRoutes to users--><path d="M220.385,94.867 C211.309,103.111 199.347,113.9766 189.844,122.6086 " fill="none" id="actionRoutes-&gt;users" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="185.937,126.1572,195.288,123.0654,189.6376,122.7948,189.9082,117.1445,185.937,126.1572" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[10055684b75708e16a9bc684b103953c]
+link authRoutes to changePassPage--><path d="M105.2357,94.326 C99.2822,101.536 91.5551,110.8944 84.8546,119.0095 " fill="none" id="authRoutes-&gt;changePassPage" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="81.66,122.8785,90.4747,118.4852,84.8435,119.0229,84.3057,113.3917,81.66,122.8785" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[2df4acf6a1720f171b3048a5fd4dec7a]
+link authRoutes to config--><path d="M139.002,93.042 C157.381,101.148 183.341,112.6719 206,123 C250.927,143.4784 303.112,167.9984 332.578,181.9114 " fill="none" id="authRoutes-&gt;config" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="337.107,184.0511,330.6779,176.5901,332.5861,181.9154,327.2608,183.8236,337.107,184.0511" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[6ba2516bc3a716140cbbda7650ee7717]
+link authRoutes to users--><path d="M127.802,94.326 C136.817,102.653 148.934,113.8462 158.497,122.6797 " fill="none" id="authRoutes-&gt;users" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="162.423,126.3057,158.5262,117.2605,158.7502,122.9129,153.0978,123.1369,162.423,126.3057" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[724cfd838321bba739a4a0916241b2d9]
+link codesRoutes to codes--><path d="M532,95.14 C532,102.396 532,111.6143 532,119.5521 " fill="none" id="codesRoutes-&gt;codes" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="532,124.8031,536,115.8031,532,119.8031,528,115.8031,532,124.8031" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[6c8a1e9c5510ea0c86a33bcd8465c34a]
+link middleware to config--><path d="M377.008,150.9844 C373.302,158.395 368.491,168.0185 364.407,176.1853 " fill="none" id="middleware-&gt;config" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="361.975,181.0492,369.5772,174.7876,364.2107,176.5769,362.4215,171.2105,361.975,181.0492" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[b199c0247b1d722665509282ce97dd70]
+link server to actionRoutes--><path d="M334.406,33.672 C315.244,42.609 285.109,56.663 262.849,67.045 " fill="none" id="server-&gt;actionRoutes" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="258.225,69.202,268.0722,69.024,262.7566,67.0891,264.6915,61.7734,258.225,69.202" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[f309faa926396cec9c91173023e3583e]
+link server to authRoutes--><path d="M328.87,30.627 C287.967,40.165 204.631,59.599 154.923,71.19 " fill="none" id="server-&gt;authRoutes" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="149.924,72.356,159.5973,74.2075,154.7933,71.2204,157.7804,66.4165,149.924,72.356" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[0b1ae009801b54072819ed2a980dd57d]
+link server to codesRoutes--><path d="M371.511,33.74 C376.483,35.929 381.898,38.173 387,40 C420.844,52.122 460.178,62.909 489.332,70.297 " fill="none" id="server-&gt;codesRoutes" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="494.287,71.544,486.5368,65.4666,489.4385,70.3226,484.5825,73.2243,494.287,71.544" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[9d555a4bad79d596c1fc47e6758bc007]
+link server to config--><path d="M370.592,34.117 C388.604,43.764 414.934,58.833 422,68 C437.619,88.265 435.179,97.701 439,123 C440.991,136.1838 446.092,141.7093 439,153 C427.645,171.0766 405.573,181.1766 387.044,186.7042 " fill="none" id="server-&gt;config" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="381.923,188.1448,391.67,189.5576,386.7361,186.7905,389.5032,181.8566,381.923,188.1448" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[0c5528f2fe4b5390e935dccdce0f2444]
+link server to middleware--><path d="M371.846,33.699 C384.916,40.865 401.304,52.388 409,68 C417.617,85.482 406.789,106.575 396.596,120.8008 " fill="none" id="server-&gt;middleware" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="393.475,124.9836,402.0631,120.1623,396.4651,120.9762,395.6512,115.3782,393.475,124.9836" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[8348b0a2ab09d11895c112245399e108]
+link server to userRoutes--><path d="M353,37.043 C353,44.752 353,54.873 353,63.407 " fill="none" id="server-&gt;userRoutes" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="353,68.481,357,59.481,353,63.481,349,59.481,353,68.481" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[10b8d2aad198c3e49bf296d80eae8610]
+link userRoutes to actions--><path d="M342.405,94.325 C324.373,114.4522 287.733,155.3484 267.751,177.6518 " fill="none" id="userRoutes-&gt;actions" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="264.222,181.5908,273.2066,177.5564,267.5583,177.8667,267.248,172.2183,264.222,181.5908" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[4a1bb585c9cb7b7678f31f6a407be794]
+link userRoutes to config--><path d="M342.794,94.352 C336.92,101.98 330.105,112.4168 327,123 C323.247,135.7942 322.886,140.3172 327,153 C329.937,162.054 335.777,170.7746 341.451,177.7496 " fill="none" id="userRoutes-&gt;config" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="344.935,181.8543,342.1597,172.4046,341.6991,178.0426,336.061,177.582,344.935,181.8543" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[8637382ada37858b1cdd4ac3ebdc3998]
+link userRoutes to middleware--><path d="M359.658,94.595 C363.853,102.216 369.324,112.1545 373.914,120.4945 " fill="none" id="userRoutes-&gt;middleware" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="376.361,124.9385,375.526,115.1251,373.9503,120.5581,368.5173,118.9823,376.361,124.9385" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[4ce8b1b9548c0a4ae85d7f1d2793ab69]
+link userRoutes to users--><path d="M322.635,91.745 C288.266,102.209 232.839,119.0853 200.263,129.0036 " fill="none" id="userRoutes-&gt;users" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="195.238,130.5337,205.013,131.7373,200.021,129.0766,202.6817,124.0846,195.238,130.5337" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[5bdc945042e6e2db37e2a2f8dbfa7fb7]
+link <b>userRoutes.test</b> to server--><path d="M211.354,24 C247.566,24 283.779,24 319.992,24 " fill="none" id="&lt;b&gt;userRoutes.test&lt;/b&gt;-&gt;server" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="325.335,24,316.335,20,320.335,24,316.335,28,325.335,24" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[2a278d3f957a55a49071477307719a33]
+link <b>userRoutes.test</b> to users--><path d="M100.5534,36.424 C84.6375,42.94 68.2677,52.926 59,68 C52.7152,78.223 52.0191,85.24 59,95 C81.4033,126.3233 105.0283,109.2487 141,123 C144.128,124.1959 147.399,125.5076 150.615,126.8336 " fill="none" id="&lt;b&gt;userRoutes.test&lt;/b&gt;-&gt;users" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="155.595,128.9145,148.8322,121.7546,150.9814,126.9873,145.7486,129.1364,155.595,128.9145" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[517cef9052a202840f106d6512989817]
+link users to actions--><path d="M188.673,148.9044 C201.428,157.5136 220.018,170.0621 234.109,179.5734 " fill="none" id="users-&gt;actions" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="238.326,182.4199,233.1059,174.0682,234.1823,179.6217,228.6288,180.6981,238.326,182.4199" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[3fa4a9d26b5bc1ebe153823f0db4ca3e]
+link users to devices--><path d="M173.546,151.2534 C173.28,158.4338 172.94,167.6215 172.646,175.5486 " fill="none" id="users-&gt;devices" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="172.452,180.7951,176.7825,171.9494,172.6371,175.7985,168.788,171.6532,172.452,180.7951" style="stroke: #000000; stroke-width: 0.5;"/><script type="text/plantuml"><![CDATA[MD5=[22f9da5007330620604f20528d2df29c]
+@startuml
+
+scale max 1920 width
+top to bottom direction
+
+skinparam nodesep 14
+skinparam ranksep 28
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Tahoma
+skinparam defaultFontSize 12
+skinparam roundCorner 6
+skinparam dpi 150
+skinparam arrowColor black
+skinparam arrowThickness 0.5
+skinparam packageTitleAlignment left
+
+skinparam usecase {
+  borderThickness 0.5
+}
+
+skinparam rectangle {
+  borderThickness 0.5
+}
+
+skinparam component {
+  borderThickness 1
+}
+
+
+(actionRoutes)
+(actions)
+(authRoutes)
+(changePassPage)
+(codes)
+(codesRoutes)
+(config)
+(devices)
+(middleware)
+(<b>roomRoutes</b>)
+(<b>rooms</b>)
+(server)
+(userRoutes)
+(<b>userRoutes.test</b>)
+(users)
+
+
+(actionRoutes) --> (actions)
+(actionRoutes) --> (users)
+(authRoutes) --> (changePassPage)
+(authRoutes) --> (config)
+(authRoutes) --> (users)
+(codesRoutes) --> (codes)
+(middleware) --> (config)
+(server) --> (actionRoutes)
+(server) --> (authRoutes)
+(server) --> (codesRoutes)
+(server) --> (config)
+(server) --> (middleware)
+(server) --> (userRoutes)
+(userRoutes) --> (actions)
+(userRoutes) --> (config)
+(userRoutes) --> (middleware)
+(userRoutes) --> (users)
+(<b>userRoutes.test</b>) -[thickness=1]> (server)
+(<b>userRoutes.test</b>) --[thickness=1]> (users)
+(users) --> (actions)
+(users) --> (devices)
+
+@enduml
+
+
+' View and edit on https://arkit.pro
+]]></script></g></svg>

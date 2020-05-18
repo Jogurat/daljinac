@@ -204,7 +204,7 @@ describe("User routes", () => {
     });
   });
 
-  //Get user by username
+  //Get user by username 
   describe("GET one user", () => {
     describe("successful GET one user", () => {
       it("should GET one user by username", (done) => {

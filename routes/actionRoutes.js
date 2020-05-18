@@ -14,6 +14,7 @@ router.get("/", async (req, res) => {
 });
 
 //Get ALL actions for given deviceID
+// router.get("/:id", getAllDevices);
 router.get("/:id", async (req, res) => {
   try {
     // const action = await Action.findById(req.params.id);
