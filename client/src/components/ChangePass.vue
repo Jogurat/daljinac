@@ -22,6 +22,17 @@
           <v-btn v-on:click="changePass">Change password</v-btn>
         </v-col>
       </v-row>
+      <v-row class="mb-6">
+        <v-col md="6" sm="5" lg="5" offset-sm="3" offset-md="3" offset-lg="3" align="center">
+          <v-alert
+            v-model="alertForgot"
+            :value="alert"
+            color="green"
+            icon="mdi-check-circle-outline"
+            transition="scale-transition"
+          >Your password is changed, now you can login with your new password!</v-alert>
+        </v-col>
+      </v-row>
     </v-container>
   </div>
 </template>
@@ -53,6 +64,10 @@ export default {
           token: this.$route.params.token,
           newPass: this.newPass
         });
+        if (res.status === 201) {
+          this.alertChange = true;
+          console.log("Usao u status 201");
+        }
       } catch (err) {
         console.log(err);
       }
