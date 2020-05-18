@@ -56,7 +56,6 @@
 
 
 <script>
-import func from "../../../vue-temp/vue-editor-bridge";
 export default {
   name: "Card",
   data: function() {
