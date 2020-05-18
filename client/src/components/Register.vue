@@ -3,7 +3,11 @@
     <template v-slot:activator="{ on }">
       <v-btn class="ma-4" color="blue accent-3" dark v-on="on">Register</v-btn>
     </template>
+<<<<<<< HEAD
     <v-form ref="form" v-model="valid" @submit="registerUser">
+=======
+    <v-form ref="form" v-model="valid">
+>>>>>>> 2c8be7f5302884a9c219274d88c212d3acf7365c
       <v-card>
         <v-card-title class="justify-center">
           <v-row>
@@ -69,7 +73,12 @@
                   hint="At least 5 characters"
                   counter
                   @click:append="show1 = !show1"
+<<<<<<< HEAD
                 ></v-text-field>
+=======
+                  @keyup.enter="registerUser"                   >
+                </v-text-field>
+>>>>>>> 2c8be7f5302884a9c219274d88c212d3acf7365c
               </v-col>
             </v-row>
           </v-container>
@@ -149,6 +158,7 @@ console.log(url);
 export default {
   name: "Register",
   data: () => ({
+<<<<<<< HEAD
     username: "",
     password: "",
     dialog: false,
@@ -174,6 +184,32 @@ export default {
     ]
     //lazy: false,
   }),
+=======
+      username: "",
+      password: "",
+      dialog:false,
+      //showLoginForm:false,
+      alertReg:false,
+      alertFail:false,
+      alertFail2:false,
+      valid: true,
+      show1: false,
+       alert: false,
+       rules: {
+          required: (value) => !!value || "Required.",
+          min: (v) => v.length >= 5 || "Min 5 characters",
+        },
+      email: "",
+     emailRules : [
+        (v) => !!v || "E-mail is required",
+        (v) => /.+@.+\..+/.test(v) || "E-mail must be valid",
+      ],
+      usernameRules:[
+        (value) => !!value || 'Username is required.',
+        (value) => value.length >= 4 || "Min 4 characters",
+      ],
+    }),
+>>>>>>> 2c8be7f5302884a9c219274d88c212d3acf7365c
   methods: {
     registerUser: async function() {
       this.$refs.form.validate();
