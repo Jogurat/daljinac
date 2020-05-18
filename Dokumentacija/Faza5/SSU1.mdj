@@ -13263,6 +13263,7 @@
 									"model": {
 										"$ref": "AAAAAAFyKBW1Es5pNH0="
 									},
+									"visible": "",
 									"font": "Arial;13;0",
 									"left": 807,
 									"top": 1316,
@@ -15891,7 +15892,7 @@
 							"target": {
 								"$ref": "AAAAAAFyKA05tKjUUQ8="
 							},
-							"stereotype": "updates"
+							"stereotype": ""
 						}
 					],
 					"attributes": [
