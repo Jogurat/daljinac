@@ -6,8 +6,8 @@
       <br />
       <br />
       <v-form>
-        <v-row>
-          <v-col cols="4">
+        <v-row class="mb-6">
+          <v-col md="3" sm="3" lg="3" offset-sm="4" offset-md="4" offset-lg="4">
             <v-text-field
               label="Enter your username"
               v-model="username"
@@ -19,8 +19,8 @@
           </v-col>
         </v-row>
         <div>
-          <v-row>
-            <v-col cols="4" align="center">
+          <v-row class="mb-6">
+            <v-col md="3" sm="3" lg="3" offset-sm="4" offset-md="4" offset-lg="4" align="center">
               <v-btn color="blue accent-3" dark @click="sendEmail">Send E-mail</v-btn>
             </v-col>
           </v-row>
@@ -32,7 +32,7 @@
 
 <script>
 import axios from "axios";
-import NavigationBar from "./NavigationBar"
+import NavigationBar from "./NavigationBar";
 export default {
   name: "ForgotPass",
   data: function() {
