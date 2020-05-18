@@ -144,7 +144,6 @@ if (process.env.NODE_ENV === "development") {
 } else {
   url = "https://daljinac-api.herokuapp.com/api";
 }
-
 // const config2 = require("../../../config").config;
 console.log(url);
 export default {
@@ -188,7 +187,11 @@ export default {
         });
         console.log(res);
         console.log(res.status);
+<<<<<<< HEAD
         if (res.status === 201) {
+=======
+        if (res.status === 201 || res.status === 202) {
+>>>>>>> 90d450b0235808e97d78451ec39b56e8c783fe1e
           this.alertReg = true;
           this.alertFail = false;
           console.log("Usao u status 201");

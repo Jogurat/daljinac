@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="283px" preserveAspectRatio="none" style="width:715px;height:283px;" version="1.1" viewBox="0 0 715 283" width="715px" zoomAndPan="magnify"><defs/><g><ellipse cx="67.5426" cy="141.7085" fill="#F8F8F8" rx="61.5426" ry="14.7085" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="92" x="21.5426" y="145.4507">actionController</text><ellipse cx="78.4903" cy="83.4981" fill="#F8F8F8" rx="55.4903" ry="13.4981" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="76" x="40.4903" y="87.2402">actionRoutes</text><ellipse cx="150.4056" cy="259.242" fill="#F8F8F8" rx="33.4056" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="43" x="128.9056" y="262.9842">actions</text><ellipse cx="363.3275" cy="141.3655" fill="#F8F8F8" rx="57.3275" ry="13.8655" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="81" x="322.8275" y="145.1077">authController</text><ellipse cx="367.4619" cy="83.742" fill="#F8F8F8" rx="48.9619" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="65" x="334.9619" y="87.4842">authRoutes</text><ellipse cx="336.4281" cy="201.1856" fill="#F8F8F8" rx="63.9281" ry="15.1856" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="98" x="287.4281" y="204.9278">changePassPage</text><ellipse cx="642.4558" cy="201.242" fill="#F8F8F8" rx="28.4558" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="36" x="624.4558" y="204.9842">codes</text><ellipse cx="642.5426" cy="141.7085" fill="#F8F8F8" rx="61.5426" ry="14.7085" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="92" x="596.5426" y="145.4507">codesController</text><ellipse cx="608.4903" cy="83.4981" fill="#F8F8F8" rx="55.4903" ry="13.4981" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="76" x="570.4903" y="87.2402">codesRoutes</text><ellipse cx="444.4558" cy="201.242" fill="#F8F8F8" rx="28.4558" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="36" x="426.4558" y="204.9842">config</text><ellipse cx="233.6127" cy="259.242" fill="#F8F8F8" rx="34.1127" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="44" x="211.6127" y="262.9842">devices</text><ellipse cx="516.4619" cy="141.742" fill="#F8F8F8" rx="48.9619" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="65" x="483.9619" y="145.4842">middleware</text><ellipse cx="492.3275" cy="23.8655" fill="#F8F8F8" rx="57.3275" ry="13.8655" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="81" x="451.8275" y="27.6077">roomRoutes</text><ellipse cx="598.4056" cy="24.242" fill="#F8F8F8" rx="33.4056" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="43" x="576.9056" y="27.9842">rooms</text><ellipse cx="392.7487" cy="24.242" fill="#F8F8F8" rx="27.7487" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="35" x="375.2487" y="27.9842">server</text><ellipse cx="201.3275" cy="141.3655" fill="#F8F8F8" rx="57.3275" ry="13.8655" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="81" x="160.8275" y="145.1077">userController</text><ellipse cx="205.4619" cy="83.742" fill="#F8F8F8" rx="48.9619" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="65" x="172.9619" y="87.4842">userRoutes</text><ellipse cx="282.2768" cy="23.7554" fill="#F8F8F8" rx="66.7768" ry="15.7554" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" font-weight="bold" lengthAdjust="spacingAndGlyphs" textLength="105" x="229.7768" y="27.4976">userRoutes.test</text><ellipse cx="216.6274" cy="201.242" fill="#F8F8F8" rx="25.6274" ry="13.242" style="stroke: #383838; stroke-width: 0.5;"/><text fill="#000000" font-family="Tahoma, sans-serif" font-size="12" lengthAdjust="spacingAndGlyphs" textLength="32" x="200.6274" y="204.9842">users</text><!--MD5=[fd2ca43d33e934c1fdb3c03c84af4e58]
+link actionController to actions--><path d="M77.3471,156.203 C92.8059,177.7149 122.691,219.3026 139.074,242.0993 " fill="none" id="actionController-&gt;actions" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="142.162,246.3966,140.1578,236.7538,139.244,242.3364,133.6614,241.4226,142.162,246.3966" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[7c280aad52f3b8da0272f2ce20250811]
+link actionController to users--><path d="M98.0119,154.275 C125.789,164.994 166.277,180.6185 191.998,190.5445 " fill="none" id="actionController-&gt;users" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="196.937,192.4506,189.9805,185.4788,192.2722,190.6506,187.1004,192.9424,196.937,192.4506" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[dc18acea8c05fb99e08208eb242a89ee]
+link actionRoutes to actionController--><path d="M76.0039,97.207 C74.6031,104.339 72.8271,113.38 71.2609,121.353 " fill="none" id="actionRoutes-&gt;actionController" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="70.2173,126.666,75.8757,118.6048,71.1802,121.7596,68.0254,117.0641,70.2173,126.666" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[1163d58c2f74c8357426dc67f3b07d6a]
+link authController to changePassPage--><path d="M357.373,155.548 C353.869,163.011 349.408,172.5114 345.51,180.8117 " fill="none" id="authController-&gt;changePassPage" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="343.17,185.7957,350.6162,179.3495,345.2953,181.2699,343.3749,175.949,343.17,185.7957" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[5846cafe6dd5586391d456b106745282]
+link authController to config--><path d="M381.076,154.977 C394.202,164.295 412.119,177.0132 425.561,186.556 " fill="none" id="authController-&gt;config" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="429.936,189.661,424.9126,181.1896,425.8589,186.7667,420.2817,187.713,429.936,189.661" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[544dbc760f7fbde4419586d75420ad69]
+link authController to users--><path d="M334.808,153.723 C307.392,164.447 266.525,180.4323 240.709,190.5307 " fill="none" id="authController-&gt;users" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="235.754,192.4686,245.5927,192.9152,240.4104,190.6472,242.6784,185.4649,235.754,192.4686" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[921400da96a1eb4cd04de5c8d38297ae]
+link authRoutes to authController--><path d="M366.632,96.651 C366.099,104.11 365.407,113.806 364.808,122.184 " fill="none" id="authRoutes-&gt;authController" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="364.45,127.198,369.0802,118.5054,364.8057,122.2107,361.1004,117.9362,364.45,127.198" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[8bdba5844557e6e419a8b9342fd84b16]
+link codesController to codes--><path d="M642.5,156.127 C642.5,164.047 642.5,174.1087 642.5,182.5979 " fill="none" id="codesController-&gt;codes" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="642.5,187.6472,646.5,178.6472,642.5,182.6472,638.5,178.6472,642.5,187.6472" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[2480e6612e8b5aece5a69c0b78380972]
+link codesRoutes to codesController--><path d="M616.046,96.928 C620.602,104.432 626.486,114.124 631.548,122.461 " fill="none" id="codesRoutes-&gt;codesController" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="634.261,126.931,633.0069,117.1623,631.665,122.6577,626.1696,121.3159,634.261,126.931" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[6c8a1e9c5510ea0c86a33bcd8465c34a]
+link middleware to config--><path d="M501.93,154.136 C490.411,163.335 474.291,176.2083 462.061,185.9758 " fill="none" id="middleware-&gt;config" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="458.074,189.1594,467.6028,186.669,461.9811,186.0393,462.6107,180.4176,458.074,189.1594" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[b199c0247b1d722665509282ce97dd70]
+link server to actionRoutes--><path d="M374.13,33.699 C368.568,36.046 362.375,38.38 356.5,40 C266.458,64.824 240.708,55.122 148.5,70 C141.271,71.166 133.635,72.463 126.167,73.768 " fill="none" id="server-&gt;actionRoutes" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="121.031,74.67,130.5877,77.0512,125.9555,73.8043,129.2025,69.1721,121.031,74.67" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[f309faa926396cec9c91173023e3583e]
+link server to authRoutes--><path d="M387.32,36.914 C383.715,45.206 378.856,56.382 374.851,65.593 " fill="none" id="server-&gt;authRoutes" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="372.846,70.204,380.1042,63.5468,374.8406,65.6191,372.7683,60.3554,372.846,70.204" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[0b1ae009801b54072819ed2a980dd57d]
+link server to codesRoutes--><path d="M411.159,33.709 C416.377,35.948 422.099,38.224 427.5,40 C471.922,54.611 524.033,66.296 560.904,73.687 " fill="none" id="server-&gt;codesRoutes" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="566.231,74.746,558.1848,69.0663,561.3272,73.7701,556.6234,76.9124,566.231,74.746" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[9d555a4bad79d596c1fc47e6758bc007]
+link server to config--><path d="M402.482,36.386 C409.493,45.02 418.482,57.498 423.5,70 C438.844,108.229 442.992,157.045 444.103,182.6062 " fill="none" id="server-&gt;config" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="444.297,187.6956,447.9513,178.5498,444.1065,182.6992,439.9571,178.8545,444.297,187.6956" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[0c5528f2fe4b5390e935dccdce0f2444]
+link server to middleware--><path d="M408.293,34.773 C421.528,43.306 440.596,56.422 455.5,70 C474.201,87.037 492.806,109.552 504.46,124.503 " fill="none" id="server-&gt;middleware" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="507.558,128.509,505.2173,118.9423,504.4996,124.5535,498.8884,123.8358,507.558,128.509" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[8348b0a2ab09d11895c112245399e108]
+link server to userRoutes--><path d="M373.235,33.529 C367.867,35.768 362,38.088 356.5,40 C319.173,52.976 275.648,64.897 244.943,72.789 " fill="none" id="server-&gt;userRoutes" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="239.747,74.118,249.4573,75.764,244.5912,72.8795,247.4757,68.0133,239.747,74.118" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[cb8bae902320d6f50fdfdd21b9f00326]
+link userController to actions--><path d="M195.65,155.749 C186.319,176.8813 168.081,218.1843 157.872,241.3054 " fill="none" id="userController-&gt;actions" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="155.821,245.9494,163.1156,239.3321,157.8407,241.3755,155.7973,236.1006,155.821,245.9494" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[8ac3b1a8ba3047c45fee99e924784eb2]
+link userController to config--><path d="M247.411,150.106 C289.492,157.569 353.303,170.126 407.5,186 C411.393,187.1402 415.459,188.4995 419.411,189.916 " fill="none" id="userController-&gt;config" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="424.335,191.7288,417.2708,184.8661,419.6428,190.0016,414.5073,192.3736,424.335,191.7288" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[4f0c1865813194fe1e28b20f2a0445ab]
+link userController to users--><path d="M204.904,155.548 C206.994,163.56 209.696,173.9195 211.967,182.6218 " fill="none" id="userController-&gt;users" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="213.315,187.7903,214.9138,178.0721,212.053,182.9522,207.1729,180.0913,213.315,187.7903" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[38d8220bd415898537a58768514d045e]
+link userRoutes to userController--><path d="M204.632,96.651 C204.099,104.11 203.407,113.806 202.808,122.184 " fill="none" id="userRoutes-&gt;userController" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="202.45,127.198,207.0802,118.5054,202.8057,122.2107,199.1004,117.9362,202.45,127.198" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[5bdc945042e6e2db37e2a2f8dbfa7fb7]
+link <b>userRoutes.test</b> to server--><path d="M349.531,24 C352.909,24 356.287,24 359.665,24 " fill="none" id="&lt;b&gt;userRoutes.test&lt;/b&gt;-&gt;server" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="364.973,24,355.973,20,359.973,24,355.973,28,364.973,24" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[2a278d3f957a55a49071477307719a33]
+link <b>userRoutes.test</b> to users--><path d="M283.996,40.161 C285.812,65.671 286.488,118.102 266.5,156 C259.643,169.002 247.266,179.941 236.543,187.6597 " fill="none" id="&lt;b&gt;userRoutes.test&lt;/b&gt;-&gt;users" style="stroke: #000000; stroke-width: 1.0;"/><polygon fill="#000000" points="232.377,190.5606,242.0486,188.7004,236.4803,187.7035,237.4772,182.1352,232.377,190.5606" style="stroke: #000000; stroke-width: 1.0;"/><!--MD5=[517cef9052a202840f106d6512989817]
+link users to actions--><path d="M204.086,212.5332 C193.843,221.2243 179.194,233.6536 167.8,243.3209 " fill="none" id="users-&gt;actions" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="163.764,246.7454,173.2148,243.9735,167.5769,243.5109,168.0395,237.873,163.764,246.7454" style="stroke: #000000; stroke-width: 0.5;"/><!--MD5=[3fa4a9d26b5bc1ebe153823f0db4ca3e]
+link users to devices--><path d="M220.105,213.8762 C222.462,221.6398 225.58,231.9122 228.215,240.592 " fill="none" id="users-&gt;devices" style="stroke: #000000; stroke-width: 0.5;"/><polygon fill="#000000" points="229.782,245.7538,230.9951,235.9799,228.3295,240.9694,223.3401,238.3039,229.782,245.7538" style="stroke: #000000; stroke-width: 0.5;"/><script type="text/plantuml"><![CDATA[MD5=[f78bde1643b22bd307b6524c87192f69]
+@startuml
+
+scale max 1920 width
+top to bottom direction
+
+skinparam nodesep 15
+skinparam ranksep 30
+skinparam monochrome true
+skinparam shadowing false
+skinparam defaultFontName Tahoma
+skinparam defaultFontSize 12
+skinparam roundCorner 6
+skinparam dpi 150
+skinparam arrowColor black
+skinparam arrowThickness 0.5
+skinparam packageTitleAlignment left
+
+skinparam usecase {
+  borderThickness 0.5
+}
+
+skinparam rectangle {
+  borderThickness 0.5
+}
+
+skinparam component {
+  borderThickness 1
+}
+
+
+(actionController)
+(actionRoutes)
+(actions)
+(authController)
+(authRoutes)
+(changePassPage)
+(codes)
+(codesController)
+(codesRoutes)
+(config)
+(devices)
+(middleware)
+(<b>roomRoutes</b>)
+(<b>rooms</b>)
+(server)
+(userController)
+(userRoutes)
+(<b>userRoutes.test</b>)
+(users)
+
+
+(actionController) --> (actions)
+(actionController) --> (users)
+(actionRoutes) --> (actionController)
+(authController) --> (changePassPage)
+(authController) --> (config)
+(authController) --> (users)
+(authRoutes) --> (authController)
+(codesController) --> (codes)
+(codesRoutes) --> (codesController)
+(middleware) --> (config)
+(server) --> (actionRoutes)
+(server) --> (authRoutes)
+(server) --> (codesRoutes)
+(server) --> (config)
+(server) --> (middleware)
+(server) --> (userRoutes)
+(userController) --> (actions)
+(userController) --> (config)
+(userController) --> (users)
+(userRoutes) --> (userController)
+(<b>userRoutes.test</b>) -[thickness=1]> (server)
+(<b>userRoutes.test</b>) --[thickness=1]> (users)
+(users) --> (actions)
+(users) --> (devices)
+
+@enduml
+
+
+' View and edit on https://arkit.pro
+]]></script></g></svg>
