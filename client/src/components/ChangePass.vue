@@ -1,25 +1,18 @@
 <template>
   <div>
+    <NavigationBar></NavigationBar>
     <v-container>
-      <v-row>
-        <h1>Change Pass</h1>
-      </v-row>
+      <br />
+      <br />
+      <br />
       <v-row class="mb-6">
         <v-col md="3" sm="3" lg="3" offset-sm="4" offset-md="4" offset-lg="4">
-          <v-text-field
-            outlined
-            label="New Password"
-            v-model="newPass"
-            filled
-            rounded
-            dense
-            required
-          ></v-text-field>
+          <v-text-field v-model="username" filled rounded dense required label="New Password"></v-text-field>
         </v-col>
       </v-row>
       <v-row class="mb-6">
         <v-col md="3" sm="3" lg="3" offset-sm="4" offset-md="4" offset-lg="4" align="center">
-          <v-btn v-on:click="changePass">Change password</v-btn>
+          <v-btn color="blue accent-3" dark v-on:click="changePass">Change password</v-btn>
         </v-col>
       </v-row>
     </v-container>
@@ -28,6 +21,7 @@
 
 <script>
 import axios from "axios";
+import NavigationBar from "./NavigationBar";
 const config = require("../../../config");
 // const config = jsonConfig;
 let url = `${config.DB_HOST}/users/changePass`;
@@ -45,6 +39,7 @@ export default {
       newPass: ""
     };
   },
+  components: { NavigationBar },
   methods: {
     changePass: async function() {
       console.log(this.$route.params.token);
