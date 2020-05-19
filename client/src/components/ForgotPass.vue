@@ -5,7 +5,7 @@
       <br />
       <br />
       <br />
-      <v-form>
+      <v-form ref="form" v-model="valid">
         <v-row class="mb-6">
           <v-col md="3" sm="3" lg="3" offset-sm="4" offset-md="4" offset-lg="4">
             <v-text-field
@@ -22,7 +22,7 @@
         <div>
           <v-row class="mb-6">
             <v-col md="3" sm="3" lg="3" offset-sm="4" offset-md="4" offset-lg="4" align="center">
-              <v-btn color="blue accent-3" dark @click="sendEmail">Send E-mail</v-btn>
+              <v-btn :disabled="!valid" color="blue accent-3" dark @click="sendEmail">Send E-mail</v-btn>
             </v-col>
           </v-row>
         </div>
@@ -51,12 +51,14 @@ export default {
     return {
       username: "",
       rules: [value => !!value || "Username is required."],
-      alertForgot: false
+      alertForgot: false,
+      valid: true
     };
   },
   components: { NavigationBar },
   methods: {
     sendEmail: async function() {
+      this.$refs.form.validate();
       try {
         const res = await axios.get(`/api/auth/forgotPass/${this.username}`);
         console.log(res);
