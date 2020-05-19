@@ -31,24 +31,30 @@
         <!--Test-->
         <v-row></v-row>
         <v-row>
-          <v-dialog v-model="dialog" max-width="400px">
+          <v-dialog ref="form" v-model="dialog" max-width="400px">
             <v-card>
               <v-card-title>New Room</v-card-title>
               <v-container>
                 <v-row>
                   <v-col cols="1"></v-col>
                   <v-col cols="5">
-                    <v-text-field label="Room name" v-model="newRoomName"></v-text-field>
+                    <v-text-field label="Room name" required :rules="rules" v-model="newRoomName"></v-text-field>
                   </v-col>
                   <v-col cols="5">
-                    <v-text-field label="Device ID" v-model="newDeviceID"></v-text-field>
+                    <v-text-field label="Device ID" required :rules="rules" v-model="newDeviceID"></v-text-field>
                   </v-col>
                 </v-row>
 
                 <v-row>
                   <v-col cols="4"></v-col>
                   <v-col>
-                    <v-radio-group v-model="dialogm1" column label="Room type">
+                    <v-radio-group
+                      v-model="dialogm1"
+                      column
+                      required
+                      :rules="rules"
+                      label="Room type"
+                    >
                       <v-radio label="Living room" value="livingroom"></v-radio>
                       <v-radio label="Bedrooom" value="bedroom"></v-radio>
                       <v-radio label="Kitchen" value="kitchen"></v-radio>
@@ -60,7 +66,7 @@
                 <v-row>
                   <v-col cols="4"></v-col>
                   <v-col>
-                    <v-btn @click="newRoom">Add Room</v-btn>
+                    <v-btn :disabled="!dialog" @click="newRoom">Add Room</v-btn>
                   </v-col>
                 </v-row>
               </v-container>
@@ -99,7 +105,9 @@ export default {
       newRoomName: "",
       newDeviceID: "",
       type: "",
-      dialogm1: null
+      dialogm1: null,
+      rules: [value => !!value || "All fields are required."],
+      valid: true
     };
   },
   components: {
@@ -108,6 +116,7 @@ export default {
   },
   methods: {
     newRoom: function() {
+      //this.$refs.form.validate();
       //console.log(config);
       const token = localStorage.getItem("token");
       axios

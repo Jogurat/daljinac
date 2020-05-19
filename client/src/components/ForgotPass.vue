@@ -15,6 +15,7 @@
               rounded
               dense
               required
+              :rules="rules"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -26,6 +27,17 @@
           </v-row>
         </div>
       </v-form>
+      <v-row class="mb-6">
+        <v-col md="6" sm="5" lg="5" offset-sm="3" offset-md="3" offset-lg="3" align="center">
+          <v-alert
+            v-model="alertForgot"
+            :value="alert"
+            color="green"
+            icon="mdi-check-circle-outline"
+            transition="scale-transition"
+          >Check your e-mail for link where you can change your password!</v-alert>
+        </v-col>
+      </v-row>
     </v-container>
   </div>
 </template>
@@ -37,7 +49,9 @@ export default {
   name: "ForgotPass",
   data: function() {
     return {
-      username: ""
+      username: "",
+      rules: [value => !!value || "Username is required."],
+      alertForgot: false
     };
   },
   components: { NavigationBar },
@@ -48,6 +62,10 @@ export default {
         console.log(res);
         //const user = res.data;
         //const email = user.email;
+        if (res.status === 200) {
+          this.alertForgot = true;
+          console.log("Usao u status 201");
+        }
       } catch (err) {
         console.log(err);
       }
