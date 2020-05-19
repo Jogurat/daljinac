@@ -140,9 +140,9 @@
 													"font": "Arial;13;1",
 													"left": 5,
 													"top": 87,
-													"width": 101.8544921875,
+													"width": 161.80810546875,
 													"height": 13,
-													"text": "Korisnik: Actor1"
+													"text": "Ulogovan korisnik: Actor1"
 												},
 												{
 													"_type": "LabelView",
@@ -172,7 +172,7 @@
 											],
 											"font": "Arial;13;0",
 											"top": 80,
-											"width": 111.8544921875,
+											"width": 171.80810546875,
 											"height": 25,
 											"stereotypeLabel": {
 												"$ref": "AAAAAAFyKNuwLI5l4zs="
@@ -197,7 +197,7 @@
 												"$ref": "AAAAAAFyKNuwK45i4qc="
 											},
 											"font": "Arial;13;0",
-											"left": 56,
+											"left": 86,
 											"top": 105,
 											"width": 1,
 											"height": 246
@@ -205,7 +205,7 @@
 									],
 									"font": "Arial;13;0",
 									"top": 40,
-									"width": 111.8544921875,
+									"width": 171.80810546875,
 									"height": 311,
 									"stereotypeDisplay": "icon",
 									"nameCompartment": {
@@ -699,7 +699,7 @@
 												"$ref": "AAAAAAFyKONXG48wh14="
 											},
 											"font": "Arial;13;0",
-											"left": 36,
+											"left": 51,
 											"top": 98,
 											"width": 208.81884765625,
 											"height": 13,
@@ -722,7 +722,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 140,
+											"left": 155,
 											"top": 83,
 											"height": 13,
 											"alpha": 1.5707963267948966,
@@ -743,7 +743,7 @@
 											},
 											"visible": false,
 											"font": "Arial;13;0",
-											"left": 140,
+											"left": 155,
 											"top": 118,
 											"height": 13,
 											"alpha": -1.5707963267948966,
@@ -776,7 +776,7 @@
 									"tail": {
 										"$ref": "AAAAAAFyKNuwLI5p7AM="
 									},
-									"points": "56:114;225:114",
+									"points": "86:114;225:114",
 									"nameLabel": {
 										"$ref": "AAAAAAFyKONXHI8yAVg="
 									},
@@ -1721,12 +1721,12 @@
 												"$ref": "AAAAAAFyLPtSJcuATuk="
 											},
 											"font": "Arial;13;0",
-											"left": 791,
+											"left": 800,
 											"top": 272,
 											"width": 111.287109375,
 											"height": 13,
-											"alpha": 1.5707963267948966,
-											"distance": 10,
+											"alpha": 0.837980672522477,
+											"distance": 13.45362404707371,
 											"hostEdge": {
 												"$ref": "AAAAAAFyLPtSJcuB618="
 											},
@@ -2911,7 +2911,7 @@
 							"_parent": {
 								"$ref": "AAAAAAFyKNs1to5PxA0="
 							},
-							"name": "Korisnik",
+							"name": "Ulogovan korisnik",
 							"represent": {
 								"$ref": "AAAAAAFyKNuwK45hTN8="
 							},
@@ -3173,9 +3173,9 @@
 												"$ref": "AAAAAAFyKOiDBpBBpqg="
 											},
 											"font": "Arial;13;0",
-											"left": 70.97900390625,
+											"left": 66.58642578125,
 											"top": 5,
-											"width": 331.24951171875,
+											"width": 293.373046875,
 											"height": 13,
 											"text": "Sequence diagram for unsuccessful  temperature change"
 										},
@@ -3188,7 +3188,7 @@
 											"font": "Arial;13;1",
 											"left": 5,
 											"top": 5,
-											"width": 60.97900390625,
+											"width": 56.58642578125,
 											"height": 13,
 											"text": "interaction"
 										}
