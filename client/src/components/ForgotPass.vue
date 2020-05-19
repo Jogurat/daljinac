@@ -22,7 +22,7 @@
         <div>
           <v-row class="mb-6">
             <v-col md="3" sm="3" lg="3" offset-sm="4" offset-md="4" offset-lg="4" align="center">
-              <v-btn :disabled="!valid" color="blue accent-3" dark @click="sendEmail">Send E-mail</v-btn>
+              <v-btn :disabled="!valid" dark color="blue accent-3" @click="sendEmail">Send E-mail</v-btn>
             </v-col>
           </v-row>
         </div>
@@ -36,6 +36,13 @@
             icon="mdi-check-circle-outline"
             transition="scale-transition"
           >Check your e-mail for link where you can change your password!</v-alert>
+          <v-alert
+            v-model="alertFail"
+            :value="alert"
+            color="yellow"
+            icon="mdi-close-circle-outline"
+            transition="scale-transition"
+          >Check if your username is correct!</v-alert>
         </v-col>
       </v-row>
     </v-container>
@@ -52,7 +59,8 @@ export default {
       username: "",
       rules: [value => !!value || "Username is required."],
       alertForgot: false,
-      valid: true
+      valid: true,
+      alertFail: false
     };
   },
   components: { NavigationBar },
@@ -67,9 +75,14 @@ export default {
         if (res.status === 200) {
           this.alertForgot = true;
           console.log("Usao u status 201");
+        } else {
+          this.alertForgot = false;
+          this.alertFail = true;
         }
       } catch (err) {
         console.log(err);
+        this.alertFail = true;
+        this.alertForgot = false;
       }
     }
   }
