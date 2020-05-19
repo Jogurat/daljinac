@@ -25,7 +25,7 @@
 					"_parent": {
 						"$ref": "AAAAAAFF+qBWK6M3Z8Y="
 					},
-					"name": "Roles",
+					"name": "Roles1",
 					"ownedElements": [
 						{
 							"_type": "UMLInteraction",
@@ -60,9 +60,9 @@
 														"$ref": "AAAAAAFyKLci42sxx9M="
 													},
 													"font": "Arial;13;0",
-													"left": 70.97900390625,
+													"left": 66.58642578125,
 													"top": 10,
-													"width": 224.29150390625,
+													"width": 201.712890625,
 													"height": 13,
 													"text": "Sequence diagram for successful login"
 												},
@@ -75,7 +75,7 @@
 													"font": "Arial;13;1",
 													"left": 5,
 													"top": 10,
-													"width": 60.97900390625,
+													"width": 56.58642578125,
 													"height": 13,
 													"text": "interaction"
 												}
@@ -2109,9 +2109,9 @@
 														"$ref": "AAAAAAFyKMrYuG1fCpM="
 													},
 													"font": "Arial;13;0",
-													"left": 78.97900390625,
+													"left": 74.58642578125,
 													"top": 5,
-													"width": 238.75146484375,
+													"width": 214.712890625,
 													"height": 13,
 													"text": "Sequence diagram for unsuccessful login"
 												},
@@ -2124,7 +2124,7 @@
 													"font": "Arial;13;1",
 													"left": 13,
 													"top": 5,
-													"width": 60.97900390625,
+													"width": 56.58642578125,
 													"height": 13,
 													"text": "interaction"
 												}
