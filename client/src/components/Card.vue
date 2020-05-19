@@ -90,25 +90,32 @@
 
 
 <script>
+import axios from "axios";
+import jwt from "jsonwebtoken";
+const jsonConfig = require("../../../config");
+const config = jsonConfig;
+
+let url = `${config.DB_HOST}/users/`;
+const roomUrl = `${url}/room/`;
 export default {
   name: "Card",
   data: function() {
     return {
       //title: ""
+      dialog1: false,
+      dialogm2: null,
+      editRoomName: "",
+      editDeviceID: "",
       dialog: false
     };
   },
   props: {
-    // props: {['title', 'deviceID']}
+    // props: {['title', 'deviceID', roomType]}
     title: String,
     deviceID: Number,
     roomType: String
   },
-  methods: {
-    editRoom: function() {
-      dialog = true;
-    }
-  }
+  methods: {}
 };
 </script>
 
