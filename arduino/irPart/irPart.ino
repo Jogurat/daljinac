@@ -2,8 +2,11 @@
 #include <ArduinoJson.h>
 #include "WiFiEsp.h"
 
-//Device
+//Global
 const int deviceID = 1;
+const int interruptPin = 20;
+unsigned long lastConnectionTime = 0;         // last time you connected to the server, in milliseconds
+const unsigned long postingInterval = 20000L; // delay between updates, in milliseconds
 
 //IR--------------------------------------------------
 int RECV_PIN = 2;
@@ -15,7 +18,7 @@ int codeLen; // The length of the code
 int RECV_PIN_POWER = 10;
 
 //Boolean for getting codes
-boolean irRecieve = true;
+boolean irRecieve = false;
 
 //WIFI-----------------------------------------------
 char ssid[] = "My SBB";            // your network SSID (name)
@@ -31,6 +34,10 @@ void setup() {
   Serial.begin(115200);
   // initialize serial for ESP module
   Serial1.begin(9600);
+
+  //Interrupt
+  pinMode(interruptPin,INPUT);
+  attachInterrupt(digitalPinToInterrupt(interruptPin),toggleIrReceiveFlag,RISING);
 
   //JSON-----------------------------------
  /* const char* input = "{\"idea\":\"data\",\"data\":[1,2,3,4,5,6,7,8,9]}";
@@ -84,9 +91,7 @@ void setup() {
   Serial.println("You're connected to the network");
   printWifiStatus();
 
-  /*if(numberOfAvailableCodes()==3){
-    irRecieve= false;
-  }*/
+  receiveJson();
 
 }
 
@@ -106,7 +111,7 @@ void loop() {
     }
     //irrecv.enableIRIn();
     digitalWrite(RECV_PIN_POWER, LOW);
-    sendJson("TempUp");
+    sendJson("Power");
     delay(1000);
     numberOfRecievedCodes++;
     again=true;
@@ -119,7 +124,7 @@ void loop() {
       //ovde ide kod za slanje
     }
     digitalWrite(RECV_PIN_POWER, LOW);
-    sendJson("TempDown");
+    sendJson("TempUp");
     delay(1000);
     numberOfRecievedCodes++;
     again=true;
@@ -132,7 +137,7 @@ void loop() {
       //ovde ide kod za slanje
     }
     digitalWrite(RECV_PIN_POWER, LOW);
-    sendJson("Power");
+    sendJson("TempDown");
     numberOfRecievedCodes++;
     
     if(numberOfRecievedCodes == 3){
@@ -140,8 +145,13 @@ void loop() {
     }
   }
 
-  Serial.println("All codes stored!");
-  while(true){};
+  /*Serial.println("All codes stored!");
+  while(true){};*/
+
+  /*if (millis() - lastConnectionTime > postingInterval) {
+    receiveJson();
+  }*/
+  
 
 }
 
@@ -185,6 +195,7 @@ boolean recieve(){
   return returnVal;
 }
 
+//JSON---------------------------------------------------------------------------------------
 void sendJson(char* commandName){
   size_t capacity = JSON_ARRAY_SIZE(255) + JSON_OBJECT_SIZE(3); //125 kao solidan broj mesta
   DynamicJsonDocument doc(capacity);
@@ -223,6 +234,67 @@ void sendJson(char* commandName){
   doc.clear();
   Serial.print("JsonDocument size = ");
   Serial.println(doc.memoryUsage());
+}
+
+void receiveJson(){
+  // close any connection before send a new request
+  // this will free the socket on the WiFi shield
+  client.stop();
+  
+  // Make a HTTP request
+  String headerPart = "GET /api/actions/firstUnprocessed/" + String(deviceID) + " HTTP/1.1";
+  
+  if(client.connect(server, 80)){
+    Serial.println("Connecting...");
+    client.println(headerPart);
+    client.println(F("Host: daljinac-api.herokuapp.com"));
+    //client.println("Connection: close");
+    client.println();
+
+    // note the time that the connection was made
+    lastConnectionTime = millis();
+  }else {
+    // if you couldn't make a connection
+    Serial.println("Connection failed");
+  }
+
+  //IMPORTANT!
+  delay(5);
+
+  String inputStream;
+  boolean writeChar = false;
+  while (client.available()) {
+    char c = client.read();
+    if(c == '{'){
+      writeChar = true;
+    }
+
+    if(writeChar){
+      inputStream += String(c);
+    }else{
+      Serial.print(c);
+    }
+
+    if(c == '}'){
+      writeChar = false;
+    }
+  }
+  //Serial.println("inputStream: " + inputStream);
+
+
+  //JsonDocument
+  size_t capacity = JSON_ARRAY_SIZE(255) + JSON_OBJECT_SIZE(8);
+  DynamicJsonDocument doc(2048);
+  
+  deserializeJson(doc, inputStream);
+  serializeJsonPretty(doc, Serial);
+
+  doc.clear();
+}
+
+void toggleIrReceiveFlag(){
+  irRecieve = true;
+  Serial.println("Started to receive!");
 }
 
 void clearRawCodeBuffer(){
