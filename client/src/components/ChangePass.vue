@@ -10,13 +10,13 @@
         <v-row class="mb-6">
           <v-col md="3" sm="3" lg="3" offset-sm="4" offset-md="4" offset-lg="4">
             <v-text-field
-              outlined
-              label="New Password"
+              label="Enter your new Password"
               v-model="newPass"
               filled
               rounded
               dense
               required
+              :rules="rules"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -29,12 +29,23 @@
       <v-row class="mb-6">
         <v-col md="6" sm="5" lg="5" offset-sm="3" offset-md="3" offset-lg="3" align="center">
           <v-alert
-            v-model="alertForgot"
+            v-model="alertChange"
             :value="alert"
             color="green"
             icon="mdi-check-circle-outline"
             transition="scale-transition"
           >Your password is changed, now you can login with your new password!</v-alert>
+        </v-col>
+      </v-row>
+      <v-row class="mb-6">
+        <v-col md="6" sm="5" lg="5" offset-sm="3" offset-md="3" offset-lg="3" align="center">
+          <v-alert
+            v-model="alertError"
+            :value="alert"
+            color="red"
+            icon="mdi-check-circle-outline"
+            transition="scale-transition"
+          >Server error!</v-alert>
         </v-col>
       </v-row>
     </v-container>
@@ -57,7 +68,10 @@ export default {
   name: "ChangePass",
   data: function() {
     return {
-      newPass: ""
+      newPass: "",
+      rules: [value => !!value || "Type your new password!"],
+      alertChange: false,
+      alertError: false
     };
   },
   methods: {
@@ -75,6 +89,8 @@ export default {
         }
       } catch (err) {
         console.log(err);
+        this.alertError = true;
+        this.alertChange = false;
       }
     }
   }
