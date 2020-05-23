@@ -49,7 +49,7 @@
             color="red"
             icon="mdi-close-circle-outline"
             transition="scale-transition"
-          >Your password is changed, now you can login with your new password!</v-alert>
+          >Your password is not changed, error!</v-alert>
         </v-col>
       </v-row>
     </v-container>

@@ -72,16 +72,17 @@ void setup() {
   }*/
   
   // OVO RADI -> makePostRequest(String("aleksa"),123456789);
+  makeGetRequest();
 
-  Serial.println("IN");
+  /*Serial.println("IN");
   if(numberOfAvailableCodes()==3){
     irRecieve= false;
-  }
+  }*/
 }
 
 void loop() {
-  Serial.println("IN");
-  if(irRecieve){
+  //Serial.println("IN");
+  if(false){
     
     int numberOfRecievedCodes = 0;
     boolean again = true;
@@ -115,12 +116,12 @@ void loop() {
     }
   }
 
-  Serial.println("All codes stored!");
-  while(true){};
-  //WIFE deo
+  //Serial.println("All codes stored!");
+  //while(true){};
+  //WIFI deo
   while (client.available()) {
     char c = client.read();
-    Serial.write(c);
+    Serial.print(c);
   }
 
   // if the server's disconnected, stop the client
@@ -138,9 +139,9 @@ void loop() {
 void makeGetRequest(){
   // Make a HTTP request
   if(client.connect(server, 80)){
-    client.println(F("GET /actions/firstUnprocessed/1 HTTP/1.1"));
+    client.println(F("GET /api/actions/firstUnprocessed/1 HTTP/1.1"));
     client.println(F("Host: daljinac-api.herokuapp.com"));
-    client.println("Connection: close");
+    //client.println("Connection: close");
     client.println();
   }
 }

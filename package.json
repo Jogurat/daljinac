@@ -7,7 +7,7 @@
     "test": "nyc mocha --exit",
     "devStart": "nodemon server.js",
     "start": "nodemon server.js",
-    "myStart": "nodemon server.js cd client vue-cli-service serve cd .."
+    "myStart": "cd client && npm run build"
   },
   "engines": {
     "node": "8.11.2"
