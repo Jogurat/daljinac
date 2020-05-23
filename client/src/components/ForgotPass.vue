@@ -31,7 +31,6 @@
         <v-col md="6" sm="5" lg="5" offset-sm="3" offset-md="3" offset-lg="3" align="center">
           <v-alert
             v-model="alertForgot"
-            :value="alert"
             color="green"
             icon="mdi-check-circle-outline"
             transition="scale-transition"

@@ -7,7 +7,7 @@
       <br />
       <v-row class="mb-6">
         <v-col md="3" sm="3" lg="3" offset-sm="4" offset-md="4" offset-lg="4">
-          <v-text-field v-model="username" filled rounded dense required label="New Password"></v-text-field>
+          <v-text-field v-model="newPass" filled rounded dense required label="New Password"></v-text-field>
         </v-col>
       </v-row>
       <v-row class="mb-6">
@@ -19,7 +19,6 @@
         <v-col md="6" sm="5" lg="5" offset-sm="3" offset-md="3" offset-lg="3" align="center">
           <v-alert
             v-model="alertForgot"
-            :value="alert"
             color="green"
             icon="mdi-check-circle-outline"
             transition="scale-transition"
@@ -59,10 +58,10 @@ export default {
           token: this.$route.params.token,
           newPass: this.newPass
         });
-        if (res.status === 201) {
-          this.alertChange = true;
-          console.log("Usao u status 201");
-        }
+        // if (res.status === 201) {
+        //   this.alertChange = true;
+        //   console.log("Usao u status 201");
+        // }
       } catch (err) {
         console.log(err);
       }
