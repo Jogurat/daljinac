@@ -5,36 +5,20 @@
       <br />
       <br />
       <br />
-      <v-form ref="form" v-model="valid">
-        <v-row class="mb-6">
-          <v-col md="3" sm="3" lg="3" offset-sm="4" offset-md="4" offset-lg="4">
-            <v-text-field
-              v-model="username"
-              :rules="rules"
-              filled
-              rounded
-              dense
-              required
-              label="New Password"
-            ></v-text-field>
-          </v-col>
-        </v-row>
-        <v-row class="mb-6">
-          <v-col md="3" sm="3" lg="3" offset-sm="4" offset-md="4" offset-lg="4" align="center">
-            <v-btn
-              color="blue accent-3"
-              dark
-              :disabled="!valid"
-              v-on:click="changePass"
-            >Change password</v-btn>
-          </v-col>
-        </v-row>
-      </v-form>
+      <v-row class="mb-6">
+        <v-col md="3" sm="3" lg="3" offset-sm="4" offset-md="4" offset-lg="4">
+          <v-text-field v-model="newPass" filled rounded dense required label="New Password"></v-text-field>
+        </v-col>
+      </v-row>
+      <v-row class="mb-6">
+        <v-col md="3" sm="3" lg="3" offset-sm="4" offset-md="4" offset-lg="4" align="center">
+          <v-btn color="blue accent-3" dark v-on:click="changePass">Change password</v-btn>
+        </v-col>
+      </v-row>
       <v-row class="mb-6">
         <v-col md="6" sm="5" lg="5" offset-sm="3" offset-md="3" offset-lg="3" align="center">
           <v-alert
-            v-model="alertChange"
-            :value="alert"
+            v-model="alertForgot"
             color="green"
             icon="mdi-check-circle-outline"
             transition="scale-transition"
@@ -90,10 +74,10 @@ export default {
           token: this.$route.params.token,
           newPass: this.newPass
         });
-        if (res.status === 201) {
-          this.alertChange = true;
-          console.log("Usao u status 201");
-        }
+        // if (res.status === 201) {
+        //   this.alertChange = true;
+        //   console.log("Usao u status 201");
+        // }
       } catch (err) {
         console.log(err);
         this.alertError = true;
