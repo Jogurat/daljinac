@@ -31,14 +31,12 @@
         <v-col md="6" sm="5" lg="5" offset-sm="3" offset-md="3" offset-lg="3" align="center">
           <v-alert
             v-model="alertForgot"
-            :value="alert"
             color="green"
             icon="mdi-check-circle-outline"
             transition="scale-transition"
           >Check your e-mail for link where you can change your password!</v-alert>
           <v-alert
             v-model="alertFail"
-            :value="alert"
             color="yellow"
             icon="mdi-close-circle-outline"
             transition="scale-transition"

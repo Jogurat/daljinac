@@ -34,7 +34,6 @@
         <v-col md="6" sm="5" lg="5" offset-sm="3" offset-md="3" offset-lg="3" align="center">
           <v-alert
             v-model="alertChange"
-            :value="alert"
             color="green"
             icon="mdi-check-circle-outline"
             transition="scale-transition"
@@ -45,7 +44,6 @@
         <v-col md="6" sm="5" lg="5" offset-sm="3" offset-md="3" offset-lg="3" align="center">
           <v-alert
             v-model="alertError"
-            :value="alert"
             color="red"
             icon="mdi-close-circle-outline"
             transition="scale-transition"
@@ -86,7 +84,7 @@ export default {
       this.$refs.form.validate();
       console.log(this.$route.params.token);
       try {
-        await axios.put(`/api/auth/changePass`, {
+        const res = await axios.put(`/api/auth/changePass`, {
           token: this.$route.params.token,
           newPass: this.newPass
         });
