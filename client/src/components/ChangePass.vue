@@ -1,6 +1,10 @@
 <template>
   <div>
+    <NavigationBar></NavigationBar>
     <v-container>
+      <br />
+      <br />
+      <br />
       <v-row>
         <v-col md="3" sm="3" lg="3" offset-sm="4" offset-md="4" offset-lg="4">
           <h1>Change Password</h1>
@@ -22,7 +26,7 @@
         </v-row>
         <v-row class="mb-6">
           <v-col md="3" sm="3" lg="3" offset-sm="4" offset-md="4" offset-lg="4" align="center">
-            <v-btn v-on:click="changePass">Change password</v-btn>
+            <v-btn :disabled="!valid" dark color="blue accent-3" @click="changePass">Change password</v-btn>
           </v-col>
         </v-row>
       </v-form>
@@ -43,7 +47,7 @@
             v-model="alertError"
             :value="alert"
             color="red"
-            icon="mdi-check-circle-outline"
+            icon="mdi-close-circle-outline"
             transition="scale-transition"
           >Server error!</v-alert>
         </v-col>
@@ -54,6 +58,7 @@
 
 <script>
 import axios from "axios";
+import NavigationBar from "./NavigationBar";
 const config = require("../../../config");
 // const config = jsonConfig;
 let url = `${config.DB_HOST}/users/changePass`;
@@ -71,9 +76,11 @@ export default {
       newPass: "",
       rules: [value => !!value || "Type your new password!"],
       alertChange: false,
-      alertError: false
+      alertError: false,
+      valid: true
     };
   },
+  components: { NavigationBar },
   methods: {
     changePass: async function() {
       this.$refs.form.validate();
