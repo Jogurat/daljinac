@@ -5,33 +5,28 @@
       <br />
       <br />
       <br />
-      <v-row class="mb-6">
-        <v-col md="3" sm="3" lg="3" offset-sm="4" offset-md="4" offset-lg="4">
-          <v-text-field v-model="username" filled rounded dense required label="New Password"></v-text-field>
-        </v-col>
-      </v-row>
-      <v-row class="mb-6">
-        <v-col md="3" sm="3" lg="3" offset-sm="4" offset-md="4" offset-lg="4" align="center">
-          <v-btn color="blue accent-3" dark v-on:click="changePass">Change password</v-btn>
-        </v-col>
-      </v-row>
       <v-form ref="form" v-model="valid">
         <v-row class="mb-6">
           <v-col md="3" sm="3" lg="3" offset-sm="4" offset-md="4" offset-lg="4">
             <v-text-field
-              label="Enter your new Password"
               v-model="newPass"
+              :rules="rules"
               filled
               rounded
               dense
               required
-              :rules="rules"
+              label="New Password"
             ></v-text-field>
           </v-col>
         </v-row>
         <v-row class="mb-6">
           <v-col md="3" sm="3" lg="3" offset-sm="4" offset-md="4" offset-lg="4" align="center">
-            <v-btn :disabled="!valid" dark color="blue accent-3" @click="changePass">Change password</v-btn>
+            <v-btn
+              color="blue accent-3"
+              dark
+              :disabled="!valid"
+              v-on:click="changePass"
+            >Change password</v-btn>
           </v-col>
         </v-row>
       </v-form>
