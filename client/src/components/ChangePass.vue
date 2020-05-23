@@ -5,26 +5,45 @@
       <br />
       <br />
       <br />
-      <v-row class="mb-6">
-        <v-col md="3" sm="3" lg="3" offset-sm="4" offset-md="4" offset-lg="4">
-          <v-text-field v-model="newPass" filled rounded dense required label="New Password"></v-text-field>
-        </v-col>
-      </v-row>
-      <v-row class="mb-6">
-        <v-col md="3" sm="3" lg="3" offset-sm="4" offset-md="4" offset-lg="4" align="center">
-          <v-btn color="blue accent-3" dark v-on:click="changePass">Change password</v-btn>
-        </v-col>
-      </v-row>
+      <v-form ref="form" v-model="valid">
+        <v-row class="mb-6">
+          <v-col md="3" sm="3" lg="3" offset-sm="4" offset-md="4" offset-lg="4">
+            <v-text-field
+              v-model="newPass"
+              :rules="rules"
+              filled
+              rounded
+              dense
+              required
+              label="New Password"
+            ></v-text-field>
+          </v-col>
+        </v-row>
+        <v-row class="mb-6">
+          <v-col md="3" sm="3" lg="3" offset-sm="4" offset-md="4" offset-lg="4" align="center">
+            <v-btn
+              color="blue accent-3"
+              dark
+              :disabled="!valid"
+              v-on:click="changePass"
+            >Change password</v-btn>
+          </v-col>
+        </v-row>
+      </v-form>
       <v-row class="mb-6">
         <v-col md="6" sm="5" lg="5" offset-sm="3" offset-md="3" offset-lg="3" align="center">
           <v-alert
-            v-model="alertForgot"
+            v-model="alertChange"
             color="green"
             icon="mdi-check-circle-outline"
             transition="scale-transition"
-          >Your password is changed, now you can login with your new password!</v-alert>
+          >
+            Your password is changed, now you can login with your new
+            password!
+          </v-alert>
         </v-col>
       </v-row>
+
       <v-row class="mb-6">
         <v-col md="6" sm="5" lg="5" offset-sm="3" offset-md="3" offset-lg="3" align="center">
           <v-alert
@@ -33,7 +52,7 @@
             color="red"
             icon="mdi-close-circle-outline"
             transition="scale-transition"
-          >Your password is not changed, error!</v-alert>
+          >Server error!</v-alert>
         </v-col>
       </v-row>
     </v-container>
@@ -70,14 +89,16 @@ export default {
       this.$refs.form.validate();
       console.log(this.$route.params.token);
       try {
-        await axios.put(`/api/auth/changePass`, {
+        let res = await axios.put(`/api/auth/changePass`, {
           token: this.$route.params.token,
           newPass: this.newPass
         });
-        // if (res.status === 201) {
-        //   this.alertChange = true;
-        //   console.log("Usao u status 201");
-        // }
+        console.log(res);
+        console.log(res.status);
+        if (res.status === 200 || res.status === 201 || res.status === 202) {
+          this.alertChange = true;
+          console.log("Usao u status 200...");
+        }
       } catch (err) {
         console.log(err);
         this.alertError = true;

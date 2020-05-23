@@ -62,7 +62,22 @@
                     </v-radio-group>
                   </v-col>
                 </v-row>
-
+                <v-row>
+                  <v-alert
+                    v-model="alertError"
+                    color="yellow"
+                    icon="mdi-close-circle-outline"
+                    transition="scale-transition"
+                  >Fill all fields!</v-alert>
+                </v-row>
+                <v-row>
+                  <v-alert
+                    v-model="alertErrorServer"
+                    color="red"
+                    icon="mdi-close-circle-outline"
+                    transition="scale-transition"
+                  >Error server!</v-alert>
+                </v-row>
                 <v-row>
                   <v-col cols="4"></v-col>
                   <v-col>
@@ -107,7 +122,9 @@ export default {
       type: "",
       dialogm1: null,
       rules: [value => !!value || "All fields are required."],
-      valid: true
+      valid: true,
+      alertError: false,
+      alertErrorServer: false
     };
   },
   components: {
