@@ -7,8 +7,7 @@
     "test": "nyc mocha --exit",
     "devStart": "nodemon server.js",
     "start": "nodemon server.js",
-    "myStart": "cd client && npm run build",
-    "postinstall": "cd client && npm run build"
+    "myStart": "cd client && npm run build"
   },
   "engines": {
     "node": "8.11.2"
@@ -16,8 +15,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@vue/cli-plugin-babel": "^4.3.1",
-    "@vue/cli-service": "^4.3.1",
     "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
