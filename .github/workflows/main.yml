@@ -16,6 +16,5 @@ jobs:
       - uses: supercharge/mongodb-github-action@1.2.0
         with:
           mongodb-version: 4.0
-      - run: npm ci
       - run: npm test
 
