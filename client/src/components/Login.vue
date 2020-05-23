@@ -64,7 +64,6 @@
     </v-form>
     <v-alert
       v-model="alertFail"
-      :value="alert"
       color="red"
       icon="mdi-close-circle-outline"
       transition="scale-transition"
@@ -72,7 +71,6 @@
 
     <v-alert
       v-model="alertFailServer"
-      :value="alert"
       color="yellow"
       icon="mdi-close-circle-outline"
       transition="scale-transition"

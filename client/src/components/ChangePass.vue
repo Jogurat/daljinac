@@ -37,7 +37,10 @@
             color="green"
             icon="mdi-check-circle-outline"
             transition="scale-transition"
-          >Your password is changed, now you can login with your new password!</v-alert>
+          >
+            Your password is changed, now you can login with your new
+            password!
+          </v-alert>
         </v-col>
       </v-row>
       <v-row class="mb-6">
@@ -84,13 +87,15 @@ export default {
       this.$refs.form.validate();
       console.log(this.$route.params.token);
       try {
-        const res = await axios.put(`/api/auth/changePass`, {
+        let res = await axios.put(`/api/auth/changePass`, {
           token: this.$route.params.token,
           newPass: this.newPass
         });
-        if (res.status === 201) {
+        console.log(res);
+        console.log(res.status);
+        if (res.status === 200 || res.status === 201 || res.status === 202) {
           this.alertChange = true;
-          console.log("Usao u status 201");
+          console.log("Usao u status 200...");
         }
       } catch (err) {
         console.log(err);
