@@ -1,5 +1,4 @@
 .env
 node_modules
 .nyc_output
-.github
 config.json
