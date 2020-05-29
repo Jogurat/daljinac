@@ -55,6 +55,7 @@ actionController.postOne = async (req, res) => {
   const action = new Action({
     deviceID: req.body.deviceID,
     code: req.body.code,
+    bits: req.body.bits,
   });
   try {
     const newAction = await action.save();
