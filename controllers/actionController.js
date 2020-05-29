@@ -45,7 +45,7 @@ actionController.getFirstUnprocessed = async (req, res) => {
     const last = actions.sort((a, b) => {
       b.createdAt - a.createdAt;
     });
-    res.status(200).json(last[0]);
+    res.status(200).json(last[0].bits); // Only bits or entire obj?
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
