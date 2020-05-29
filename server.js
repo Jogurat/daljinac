@@ -33,16 +33,13 @@ app.use("/api/actions", actionsRouter);
 app.use("/api/users", checkAuth, userRouter.router);
 app.use("/api/codes", codesRouter);
 
-//deployment
-// test comment
+// Deployment
 app.use("/", serveStatic(path.join(__dirname, "./client/dist")));
 
 app.get(/.*/, function (req, res) {
   res.sendFile(path.join(__dirname, "client/dist/index.html"));
 });
 
-//comments
-// console.log(config);
 let server = app.listen(config.PORT, () => console.log("Server started"));
 
 module.exports = server;
