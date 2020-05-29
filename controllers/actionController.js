@@ -47,7 +47,7 @@ actionController.getFirstUnprocessed = async (req, res) => {
     });
     last[0].isProcessed = true;
     await last[0].save();
-    res.status(200).json({ bits: last[0].bits, len: last[0].bits.length }); // Only bits or entire obj?
+    res.status(200).json({ bits: last[0].bits }); // Only bits or entire obj?
   } catch (err) {
     res.status(500).json({ message: err.message });
   }

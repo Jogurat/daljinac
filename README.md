@@ -16,7 +16,7 @@ Ovaj repozitorijum predstavlja projektni zadatak tima **PAKT**.
 
 Cilj ovog projekta je da olakša života ljudi koji žive u potkrovljima, a osuđeni su na život bez pametne klime. Kako leti temperature dostižu neverovatno visoke brojke, scenario vraćanja kući je sledeći:
 
-Ući u stan -> Popeti se na potkrovlje -> Upaliti klimu na 5-10 minuta -> Vratiti se dole
+Ući u stan -> Popeti se na potkrovlje -> Upaliti klimu -> Vratiti se dole ->
 
 ---
 
