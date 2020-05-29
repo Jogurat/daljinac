@@ -43,7 +43,7 @@ codesController.getCodeById = async (req, res) => {
     const code = await Code.findOne({
       deviceID: req.params.id,
       code: req.params.code,
-    });
+    }).sort({ _id: -1 });
     res.status(200).json(code);
   } catch (err) {
     res.status(500).json({ message: err.message });
