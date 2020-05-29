@@ -45,6 +45,8 @@ actionController.getFirstUnprocessed = async (req, res) => {
     const last = actions.sort((a, b) => {
       b.createdAt - a.createdAt;
     });
+    last[0].isProcessed = true;
+    await last[0].save();
     res.status(200).json(last[0].bits); // Only bits or entire obj?
   } catch (err) {
     res.status(500).json({ message: err.message });
@@ -55,6 +57,7 @@ actionController.postOne = async (req, res) => {
   const action = new Action({
     deviceID: req.body.deviceID,
     code: req.body.code,
+    bits: req.body.bits,
   });
   try {
     const newAction = await action.save();

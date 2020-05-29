@@ -12,6 +12,14 @@ Ovaj repozitorijum predstavlja projektni zadatak tima **PAKT**.
 
 ---
 
+## Cilj projekta
+
+Cilj ovog projekta je da olakša života ljudi koji žive u potkrovljima, a osuđeni su na život bez pametne klime. Kako leti temperature dostižu neverovatno visoke brojke, scenario vraćanja kući je sledeći:
+
+Ući u stan -> Popeti se na potkrovlje -> Upaliti klimu na 5-10 minuta -> Vratiti se dole
+
+---
+
 ## Prototip
 
 Prototip iz faze 2 našeg projekta možete videti [ovde](https://ksenijam14.github.io/) kao hostovanu verziju, ili u okviru foldera "Dokumentacija" ovog repo-a.
@@ -65,11 +73,11 @@ npm start
 
 ### Pokretanje frontend-a
 
-Frontend pokrecemo iz "client" foldera komandama:
+Frontend ispocetka build-ujemo iz "client" foldera komandama:
 
 ```bash
 cd client
-npm run serve
+npm run watch
 ```
 
 (Prva komanda prelazi iz root foldera u "client" folder)
