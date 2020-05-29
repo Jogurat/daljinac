@@ -25,16 +25,16 @@
         <v-divider class="mx-4"></v-divider>
         <v-card-text>
           <div align="center">
-            <v-btn class="ma-4" icon color="green">
+            <v-btn class="ma-4" icon color="green" @click="sendPower">
               <v-icon large>mdi-power-standby</v-icon>
               <!--mdi-chevron-up-circle-->
             </v-btn>
 
-            <v-btn class="ma-4" icon color="blue">
+            <v-btn class="ma-4" icon color="blue" @click="sendTempUp">
               <v-icon large>mdi-chevron-up-circle-outline</v-icon>
             </v-btn>
 
-            <v-btn class="ma-4" icon color="blue">
+            <v-btn class="ma-4" icon color="blue" @click="sendTempDown">
               <v-icon large>mdi-chevron-down-circle-outline</v-icon>
             </v-btn>
           </div>
@@ -68,7 +68,7 @@
               <v-row>
                 <v-col cols="4"></v-col>
                 <v-col>
-                  <v-btn @click="editRoom">Edit Room</v-btn>
+                  <v-btn>Edit Room</v-btn>
                 </v-col>
               </v-row>
             </v-container>
@@ -115,7 +115,37 @@ export default {
     deviceID: Number,
     roomType: String
   },
-  methods: {}
+  methods: {
+    async sendPower() {
+      // console.log("Power");
+      // let code = await axios.get(`/api/codes/${this.deviceID}/Power`);
+      // console.log(code);
+      // code = code.data;
+      // await axios.post(`/api/actions`, {
+      //   deviceID: code.deviceID,
+      //   bits: code.bits,
+      //   code: 1
+      // });
+      this.sendCode("Power");
+    },
+    async sendTempUp() {
+      this.sendCode("TempUp");
+    },
+    async sendTempDown() {
+      this.sendCode("TempDown");
+    },
+    async sendCode(type) {
+      console.log(type);
+      let code = await axios.get(`/api/codes/${this.deviceID}/${type}`);
+      console.log(code);
+      code = code.data;
+      await axios.post(`/api/actions`, {
+        deviceID: code.deviceID,
+        bits: code.bits,
+        code: 1
+      });
+    }
+  }
 };
 </script>
 
