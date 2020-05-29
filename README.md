@@ -1,5 +1,7 @@
 # Daljinac - PSI Projekat tima PAKT
 
+![logo](/Dokumentacija/Faza5/img/Logo.png)
+
 Ovaj repozitorijum predstavlja projektni zadatak tima **PAKT**.
 Članovi tima su:
 
