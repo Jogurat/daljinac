@@ -150,8 +150,6 @@ export default {
     async sendCode(type) {
       console.log(type);
       // this.snackbar = true;
-      this.$emit("actionSent", type);
-
       let code = await axios.get(`/api/codes/${this.deviceID}/${type}`);
       console.log(code);
       code = code.data;
@@ -163,12 +161,14 @@ export default {
       if (res.status >= 200 && res.status <= 300) {
         this.snackbar = true;
         this.snackbarText = `Action ${type} sent!`;
+        this.$emit("actionSent", type);
       }
     },
     async clearActions() {
       console.log("hi");
       let res = await axios.delete(`/api/actions/${this.deviceID}`);
       if (res.status >= 200 && res.status <= 300) {
+        this.$emit("actionsCleared");
         this.snackbar = true;
         this.snackbarText = "Cleared all actions!";
       }
