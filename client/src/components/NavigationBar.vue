@@ -13,13 +13,10 @@
       <v-spacer></v-spacer>
       <v-card-text>
         <div align="right">
-          <div class="ma-4">
-            <v-btn color="blue accent-3" v-if="!loggedIn()">Login</v-btn>
-            <v-btn color="blue accent-3" v-else @click="logOut">Log out</v-btn>
-          </div>
-          <div class="ma-4">
-            <v-btn color="blue accent-3">Contact us</v-btn>
-          </div>
+          <v-btn class="ma-4" color="blue accent-3" v-if="!loggedIn()">Login</v-btn>
+          <v-btn class="ma-4" color="blue accent-3" v-else @click="logOut">Log out</v-btn>
+
+          <v-btn class="ma-4" color="blue accent-3">Contact us</v-btn>
         </div>
       </v-card-text>
     </v-toolbar>
@@ -31,7 +28,6 @@
 
 <script>
 import Vue from "vue";
-import Login from "./Login";
 //import VueRouter from "vue-router";
 // import { library } from "@fortawesome/fontawesome-svg-core";
 // import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
@@ -41,7 +37,7 @@ import Login from "./Login";
 // Vue.component("font-awesome-icon", FontAwesomeIcon);
 export default {
   name: "NavigationBar",
-  components: { Login },
+  components: {},
   data: () => ({
     //
   }),
