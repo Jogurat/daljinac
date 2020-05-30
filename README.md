@@ -1,5 +1,7 @@
 # Daljinac - PSI Projekat tima PAKT
 
+![logo](/Dokumentacija/Faza5/img/Logo.png)
+
 Ovaj repozitorijum predstavlja projektni zadatak tima **PAKT**.
 Članovi tima su:
 
@@ -7,6 +9,14 @@ Ovaj repozitorijum predstavlja projektni zadatak tima **PAKT**.
 - **A**leksa Jovanović - Aleksa-Jovanovic
 - **K**senija Mladenović - ksenijam14
 - **T**eodora Nedeljković - teodoranedeljkovic355
+
+---
+
+## Cilj projekta
+
+Cilj ovog projekta je da olakša života ljudi koji žive u potkrovljima, a osuđeni su na život bez pametne klime. Kako leti temperature dostižu neverovatno visoke brojke, scenario vraćanja kući je sledeći:
+
+Ući u stan -> Popeti se na potkrovlje -> Upaliti klimu -> Vratiti se dole ->
 
 ---
 
@@ -63,11 +73,11 @@ npm start
 
 ### Pokretanje frontend-a
 
-Frontend pokrecemo iz "client" foldera komandama:
+Frontend ispocetka build-ujemo iz "client" foldera komandama:
 
 ```bash
 cd client
-npm run serve
+npm run watch
 ```
 
 (Prva komanda prelazi iz root foldera u "client" folder)

@@ -2,15 +2,19 @@
 #include <ArduinoJson.h>
 #include "WiFiEsp.h"
 
+//Working on this!
+
 //Global
 const int deviceID = 1;
 const int interruptPin = 20;
 unsigned long lastConnectionTime = 0;         // last time you connected to the server, in milliseconds
-const unsigned long postingInterval = 20000L; // delay between updates, in milliseconds
+const unsigned long postingInterval = 10000L; // delay between updates, in milliseconds
 
 //IR--------------------------------------------------
 int RECV_PIN = 2;
 IRrecv irrecv(RECV_PIN);
+IRsend irsend;
+int khz = 38; // 38kHz carrier frequency for the NEC protocol
 decode_results results;
 unsigned int rawCodes[RAWBUF]; // The durations if raw
 int codeLen; // The length of the code
@@ -21,8 +25,8 @@ int RECV_PIN_POWER = 10;
 boolean irRecieve = false;
 
 //WIFI-----------------------------------------------
-char ssid[] = "My SBB";            // your network SSID (name)
-char pass[] = "Nebojsa60";        // your network password
+char ssid[] = /*"My SBB"*/ "AndroidAP4bdb";            // your network SSID (name)
+char pass[] = /*"Nebojsa60"*/ "jumpjet98";        // your network password
 int status = WL_IDLE_STATUS;     // the Wifi radio's status
 char server[] = "daljinac-api.herokuapp.com";
 // Initialize the Ethernet client object
@@ -91,7 +95,7 @@ void setup() {
   Serial.println("You're connected to the network");
   printWifiStatus();
 
-  receiveJson();
+  //receiveJson();
 
 }
 
@@ -148,9 +152,10 @@ void loop() {
   /*Serial.println("All codes stored!");
   while(true){};*/
 
-  /*if (millis() - lastConnectionTime > postingInterval) {
+  if (millis() - lastConnectionTime > postingInterval) {
+    Serial.println("Fetching data...");
     receiveJson();
-  }*/
+  }
   
 
 }
@@ -197,10 +202,14 @@ boolean recieve(){
 
 //JSON---------------------------------------------------------------------------------------
 void sendJson(char* commandName){
+  // close any connection before send a new request
+  // this will free the socket on the WiFi shield
+  //client.stop();
+  
   size_t capacity = JSON_ARRAY_SIZE(255) + JSON_OBJECT_SIZE(3); //125 kao solidan broj mesta
   DynamicJsonDocument doc(capacity);
 
-  doc["deviceID"] = 1;
+  doc["deviceID"] = deviceID;
   doc["code"] = commandName;
   JsonArray bits = doc.createNestedArray("bits");
   
@@ -259,7 +268,7 @@ void receiveJson(){
   }
 
   //IMPORTANT!
-  delay(5);
+  delay(10);
 
   String inputStream;
   boolean writeChar = false;
@@ -284,11 +293,33 @@ void receiveJson(){
 
   //JsonDocument
   size_t capacity = JSON_ARRAY_SIZE(255) + JSON_OBJECT_SIZE(8);
-  DynamicJsonDocument doc(2048);
+  DynamicJsonDocument doc(1730);
   
   deserializeJson(doc, inputStream);
-  serializeJsonPretty(doc, Serial);
 
+  JsonArray bits = doc["bits"].as<JsonArray>();
+  Serial.print("Array size = ");
+  Serial.println((int)bits.size());
+  serializeJson(doc, Serial);
+  Serial.println();
+
+  for(int i=0; i<(int)bits.size(); i++){
+    rawCodes[i] = bits[i];
+  }
+
+  //Sending bits
+  if((int)bits.size() > 0){
+    digitalWrite(8,HIGH);
+    irsend.sendRaw(rawCodes, (int)bits.size(), khz); //Note the approach used to automatically calculate the size of the array.
+    digitalWrite(8,LOW);
+    Serial.print("Sent - ");
+    for(int i = 0; i<(int)bits.size(); i++){
+      Serial.print(rawCodes[i]);
+      Serial.print(" ");
+    }
+    Serial.println();
+  }
+  
   doc.clear();
 }
 

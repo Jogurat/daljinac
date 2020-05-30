@@ -29,9 +29,8 @@ codesController.getAll = async (req, res) => {
 
 codesController.getAllCodesById = async (req, res) => {
   try {
-    const code = await Code.findOne({
+    const code = await Code.find({
       deviceID: req.params.id,
-      code: req.params.code,
     });
     res.status(200).json(code);
   } catch (err) {
@@ -44,7 +43,7 @@ codesController.getCodeById = async (req, res) => {
     const code = await Code.findOne({
       deviceID: req.params.id,
       code: req.params.code,
-    });
+    }).sort({ _id: -1 });
     res.status(200).json(code);
   } catch (err) {
     res.status(500).json({ message: err.message });
