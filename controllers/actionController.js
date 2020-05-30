@@ -79,4 +79,13 @@ actionController.updateOne = async (req, res) => {
   }
 };
 
+actionController.deleteById = async (req, res) => {
+  try {
+    await Action.deleteMany({ deviceID: req.params.id });
+    res.status(200).json({ message: `Deleted actions` });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
 module.exports = actionController;

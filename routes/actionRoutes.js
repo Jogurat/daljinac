@@ -21,4 +21,7 @@ router.post("/", actionController.postOne);
 //Update one
 router.put("/:id", actionController.updateOne);
 
+//Delete
+router.delete("/:id", actionController.deleteById);
+
 module.exports = router;
