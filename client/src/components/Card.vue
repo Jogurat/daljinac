@@ -161,7 +161,7 @@ export default {
       });
       if (res.status >= 200 && res.status <= 300) {
         this.snackbar = true;
-        this.snackbarText = "Action sent!";
+        this.snackbarText = `Action ${type} sent!`;
       }
     },
     async clearActions() {
