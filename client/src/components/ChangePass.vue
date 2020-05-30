@@ -16,6 +16,9 @@
               dense
               required
               label="New Password"
+              :append-icon="show1 ? 'mdi-eye' : 'mdi-eye-off'"
+              :type="show1 ? 'text' : 'password'"
+              @click:append="show1 = !show1"
             ></v-text-field>
           </v-col>
         </v-row>
@@ -80,7 +83,8 @@ export default {
       rules: [value => !!value || "Type your new password!"],
       alertChange: false,
       alertError: false,
-      valid: true
+      valid: true,
+      show1: false
     };
   },
   components: { NavigationBar },

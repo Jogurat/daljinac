@@ -31,62 +31,56 @@
         <!--Test-->
         <v-row></v-row>
         <v-row>
-          <v-dialog ref="form" v-model="dialog" max-width="400px">
-            <v-card>
-              <v-card-title>New Room</v-card-title>
-              <v-container>
-                <v-row>
-                  <v-col cols="1"></v-col>
-                  <v-col cols="5">
-                    <v-text-field label="Room name" required :rules="rules" v-model="newRoomName"></v-text-field>
-                  </v-col>
-                  <v-col cols="5">
-                    <v-text-field label="Device ID" required :rules="rules" v-model="newDeviceID"></v-text-field>
-                  </v-col>
-                </v-row>
+          <v-form ref="form">
+            <v-dialog v-model="dialog" max-width="400px">
+              <v-card>
+                <v-card-title>New Room</v-card-title>
+                <v-container>
+                  <v-row>
+                    <v-col cols="1"></v-col>
+                    <v-col cols="5">
+                      <v-text-field label="Room name" required :rules="rules" v-model="newRoomName"></v-text-field>
+                    </v-col>
+                    <v-col cols="5">
+                      <v-text-field label="Device ID" required :rules="rules" v-model="newDeviceID"></v-text-field>
+                    </v-col>
+                  </v-row>
 
-                <v-row>
-                  <v-col cols="4"></v-col>
-                  <v-col>
-                    <v-radio-group
-                      v-model="dialogm1"
-                      column
-                      required
-                      :rules="rules"
-                      label="Room type"
-                    >
-                      <v-radio label="Living room" value="livingroom"></v-radio>
-                      <v-radio label="Bedrooom" value="bedroom"></v-radio>
-                      <v-radio label="Kitchen" value="kitchen"></v-radio>
-                      <v-radio label="Kids room" value="kidsroom"></v-radio>
-                    </v-radio-group>
-                  </v-col>
-                </v-row>
-                <v-row>
-                  <v-alert
-                    v-model="alertError"
-                    color="yellow"
-                    icon="mdi-close-circle-outline"
-                    transition="scale-transition"
-                  >Fill all fields!</v-alert>
-                </v-row>
-                <v-row>
-                  <v-alert
-                    v-model="alertErrorServer"
-                    color="red"
-                    icon="mdi-close-circle-outline"
-                    transition="scale-transition"
-                  >Error server!</v-alert>
-                </v-row>
-                <v-row>
-                  <v-col cols="4"></v-col>
-                  <v-col>
-                    <v-btn :disabled="!dialog" @click="newRoom">Add Room</v-btn>
-                  </v-col>
-                </v-row>
-              </v-container>
-            </v-card>
-          </v-dialog>
+                  <v-row>
+                    <v-col cols="4"></v-col>
+                    <v-col>
+                      <v-radio-group
+                        v-model="dialogm1"
+                        column
+                        required
+                        :rules="[v => !!v || 'Room type is required']"
+                        label="Room type"
+                      >
+                        <v-radio label="Living room" value="livingroom"></v-radio>
+                        <v-radio label="Bedrooom" value="bedroom"></v-radio>
+                        <v-radio label="Kitchen" value="kitchen"></v-radio>
+                        <v-radio label="Kids room" value="kidsroom"></v-radio>
+                      </v-radio-group>
+                    </v-col>
+                  </v-row>
+                  <v-row>
+                    <v-alert
+                      v-model="alertFail"
+                      color="yellow"
+                      icon="mdi-close-circle-outline"
+                      transition="scale-transition"
+                    >Fill all fields!</v-alert>
+                  </v-row>
+                  <v-row>
+                    <v-col cols="4"></v-col>
+                    <v-col>
+                      <v-btn @click="newRoom">Add Room</v-btn>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-card>
+            </v-dialog>
+          </v-form>
         </v-row>
       </v-container>
     </div>
@@ -122,9 +116,9 @@ export default {
       type: "",
       dialogm1: null,
       rules: [value => !!value || "All fields are required."],
-      valid: true,
-      alertError: false,
-      alertErrorServer: false
+      //valid: true,
+      alertFail: false
+      //alertErrorServer: false
     };
   },
   components: {
@@ -133,31 +127,34 @@ export default {
   },
   methods: {
     newRoom: function() {
-      //this.$refs.form.validate();
-      //console.log(config);
-      const token = localStorage.getItem("token");
-      axios
-        .put(
-          `/api/users/room/${this.username}`,
-          {
-            name: this.newRoomName,
-            deviceID: this.newDeviceID,
-            type: this.dialogm1
-          },
-          { headers: { authorization: `Bearer ${token}` } }
-        )
-        .then(res => {
-          console.log(res);
-          axios
-            .get(`/api/users/${this.username}`, {
-              headers: { Authorization: `Bearer ${token}` }
-            })
-            .then(res => {
-              this.user = res.data;
-              this.dataReady = true;
-              console.log(res.data.rooms);
-            });
-        });
+      if (this.$refs.form.validate() === true) {
+        //console.log(config);
+        const token = localStorage.getItem("token");
+        axios
+          .put(
+            `/api/users/room/${this.username}`,
+            {
+              name: this.newRoomName,
+              deviceID: this.newDeviceID,
+              type: this.dialogm1
+            },
+            { headers: { authorization: `Bearer ${token}` } }
+          )
+          .then(res => {
+            console.log(res);
+            axios
+              .get(`/api/users/${this.username}`, {
+                headers: { Authorization: `Bearer ${token}` }
+              })
+              .then(res => {
+                this.user = res.data;
+                this.dataReady = true;
+                console.log(res.data.rooms);
+              });
+          });
+      } else {
+        alertFail: true;
+      }
     },
     loggedIn: function() {
       if (localStorage.getItem("token")) return true;
