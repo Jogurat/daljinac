@@ -15,6 +15,7 @@
               rounded
               dense
               required
+              @keyup.enter="sendEmail"
               :rules="rules"
             ></v-text-field>
           </v-col>

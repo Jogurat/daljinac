@@ -15,7 +15,7 @@
                 <!--mdi-chevron-up-circle-->
               </v-btn>
             </div>
-            <div class="ma-2 col-md-2 col-sm-4 col-xs-2 right-marg">
+            <div class="ma-2 col-md-2 col-sm-4 col-xs-2">
               <v-btn icon color="grey" @click="dialog = !dialog">
                 <v-icon medium>mdi-pencil</v-icon>
                 <!--mdi-chevron-up-circle-->
