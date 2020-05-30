@@ -26,6 +26,7 @@
             v-bind:title="room.name"
             v-bind:deviceID="room.deviceID"
             :room-type="room.type"
+            @actionSent="onActionSent"
           ></Card>
         </v-row>
         <!--Test-->
@@ -78,6 +79,10 @@
     <div v-else>
       <h1>Please log in!</h1>
     </div>
+    <v-snackbar v-model="snackbar" :timeout="timeout" bottom left>
+      {{ snackbarText }}
+      <v-btn color="blue" text @click="snackbar = false">Close</v-btn>
+    </v-snackbar>
   </div>
 </template>
 
@@ -107,7 +112,10 @@ export default {
       type: "",
       dialogm1: null,
       rules: [value => !!value || "All fields are required."],
-      valid: true
+      valid: true,
+      snackbar: false,
+      timeout: 2000,
+      snackbarText: ""
     };
   },
   components: {
@@ -148,6 +156,11 @@ export default {
     },
     logOut: function() {
       localStorage.removeItem("token");
+    },
+    onActionSent: function(type) {
+      console.log("hi from handler");
+      this.snackbar = true;
+      this.snackbarText = `Sent action ${type}!`;
     }
   },
   //   mounted: async function() {
