@@ -100,6 +100,7 @@ export default {
         console.log(res.status);
         if (res.status === 200 || res.status === 201 || res.status === 202) {
           this.alertChange = true;
+          this.alertError = false;
           console.log("Usao u status 200...");
         }
       } catch (err) {

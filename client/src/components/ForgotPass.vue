@@ -73,6 +73,7 @@ export default {
         //const email = user.email;
         if (res.status === 200) {
           this.alertForgot = true;
+          this.alertFail = false;
           console.log("Usao u status 201");
         } else {
           this.alertForgot = false;
