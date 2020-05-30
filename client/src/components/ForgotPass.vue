@@ -16,6 +16,7 @@
               dense
               required
               :rules="rules"
+              @keyup.enter="sendEmail"
             ></v-text-field>
           </v-col>
         </v-row>
