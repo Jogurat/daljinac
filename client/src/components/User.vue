@@ -27,6 +27,7 @@
             v-bind:deviceID="room.deviceID"
             :room-type="room.type"
             @actionSent="onActionSent"
+            @actionsCleared="onActionClear"
           ></Card>
         </v-row>
         <!--Test-->
@@ -161,6 +162,10 @@ export default {
       console.log("hi from handler");
       this.snackbar = true;
       this.snackbarText = `Sent action ${type}!`;
+    },
+    onActionClear: function() {
+      this.snackbar = true;
+      this.snackbarText = "Cleared all actions!";
     }
   },
   //   mounted: async function() {
