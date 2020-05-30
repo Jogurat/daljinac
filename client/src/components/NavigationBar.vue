@@ -4,7 +4,7 @@
       <v-container>
         <router-link to="/Homepage">
           <v-row>
-            <v-col cols="4">
+            <v-col cols="8">
               <v-img src="../assets/e.svg" max-width="240px" max-height="70px"></v-img>
             </v-col>
           </v-row>
@@ -13,8 +13,7 @@
       <v-spacer></v-spacer>
       <v-card-text>
         <div align="right">
-          <Login class="ma-4" v-if="!loggedIn()"></Login>
-          <!--<v-btn class="ma-4" color="blue accent-3" v-if="!loggedIn()">Login</v-btn>-->
+          <v-btn class="ma-4" color="blue accent-3" v-if="!loggedIn()">Login</v-btn>
           <v-btn class="ma-4" color="blue accent-3" v-else @click="logOut">Log out</v-btn>
 
           <v-btn class="ma-4" color="blue accent-3">Contact us</v-btn>

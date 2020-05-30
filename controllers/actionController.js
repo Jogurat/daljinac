@@ -45,7 +45,9 @@ actionController.getFirstUnprocessed = async (req, res) => {
     const last = actions.sort((a, b) => {
       b.createdAt - a.createdAt;
     });
-    res.status(200).json(last[0]);
+    last[0].isProcessed = true;
+    await last[0].save();
+    res.status(200).json({ bits: last[0].bits }); // Only bits or entire obj?
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
@@ -55,6 +57,7 @@ actionController.postOne = async (req, res) => {
   const action = new Action({
     deviceID: req.body.deviceID,
     code: req.body.code,
+    bits: req.body.bits,
   });
   try {
     const newAction = await action.save();
@@ -71,6 +74,15 @@ actionController.updateOne = async (req, res) => {
     actionToUpdate.isProcessed = true;
     await actionToUpdate.save();
     res.status(201).json(actionToUpdate);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
+actionController.deleteById = async (req, res) => {
+  try {
+    await Action.deleteMany({ deviceID: req.params.id });
+    res.status(200).json({ message: `Deleted actions` });
   } catch (err) {
     res.status(500).json({ message: err.message });
   }
