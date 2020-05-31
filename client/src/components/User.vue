@@ -33,7 +33,7 @@
         <!--Test-->
         <v-row></v-row>
         <v-row>
-          <v-form ref="form">
+          <v-form ref="form" v-model="valid">
             <v-dialog v-model="dialog" max-width="400px">
               <v-card>
                 <v-card-title>New Room</v-card-title>
@@ -55,7 +55,7 @@
                         v-model="dialogm1"
                         column
                         required
-                        :rules="[v => !!v || 'Room type is required']"
+                        :rules="rules"
                         label="Room type"
                       >
                         <v-radio label="Living room" value="livingroom"></v-radio>
@@ -65,18 +65,11 @@
                       </v-radio-group>
                     </v-col>
                   </v-row>
-                  <v-row>
-                    <v-alert
-                      v-model="alertFail"
-                      color="yellow"
-                      icon="mdi-close-circle-outline"
-                      transition="scale-transition"
-                    >Fill all fields!</v-alert>
-                  </v-row>
+
                   <v-row>
                     <v-col cols="4"></v-col>
                     <v-col>
-                      <v-btn @click="newRoom">Add Room</v-btn>
+                      <v-btn :disabled="!dialog" @click="newRoom">Add Room</v-btn>
                     </v-col>
                   </v-row>
                 </v-container>
@@ -103,9 +96,7 @@ import Card from "./Card";
 import NavigationBar from "./NavigationBar";
 const jsonConfig = require("../../../config");
 const config = jsonConfig;
-
 let url = `${config.DB_HOST}/users/`;
-
 //const url = "http://localhost:3000/users/";
 const roomUrl = `${url}/room/`;
 export default {
@@ -134,34 +125,31 @@ export default {
   },
   methods: {
     newRoom: function() {
-      if (this.$refs.form.validate() === true) {
-        //console.log(config);
-        const token = localStorage.getItem("token");
-        axios
-          .put(
-            `/api/users/room/${this.username}`,
-            {
-              name: this.newRoomName,
-              deviceID: this.newDeviceID,
-              type: this.dialogm1
-            },
-            { headers: { authorization: `Bearer ${token}` } }
-          )
-          .then(res => {
-            console.log(res);
-            axios
-              .get(`/api/users/${this.username}`, {
-                headers: { Authorization: `Bearer ${token}` }
-              })
-              .then(res => {
-                this.user = res.data;
-                this.dataReady = true;
-                console.log(res.data.rooms);
-              });
-          });
-      } else {
-        alertFail: true;
-      }
+      this.$refs.form.validate();
+      //console.log(config);
+      const token = localStorage.getItem("token");
+      axios
+        .put(
+          `/api/users/room/${this.username}`,
+          {
+            name: this.newRoomName,
+            deviceID: this.newDeviceID,
+            type: this.dialogm1
+          },
+          { headers: { authorization: `Bearer ${token}` } }
+        )
+        .then(res => {
+          console.log(res);
+          axios
+            .get(`/api/users/${this.username}`, {
+              headers: { Authorization: `Bearer ${token}` }
+            })
+            .then(res => {
+              this.user = res.data;
+              this.dataReady = true;
+              console.log(res.data.rooms);
+            });
+        });
     },
     loggedIn: function() {
       if (localStorage.getItem("token")) return true;
@@ -188,7 +176,6 @@ export default {
   mounted: function() {
     this.username = localStorage.getItem("username");
     const token = localStorage.getItem("token");
-
     axios
       .get(`/api/users/${this.username}`, {
         headers: { Authorization: `Bearer ${token}` }

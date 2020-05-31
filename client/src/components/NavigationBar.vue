@@ -13,10 +13,10 @@
       <v-spacer></v-spacer>
       <v-card-text>
         <div align="right">
-          <v-btn class="ma-4" color="blue accent-3" v-if="!loggedIn()">Login</v-btn>
+          <div v-if="!loggedIn()">
+            <Login></Login>
+          </div>
           <v-btn class="ma-4" color="blue accent-3" v-else @click="logOut">Log out</v-btn>
-
-          <v-btn class="ma-4" color="blue accent-3">Contact us</v-btn>
         </div>
       </v-card-text>
     </v-toolbar>

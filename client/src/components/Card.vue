@@ -1,20 +1,19 @@
-
 <template>
   <v-hover>
     <template v-slot="{ hover }">
       <v-card :elevation="hover ? 24 : 6" class="mx-auto my-12" max-width="300">
         <v-img height="150" :src="require(`../assets/${roomType}.jpeg`)"></v-img>
         <div class="row">
-          <div class="col-md-6 col-sm-8 col-xs-4">
+          <div class="col-md-8 col-sm-8 col-xs-4">
             <v-card-title>{{ $props.title }}</v-card-title>
           </div>
-          <div class="ma-2 col-md-2 col-sm-4 col-xs-2">
+          <div class="ma-2 col-md-1 col-sm-2 col-xs-2">
             <v-btn icon color="red" @click="clearActions">
               <v-icon medium>mdi-broom</v-icon>
               <!--mdi-chevron-up-circle-->
             </v-btn>
           </div>
-          <div class="ma-2 col-md-2 col-sm-4 col-xs-2 right-marg">
+          <div class="ma-2 col-md-1 col-sm-2 col-xs-2 right-marg">
             <v-btn icon color="grey" @click="dialog = !dialog">
               <v-icon medium>mdi-pencil</v-icon>
               <!--mdi-chevron-up-circle-->
@@ -103,7 +102,6 @@ import axios from "axios";
 import jwt from "jsonwebtoken";
 const jsonConfig = require("../../../config");
 const config = jsonConfig;
-
 let url = `${config.DB_HOST}/users/`;
 const roomUrl = `${url}/room/`;
 export default {
@@ -138,7 +136,6 @@ export default {
       //   bits: code.bits,
       //   code: 1
       // });
-
       this.sendCode("Power");
     },
     async sendTempUp() {
