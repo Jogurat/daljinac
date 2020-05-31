@@ -127,6 +127,7 @@ export default {
   background-size: cover;
   position: relative;
 }
+
 #nasl {
   padding-top: 40px;
   /*color: rgba(251, 22, 22);*/
@@ -138,5 +139,22 @@ export default {
   font-size: 22px;
   color: rgb(56, 53, 53);
   font-weight: 500;
+}
+@media (max-width: 600px) {
+  #bod {
+    background-image: none;
+    /*background-color: #d3d3d3;
+    background-image: linear-gradient(315deg, #d3d3d3 0%, #7f8c8d 74%);*/
+    background-color: #f1f2f6;
+    background-image: linear-gradient(315deg, #f1f2f6 0%, #c9c6c6 74%);
+  }
+  #nasl {
+    text-align: center;
+    float: left;
+  }
+  #paraf {
+    text-align: center;
+    float: left;
+  }
 }
 </style>
