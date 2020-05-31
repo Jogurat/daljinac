@@ -8,16 +8,6 @@
           <div class="col-md-6 col-sm-8 col-xs-4">
             <v-card-title>{{ $props.title }}</v-card-title>
           </div>
-<<<<<<< HEAD
-          <v-card-text>
-            <v-row align="center">
-              <v-col class="ma-4 display-2" cols="6">{{ temp }}&deg;C</v-col>
-              <v-btn class="ma-8" icon color="green" @click="refreshTemp">
-                <v-icon>mdi-refresh</v-icon>
-              </v-btn>
-            </v-row>
-          </v-card-text>
-=======
           <div class="ma-2 col-md-2 col-sm-4 col-xs-2">
             <v-btn icon color="red" @click="clearActions">
               <v-icon medium>mdi-broom</v-icon>
@@ -30,13 +20,15 @@
               <!--mdi-chevron-up-circle-->
             </v-btn>
           </div>
+          <v-card-text>
+            <v-row align="center">
+              <v-col class="ma-4 display-2" cols="6">{{ temp }}&deg;C</v-col>
+              <v-btn class="ma-8" icon color="green" @click="refreshTemp">
+                <v-icon>mdi-refresh</v-icon>
+              </v-btn>
+            </v-row>
+          </v-card-text>
         </div>
-        <v-card-text>
-          <v-row align="center">
-            <v-col class="display-2" cols="6">23&deg;C</v-col>
-          </v-row>
-        </v-card-text>
->>>>>>> ea619114ee2c883fc665bfcae3e90a6a5c3baf9c
 
         <v-divider class="mx-4"></v-divider>
         <v-card-text>
@@ -161,11 +153,6 @@ export default {
     },
     async sendCode(type) {
       console.log(type);
-<<<<<<< HEAD
-
-=======
-      // this.snackbar = true;
->>>>>>> ea619114ee2c883fc665bfcae3e90a6a5c3baf9c
       let code = await axios.get(`/api/codes/${this.deviceID}/${type}`);
       //console.log(code);
       code = code.data;
