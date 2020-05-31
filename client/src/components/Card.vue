@@ -27,7 +27,6 @@
               <v-col class="ma-4 display-2" cols="6">{{ temp }}&deg;C</v-col>
               <v-btn class="ma-8" icon color="green" @click="refreshTemp">
                 <v-icon>mdi-refresh</v-icon>
-                <!--mdi-chevron-up-circle-->
               </v-btn>
             </v-row>
           </v-card-text>
