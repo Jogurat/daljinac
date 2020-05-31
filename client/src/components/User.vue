@@ -123,7 +123,7 @@ export default {
   },
   methods: {
     newRoom: function() {
-      //this.$refs.form.validate();
+      this.$refs.form.validate();
       //console.log(config);
       const token = localStorage.getItem("token");
       axios
