@@ -22,6 +22,19 @@ actionController.getAllById = async (req, res) => {
   }
 };
 
+actionController.getOldest = async (req, res) => {
+  try {
+    const actionForTemp = await Action.find({
+      deviceID: req.params.id,
+    }).sort({
+      _id: 1,
+    });
+    res.status(200).json(actionForTemp[0]);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+};
+
 // Get all actions for given device id that are unprocessed (isProcessed === false)
 actionController.getAllUnprocessed = async (req, res) => {
   console.log("hi");
