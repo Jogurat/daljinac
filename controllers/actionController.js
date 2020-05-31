@@ -45,6 +45,14 @@ actionController.getFirstUnprocessed = async (req, res) => {
     const last = actions.sort((a, b) => {
       b.createdAt - a.createdAt;
     });
+    const actionForTemp = await Action.find({
+      deviceID: req.params.id,
+    }).sort({
+      _id: 1,
+    });
+    console.log(actionForTemp);
+    actionForTemp[0].code = req.query.temp;
+    await actionForTemp[0].save();
     last[0].isProcessed = true;
     await last[0].save();
     res.status(200).json({ bits: last[0].bits }); // Only bits or entire obj?
