@@ -5,17 +5,12 @@
        <div class="text-no-wrap text-example" style="width: 8rem;">
          Daljina.cc
        </div>
-        </v-toolbar-title>-->
-        <v-container>
-             <v-row>
-              
-            <v-col  cols="8">
-              <router-link to="/Homepage">
-              <v-img
-                src="../assets/e.svg"
-                max-width="240px"
-                max-height="70px"
-              ></v-img>
+      </v-toolbar-title>-->
+      <v-container>
+        <v-row>
+          <v-col cols="8">
+            <router-link to="/Homepage">
+              <v-img src="../assets/e.svg" max-width="240px" max-height="70px"></v-img>
             </router-link>
           </v-col>
           <v-col cols="4" padding-top="20px" align="right">
@@ -26,7 +21,7 @@
         </v-row>
       </v-container>
       <v-spacer></v-spacer>
-      <v-card-text> </v-card-text>
+      <v-card-text></v-card-text>
       <v-content>
         <router-view></router-view>
       </v-content>
@@ -35,18 +30,18 @@
 </template>
 
 <script>
-  import Vue from "vue";
-  //import VueRouter from "vue-router";
-  // import { library } from "@fortawesome/fontawesome-svg-core";
-  // import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
-  // import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
-  import Register from "./Register";
-  import Login from "./Login";
-  //import router from "../main";
-  // library.add(faUserSecret);
-  // Vue.component("font-awesome-icon", FontAwesomeIcon);
+import Vue from "vue";
+//import VueRouter from "vue-router";
+// import { library } from "@fortawesome/fontawesome-svg-core";
+// import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
+// import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
+import Register from "./Register";
+import Login from "./Login";
+//import router from "../main";
+// library.add(faUserSecret);
+// Vue.component("font-awesome-icon", FontAwesomeIcon);
 
-  /*data: function() {
+/*data: function() {
       return {
          dialog:false,
          dialog2:false,
@@ -58,21 +53,21 @@
       };
     },*/
 
-  export default {
-    name: "Homepage",
-    components: {
-      Login,
-      Register,
-    },
+export default {
+  name: "Homepage",
+  components: {
+    Login,
+    Register
+  },
 
-    data: () => ({
-      //username: "",
-      //password: "",
-      dialog: false,
-      //dialog2:false
-    }),
+  data: () => ({
+    //username: "",
+    //password: "",
+    dialog: false
+    //dialog2:false
+  })
 
-    /*methods: {
+  /*methods: {
     async loginUser() {
       //PROMISE
       // axios
@@ -101,20 +96,20 @@
       }
     }
   }*/
-  };
+};
 </script>
 
 <style scoped>
-  .test {
-    padding-left: 150px;
-  }
-  #bod {
-    background-image: url("../assets/pexels-plavadevojka.jpeg");
-    /* background-color: #8f2c2c; */
-    height: 100vh;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    position: relative;
-  }
+.test {
+  padding-left: 150px;
+}
+#bod {
+  background-image: url("../assets/pexels-plavadevojka.jpeg");
+  /* background-color: #8f2c2c; */
+  height: 100vh;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+}
 </style>
