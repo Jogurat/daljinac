@@ -8,12 +8,12 @@
       </v-toolbar-title>-->
       <v-container>
         <v-row>
-          <v-col cols="8">
+          <v-col col-md-8 col-sm-4 col-xs-2>
             <router-link to="/Homepage">
               <v-img src="../assets/e.svg" max-width="240px" max-height="70px"></v-img>
             </router-link>
           </v-col>
-          <v-col cols="4" padding-top="20px" align="right">
+          <v-col col-md-4 col-sm-2 col-xs-2 padding-top="20px" align="right">
             <Register></Register>
             <Login></Login>
             <!--<v-btn class="ma-4" color="blue accent-3">Contact us</v-btn>-->
@@ -22,18 +22,22 @@
       </v-container>
       <v-spacer></v-spacer>
       <v-card-text>
-        <v-row align="right">
-          <v-col col-md-10 col-sm-8 col-xs-4 offset="7" align="center" id="nasl">
+        <v-row>
+          <v-col col-md-10 col-sm-8 col-xs-4 align="center" id="nasl">
             <h1>Opametite svoju klimu!</h1>
           </v-col>
         </v-row>
-        <v-row align="right">
-          <v-col col-md-10 col-sm-8 col-xs-4 offset="7" align="center" id="paraf">
-            <p>
-              Svega ste dva klika udaljeni od uvek idealne temperature svog
+        <v-row>
+          <v-col col-md-10 col-sm-8 col-xs-4 align="center" id="paraf">
+            <p>Svega ste dva klika udaljeni</p>
+            <p>od uvek idealne temperature</p>
+            <p id="last">
+              svog
               doma. Uvek!
             </p>
-            <Register></Register>
+            <div id="btn">
+              <Register></Register>
+            </div>
           </v-col>
         </v-row>
       </v-card-text>
@@ -130,31 +134,37 @@ export default {
 
 #nasl {
   padding-top: 40px;
-  /*color: rgba(251, 22, 22);*/
-  /*color: white;*/
+  text-align: right;
+  padding-right: 80px;
 }
 #paraf {
-  line-height: 1.6;
+  line-height: 1;
   padding-top: 20px;
   font-size: 22px;
   color: rgb(56, 53, 53);
   font-weight: 500;
+  text-align: right;
+  padding-right: 80px;
 }
-@media (max-width: 600px) {
+#last {
+  padding-right: 60px;
+}
+#btn {
+  padding-right: 60px;
+}
+@media (max-width: 826px) {
+  #nasl {
+    text-align: center;
+  }
+  #paraf {
+    text-align: center;
+  }
   #bod {
     background-image: none;
     /*background-color: #d3d3d3;
     background-image: linear-gradient(315deg, #d3d3d3 0%, #7f8c8d 74%);*/
     background-color: #f1f2f6;
     background-image: linear-gradient(315deg, #f1f2f6 0%, #c9c6c6 74%);
-  }
-  #nasl {
-    text-align: center;
-    float: left;
-  }
-  #paraf {
-    text-align: center;
-    float: left;
   }
 }
 </style>

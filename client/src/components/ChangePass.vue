@@ -27,7 +27,7 @@
           <v-col md="3" sm="3" lg="3" offset-sm="4" offset-md="4" offset-lg="4" align="center">
             <v-btn
               color="blue accent-3"
-              dark
+              id="btn"
               :disabled="!valid"
               v-on:click="changePass"
             >Change password</v-btn>
@@ -47,6 +47,7 @@
           </v-alert>
         </v-col>
       </v-row>
+
       <v-row class="mb-6">
         <v-col md="6" sm="5" lg="5" offset-sm="3" offset-md="3" offset-lg="3" align="center">
           <v-alert
@@ -113,4 +114,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+#btn {
+  color: white;
+}
+</style>

@@ -15,15 +15,20 @@
               rounded
               dense
               required
-              :rules="rules"
               @keyup.enter="sendEmail"
+              :rules="rules"
             ></v-text-field>
           </v-col>
         </v-row>
         <div>
           <v-row class="mb-6">
             <v-col md="3" sm="3" lg="3" offset-sm="4" offset-md="4" offset-lg="4" align="center">
-              <v-btn :disabled="!valid" dark color="blue accent-3" @click="sendEmail">Send E-mail</v-btn>
+              <v-btn
+                id="btn"
+                :disabled="!valid"
+                color="blue accent-3"
+                @click="sendEmail"
+              >Send E-mail</v-btn>
             </v-col>
           </v-row>
         </div>
@@ -90,4 +95,7 @@ export default {
 </script>
 
 <style>
+#btn {
+  color: white;
+}
 </style>
