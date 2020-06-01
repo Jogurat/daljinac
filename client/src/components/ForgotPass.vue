@@ -24,13 +24,8 @@
           <v-row class="mb-6">
             <v-col md="3" sm="3" lg="3" offset-sm="4" offset-md="4" offset-lg="4" align="center">
               <v-btn
-<<<<<<< HEAD
-                id="btn"
-                :disabled="!valid"
-=======
                 :disabled="!valid"
                 id="btn"
->>>>>>> 9f8f48b5ed4c75e21c85aadffccb6c2587342255
                 color="blue accent-3"
                 @click="sendEmail"
               >Send E-mail</v-btn>
