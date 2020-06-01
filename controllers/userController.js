@@ -49,4 +49,27 @@ userController.addRoom = async (req, res) => {
   }
 };
 
+userController.editRoom = async (req, res) => {
+  console.log("hi from edit room");
+  try {
+    const user = await User.findOne({ username: req.params.username });
+    console.log(req.body);
+    let newRooms = user.rooms;
+    console.log(newRooms);
+    console.log(req.params.id);
+    let roomToChange = newRooms.find((el) => el._id == req.params.id);
+    console.log(roomToChange);
+    roomToChange.name = req.body.name;
+    roomToChange.deviceID = req.body.deviceID;
+    roomToChange.type = req.body.type;
+    user.rooms = newRooms;
+    console.log(newRooms);
+    await user.save();
+    res.status(202).json(newRooms);
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+    console.log(err);
+  }
+};
+
 module.exports = userController;
