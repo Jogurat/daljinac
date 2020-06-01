@@ -25,25 +25,6 @@
         </v-row>
       </v-container>
       <v-spacer></v-spacer>
-      <!-- <v-card-text>
-        <v-row>
-          <v-col col-md-10 col-sm-8 col-xs-4 align="center" id="nasl">
-            <h1 id="adtitle">Opametite svoju klimu!</h1>
-          </v-col>
-        </v-row>
-        <v-row>
-          <v-col col-md-10 col-sm-8 col-xs-4 align="center" id="paraf">
-            <p id="adcopy">
-              Svega ste dva klika udaljeni od uvek idealne temeprature svog
-              doma. Uvek!
-            </p>
-
-            <div id="btn">
-              <Register></Register>
-            </div>
-          </v-col>
-        </v-row>
-      </v-card-text> -->
       <div class="wrapper">
         <div class="flex-container">
           <h1>Opametite svoju klimu!</h1>
@@ -93,32 +74,6 @@
     position: relative;
   }
 
-  #nasl {
-    padding-top: 40px;
-    text-align: right;
-    padding-right: 80px;
-  }
-  #paraf {
-    line-height: 1;
-    padding-top: 20px;
-    font-size: 22px;
-    color: rgb(56, 53, 53);
-    font-weight: 500;
-    text-align: right;
-    padding-right: 80px;
-  }
-  #last {
-    padding-right: 60px;
-  }
-  #btn {
-    padding-right: 60px;
-  }
-  #adcopy {
-    padding-left: 740px;
-  }
-  #adtitle {
-    padding-right: 30px;
-  }
   .wrapper {
     /* height: 100vh; */
     position: absolute;
@@ -142,22 +97,19 @@
 
   @media (max-width: 1600px) {
     .wrapper {
-      right: 5%;
+      right: 1.5%;
     }
     .flex-container {
-      padding-left: 15px;
+      padding: 15px;
+    }
+  }
+
+  @media (max-width: 1250px) {
+    .wrapper {
+      right: 0%;
     }
   }
   @media (max-width: 826px) {
-    #nasl {
-      padding-top: 20px;
-      text-align: center;
-      padding-right: 20px;
-    }
-    #paraf {
-      text-align: center;
-      padding-right: 20px;
-    }
     #bod {
       background-image: none;
       /*background-color: #d3d3d3;
@@ -165,13 +117,7 @@
       background-color: #f1f2f6;
       background-image: linear-gradient(315deg, #f1f2f6 0%, #c9c6c6 74%);
     }
-    #btn {
-      padding-right: 0;
-    }
-    #adcopy,
-    #adtitle {
-      padding: 0;
-    }
+
     .flex-container {
       width: 100vw;
     }
