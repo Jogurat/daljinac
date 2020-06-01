@@ -5,7 +5,7 @@
       <br />
       <br />
       <br />
-      <v-form ref="form" v-model="valid">
+      <v-form @submit.prevent ref="form" v-model="valid">
         <v-row class="mb-6">
           <v-col md="3" sm="3" lg="3" offset-sm="4" offset-md="4" offset-lg="4">
             <v-text-field

@@ -5,7 +5,7 @@
       <br />
       <br />
       <br />
-      <v-form ref="form" v-model="valid">
+      <v-form ref="form" v-model="valid" @submit.prevent>
         <v-row class="mb-6">
           <v-col md="3" sm="3" lg="3" offset-sm="4" offset-md="4" offset-lg="4">
             <v-text-field
@@ -24,8 +24,13 @@
           <v-row class="mb-6">
             <v-col md="3" sm="3" lg="3" offset-sm="4" offset-md="4" offset-lg="4" align="center">
               <v-btn
+<<<<<<< HEAD
                 id="btn"
                 :disabled="!valid"
+=======
+                :disabled="!valid"
+                id="btn"
+>>>>>>> 9f8f48b5ed4c75e21c85aadffccb6c2587342255
                 color="blue accent-3"
                 @click="sendEmail"
               >Send E-mail</v-btn>
@@ -69,7 +74,9 @@ export default {
   },
   components: { NavigationBar },
   methods: {
-    sendEmail: async function() {
+    sendEmail: async function(e) {
+      e.preventDefault();
+      console.log(e);
       this.$refs.form.validate();
       try {
         const res = await axios.get(`/api/auth/forgotPass/${this.username}`);

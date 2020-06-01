@@ -24,17 +24,13 @@
       <v-card-text>
         <v-row>
           <v-col col-md-10 col-sm-8 col-xs-4 align="center" id="nasl">
-            <h1>Opametite svoju klimu!</h1>
+            <h1 id="adtitle">Opametite svoju klimu!</h1>
           </v-col>
         </v-row>
         <v-row>
           <v-col col-md-10 col-sm-8 col-xs-4 align="center" id="paraf">
-            <p>Svega ste dva klika udaljeni</p>
-            <p>od uvek idealne temperature</p>
-            <p id="last">
-              svog
-              doma. Uvek!
-            </p>
+            <p id="adcopy">Svega ste dva klika udaljeni od uvek idealne temeprature svog doma. Uvek!</p>
+
             <div id="btn">
               <Register></Register>
             </div>
@@ -152,12 +148,21 @@ export default {
 #btn {
   padding-right: 60px;
 }
+#adcopy {
+  padding-left: 740px;
+}
+#adtitle {
+  padding-right: 30px;
+}
 @media (max-width: 826px) {
   #nasl {
+    padding-top: 20px;
     text-align: center;
+    padding-right: 20px;
   }
   #paraf {
     text-align: center;
+    padding-right: 20px;
   }
   #bod {
     background-image: none;
@@ -165,6 +170,13 @@ export default {
     background-image: linear-gradient(315deg, #d3d3d3 0%, #7f8c8d 74%);*/
     background-color: #f1f2f6;
     background-image: linear-gradient(315deg, #f1f2f6 0%, #c9c6c6 74%);
+  }
+  #btn {
+    padding-right: 0;
+  }
+  #adcopy,
+  #adtitle {
+    padding: 0;
   }
 }
 </style>
