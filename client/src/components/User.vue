@@ -166,6 +166,7 @@
                 this.dataReady = true;
                 console.log(res.data.rooms);
               });
+            this.dialog = false;
           });
       },
       loggedIn: function() {
