@@ -52,7 +52,6 @@
         <v-col md="6" sm="5" lg="5" offset-sm="3" offset-md="3" offset-lg="3" align="center">
           <v-alert
             v-model="alertError"
-            :value="alert"
             color="red"
             icon="mdi-close-circle-outline"
             transition="scale-transition"
