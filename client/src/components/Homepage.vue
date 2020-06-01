@@ -25,7 +25,7 @@
         </v-row>
       </v-container>
       <v-spacer></v-spacer>
-      <v-card-text>
+      <!-- <v-card-text>
         <v-row>
           <v-col col-md-10 col-sm-8 col-xs-4 align="center" id="nasl">
             <h1 id="adtitle">Opametite svoju klimu!</h1>
@@ -43,7 +43,18 @@
             </div>
           </v-col>
         </v-row>
-      </v-card-text>
+      </v-card-text> -->
+      <div class="wrapper">
+        <div class="flex-container">
+          <h1>Opametite svoju klimu!</h1>
+          <p>
+            Svega ste dva klika udaljeni od uvek idealne temeprature svog doma.
+            Uvek!
+          </p>
+          <Register></Register>
+        </div>
+      </div>
+
       <v-content>
         <router-view></router-view>
       </v-content>
@@ -53,28 +64,8 @@
 
 <script>
   import Vue from "vue";
-  //import VueRouter from "vue-router";
-  // import { library } from "@fortawesome/fontawesome-svg-core";
-  // import { faUserSecret } from "@fortawesome/free-solid-svg-icons";
-  // import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
   import Register from "./Register";
   import Login from "./Login";
-  //import router from "../main";
-  // library.add(faUserSecret);
-  // Vue.component("font-awesome-icon", FontAwesomeIcon);
-
-  /*data: function() {
-      return {
-         dialog:false,
-         dialog2:false,
-         notifications: false,
-         sound: true,
-         widgets: false,
-         username: "",
-         password: ""
-      };
-    },*/
-
   export default {
     name: "Homepage",
     components: {
@@ -83,41 +74,8 @@
     },
 
     data: () => ({
-      //username: "",
-      //password: "",
       dialog: false,
-      //dialog2:false
     }),
-
-    /*methods: {
-    async loginUser() {
-      //PROMISE
-      // axios
-      //   .post(url, {
-      //     data: { username: this.username, password: this.password }
-      //   })
-      //   .then(function(response) {
-      //     console.log(response);
-      //     let token = response;
-      //     localStorage.setItem("token", token);
-      //   })
-      //   .catch(function(err) {
-      //     console.log("NALAZIM SE U ERR" + err);
-      //   });
-      try {
-        const res = await axios.post(url, {
-          username: this.username,
-          password: this.password
-        });
-        const token = res.data;
-        //console.log("TOKEN U LOGIN " + token);
-        localStorage.setItem("token", token);
-        this.$router.push("/user");
-      } catch (err) {
-        console.log(err);
-      }
-    }
-  }*/
   };
 </script>
 
@@ -161,6 +119,35 @@
   #adtitle {
     padding-right: 30px;
   }
+  .wrapper {
+    /* height: 100vh; */
+    position: absolute;
+    top: 30%;
+    right: 7%;
+  }
+  .flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+    width: 500px;
+    /* width: 70%; */
+  }
+  .flex-container p {
+    font-size: 1.2rem;
+    text-align: center;
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 1600px) {
+    .wrapper {
+      right: 5%;
+    }
+    .flex-container {
+      padding-left: 15px;
+    }
+  }
   @media (max-width: 826px) {
     #nasl {
       padding-top: 20px;
@@ -184,6 +171,17 @@
     #adcopy,
     #adtitle {
       padding: 0;
+    }
+    .flex-container {
+      width: 100vw;
+    }
+
+    .flex-container h1,
+    p {
+      text-align: center;
+    }
+    .wrapper {
+      left: 0;
     }
   }
 </style>
