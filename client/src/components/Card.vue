@@ -2,7 +2,10 @@
   <v-hover>
     <template v-slot="{ hover }">
       <v-card :elevation="hover ? 24 : 6" class="mx-auto my-12" max-width="300">
-        <v-img height="150" :src="require(`../assets/${roomType}.jpeg`)"></v-img>
+        <v-img
+          height="150"
+          :src="require(`../assets/${roomType}.jpeg`)"
+        ></v-img>
         <div class="row">
           <div class="col-md-8 col-sm-8 col-xs-4">
             <v-card-title>{{ $props.title }}</v-card-title>
@@ -53,10 +56,16 @@
               <v-row>
                 <v-col cols="1"></v-col>
                 <v-col cols="5">
-                  <v-text-field label="Room name" v-model="title"></v-text-field>
+                  <v-text-field
+                    label="Room name"
+                    v-model="title"
+                  ></v-text-field>
                 </v-col>
                 <v-col cols="5">
-                  <v-text-field label="Device ID" v-model="deviceID"></v-text-field>
+                  <v-text-field
+                    label="Device ID"
+                    v-model="deviceID"
+                  ></v-text-field>
                 </v-col>
               </v-row>
 
@@ -75,7 +84,7 @@
               <v-row>
                 <v-col cols="4"></v-col>
                 <v-col>
-                  <v-btn>Edit Room</v-btn>
+                  <v-btn @click="editRoom">Edit Room</v-btn>
                 </v-col>
               </v-row>
             </v-container>
@@ -99,90 +108,100 @@
   </v-hover>
 </template>
 
-
 <script>
-import axios from "axios";
-import jwt from "jsonwebtoken";
-const jsonConfig = require("../../../config");
-const config = jsonConfig;
-let url = `${config.DB_HOST}/users/`;
-const roomUrl = `${url}/room/`;
-export default {
-  name: "Card",
-  data: function() {
-    return {
-      //title: ""
-      dialog1: false,
-      dialogm2: null,
-      editRoomName: "",
-      editDeviceID: "",
-      dialog: false,
-      timeout: 2000,
-      snackbar: false,
-      snackbarText: "",
-      temp: 26
-    };
-  },
-  props: {
-    // props: {['title', 'deviceID', roomType]}
-    title: String,
-    deviceID: Number,
-    roomType: String
-  },
-  methods: {
-    async sendPower() {
-      // console.log("Power");
-      // let code = await axios.get(`/api/codes/${this.deviceID}/Power`);
-      // console.log(code);
-      // code = code.data;
-      // await axios.post(`/api/actions`, {
-      //   deviceID: code.deviceID,
-      //   bits: code.bits,
-      //   code: 1
-      // });
-      this.sendCode("Power");
+  import axios from "axios";
+  import jwt from "jsonwebtoken";
+  const jsonConfig = require("../../../config");
+  const config = jsonConfig;
+  let url = `${config.DB_HOST}/users/`;
+  const roomUrl = `${url}/room/`;
+  export default {
+    name: "Card",
+    data: function() {
+      return {
+        //title: ""
+        dialog1: false,
+        dialogm2: null,
+        editRoomName: "",
+        editDeviceID: "",
+        dialog: false,
+        timeout: 2000,
+        snackbar: false,
+        snackbarText: "",
+        temp: 26,
+      };
     },
-    async sendTempUp() {
-      this.sendCode("TempUp");
+    props: {
+      // props: {['title', 'deviceID', roomType]}
+      title: String,
+      deviceID: Number,
+      roomType: String,
+      id: String,
+      username: String,
     },
-    async sendTempDown() {
-      this.sendCode("TempDown");
-    },
-    async sendCode(type) {
-      console.log(type);
-      let code = await axios.get(`/api/codes/${this.deviceID}/${type}`);
-      //console.log(code);
-      code = code.data;
-      let res = await axios.post(`/api/actions`, {
-        deviceID: code.deviceID,
-        bits: code.bits,
-        code: 1
-      });
-      if (res.status >= 200 && res.status <= 300) {
-        this.snackbar = true;
-        this.snackbarText = `Action ${type} sent!`;
-        this.$emit("actionSent", type);
-      }
-    },
-    async refreshTemp() {
-      let tempRes = await axios.get(`/api/actions/oldest/${this.deviceID}`);
-      console.log(tempRes);
+    methods: {
+      async sendPower() {
+        // console.log("Power");
+        // let code = await axios.get(`/api/codes/${this.deviceID}/Power`);
+        // console.log(code);
+        // code = code.data;
+        // await axios.post(`/api/actions`, {
+        //   deviceID: code.deviceID,
+        //   bits: code.bits,
+        //   code: 1
+        // });
+        this.sendCode("Power");
+      },
+      async sendTempUp() {
+        this.sendCode("TempUp");
+      },
+      async sendTempDown() {
+        this.sendCode("TempDown");
+      },
+      async sendCode(type) {
+        console.log(type);
+        let code = await axios.get(`/api/codes/${this.deviceID}/${type}`);
+        //console.log(code);
+        code = code.data;
+        let res = await axios.post(`/api/actions`, {
+          deviceID: code.deviceID,
+          bits: code.bits,
+          code: 1,
+        });
+        if (res.status >= 200 && res.status <= 300) {
+          this.snackbar = true;
+          this.snackbarText = `Action ${type} sent!`;
+          this.$emit("actionSent", type);
+        }
+      },
+      async refreshTemp() {
+        let tempRes = await axios.get(`/api/actions/oldest/${this.deviceID}`);
+        console.log(tempRes);
 
-      this.temp = tempRes.data.code;
-    },
-    async clearActions() {
-      console.log("hi");
+        this.temp = tempRes.data.code;
+      },
+      async clearActions() {
+        console.log("hi");
 
-      let res = await axios.delete(`/api/actions/${this.deviceID}`);
-      if (res.status >= 200 && res.status <= 300) {
-        this.$emit("actionsCleared");
-        this.snackbar = true;
-        this.snackbarText = "Cleared all actions!";
-      }
-    }
-  }
-};
+        let res = await axios.delete(`/api/actions/${this.deviceID}`);
+        if (res.status >= 200 && res.status <= 300) {
+          this.$emit("actionsCleared");
+          this.snackbar = true;
+          this.snackbarText = "Cleared all actions!";
+        }
+      },
+      async editRoom() {
+        const token = localStorage.getItem("token");
+        let res = await axios.put(
+          `/api/users/room/${this.username}/${this.id}`,
+          { name: this.title, deviceID: this.deviceID, type: this.roomType },
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
+      },
+    },
+  };
 </script>
 
-<style scoped>
-</style>
+<style scoped></style>

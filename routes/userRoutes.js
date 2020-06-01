@@ -15,6 +15,8 @@ const getUserByUsername = router.get(
 //Add new room
 const addRoom = router.put("/room/:username", userController.addRoom);
 
+const editRoom = router.put("/room/:username/:id", userController.editRoom);
+
 function isLogged(req, res, next) {}
 
 module.exports = {
