@@ -19,12 +19,15 @@
               <!--mdi-chevron-up-circle-->
             </v-btn>
           </div>
+          <v-card-text>
+            <v-row align="center">
+              <v-col class="ma-4 display-2" cols="6">{{ temp }}&deg;C</v-col>
+              <v-btn class="ma-8" icon color="green" @click="refreshTemp">
+                <v-icon>mdi-refresh</v-icon>
+              </v-btn>
+            </v-row>
+          </v-card-text>
         </div>
-        <v-card-text>
-          <v-row align="center">
-            <v-col class="display-2" cols="6">23&deg;C</v-col>
-          </v-row>
-        </v-card-text>
 
         <v-divider class="mx-4"></v-divider>
         <v-card-text>
@@ -116,7 +119,8 @@ export default {
       dialog: false,
       timeout: 2000,
       snackbar: false,
-      snackbarText: ""
+      snackbarText: "",
+      temp: 26
     };
   },
   props: {
@@ -146,9 +150,8 @@ export default {
     },
     async sendCode(type) {
       console.log(type);
-      // this.snackbar = true;
       let code = await axios.get(`/api/codes/${this.deviceID}/${type}`);
-      console.log(code);
+      //console.log(code);
       code = code.data;
       let res = await axios.post(`/api/actions`, {
         deviceID: code.deviceID,
@@ -161,8 +164,15 @@ export default {
         this.$emit("actionSent", type);
       }
     },
+    async refreshTemp() {
+      let tempRes = await axios.get(`/api/actions/oldest/${this.deviceID}`);
+      console.log(tempRes);
+
+      this.temp = tempRes.data.code;
+    },
     async clearActions() {
       console.log("hi");
+
       let res = await axios.delete(`/api/actions/${this.deviceID}`);
       if (res.status >= 200 && res.status <= 300) {
         this.$emit("actionsCleared");

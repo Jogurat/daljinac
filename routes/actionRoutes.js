@@ -12,6 +12,9 @@ router.get("/:id", actionController.getAllById);
 // Get all actions for given device id that are unprocessed (isProcessed === false)
 router.get("/unprocessed/:id", actionController.getAllUnprocessed);
 
+// Get the oldest action for given id
+router.get("/oldest/:id", actionController.getOldest);
+
 // Get the first sent (oldest) & unprocessed action for given device id
 router.get("/firstUnprocessed/:id", actionController.getFirstUnprocessed);
 
