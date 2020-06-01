@@ -5,7 +5,7 @@
       <br />
       <br />
       <br />
-      <v-form ref="form" v-model="valid">
+      <v-form ref="form" v-model="valid" @submit.prevent>
         <v-row class="mb-6">
           <v-col md="3" sm="3" lg="3" offset-sm="4" offset-md="4" offset-lg="4">
             <v-text-field
@@ -64,7 +64,9 @@ export default {
   },
   components: { NavigationBar },
   methods: {
-    sendEmail: async function() {
+    sendEmail: async function(e) {
+      e.preventDefault();
+      console.log(e);
       this.$refs.form.validate();
       try {
         const res = await axios.get(`/api/auth/forgotPass/${this.username}`);
