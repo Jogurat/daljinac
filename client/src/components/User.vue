@@ -33,47 +33,49 @@
         <!--Test-->
         <v-row></v-row>
         <v-row>
-          <v-dialog ref="form" v-model="dialog" max-width="400px">
-            <v-card>
-              <v-card-title>New Room</v-card-title>
-              <v-container>
-                <v-row>
-                  <v-col cols="1"></v-col>
-                  <v-col cols="5">
-                    <v-text-field label="Room name" required :rules="rules" v-model="newRoomName"></v-text-field>
-                  </v-col>
-                  <v-col cols="5">
-                    <v-text-field label="Device ID" required :rules="rules" v-model="newDeviceID"></v-text-field>
-                  </v-col>
-                </v-row>
+          <v-form ref="form" v-model="valid">
+            <v-dialog v-model="dialog" max-width="400px">
+              <v-card>
+                <v-card-title>New Room</v-card-title>
+                <v-container>
+                  <v-row>
+                    <v-col cols="1"></v-col>
+                    <v-col cols="5">
+                      <v-text-field label="Room name" required :rules="rules" v-model="newRoomName"></v-text-field>
+                    </v-col>
+                    <v-col cols="5">
+                      <v-text-field label="Device ID" required :rules="rules" v-model="newDeviceID"></v-text-field>
+                    </v-col>
+                  </v-row>
 
-                <v-row>
-                  <v-col cols="4"></v-col>
-                  <v-col>
-                    <v-radio-group
-                      v-model="dialogm1"
-                      column
-                      required
-                      :rules="rules"
-                      label="Room type"
-                    >
-                      <v-radio label="Living room" value="livingroom"></v-radio>
-                      <v-radio label="Bedrooom" value="bedroom"></v-radio>
-                      <v-radio label="Kitchen" value="kitchen"></v-radio>
-                      <v-radio label="Kids room" value="kidsroom"></v-radio>
-                    </v-radio-group>
-                  </v-col>
-                </v-row>
+                  <v-row>
+                    <v-col cols="4"></v-col>
+                    <v-col>
+                      <v-radio-group
+                        v-model="dialogm1"
+                        column
+                        required
+                        :rules="rules"
+                        label="Room type"
+                      >
+                        <v-radio label="Living room" value="livingroom"></v-radio>
+                        <v-radio label="Bedrooom" value="bedroom"></v-radio>
+                        <v-radio label="Kitchen" value="kitchen"></v-radio>
+                        <v-radio label="Kids room" value="kidsroom"></v-radio>
+                      </v-radio-group>
+                    </v-col>
+                  </v-row>
 
-                <v-row>
-                  <v-col cols="4"></v-col>
-                  <v-col>
-                    <v-btn :disabled="!dialog" @click="newRoom">Add Room</v-btn>
-                  </v-col>
-                </v-row>
-              </v-container>
-            </v-card>
-          </v-dialog>
+                  <v-row>
+                    <v-col cols="4"></v-col>
+                    <v-col>
+                      <v-btn :disabled="!dialog" @click="newRoom">Add Room</v-btn>
+                    </v-col>
+                  </v-row>
+                </v-container>
+              </v-card>
+            </v-dialog>
+          </v-form>
         </v-row>
       </v-container>
     </div>
@@ -94,9 +96,7 @@ import Card from "./Card";
 import NavigationBar from "./NavigationBar";
 const jsonConfig = require("../../../config");
 const config = jsonConfig;
-
 let url = `${config.DB_HOST}/users/`;
-
 //const url = "http://localhost:3000/users/";
 const roomUrl = `${url}/room/`;
 export default {
@@ -125,7 +125,7 @@ export default {
   },
   methods: {
     newRoom: function() {
-      //this.$refs.form.validate();
+      this.$refs.form.validate();
       //console.log(config);
       const token = localStorage.getItem("token");
       axios
@@ -176,7 +176,6 @@ export default {
   mounted: function() {
     this.username = localStorage.getItem("username");
     const token = localStorage.getItem("token");
-
     axios
       .get(`/api/users/${this.username}`, {
         headers: { Authorization: `Bearer ${token}` }

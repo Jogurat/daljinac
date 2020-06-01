@@ -170,13 +170,13 @@ export default {
         //console.log(err.response);
         if (res.status === 404) {
           this.alertFail = true;
-          this.alertFailServer = false;
+          //this.alertFailServer = false;
           this.username = "";
           this.password = "";
           console.log("Usao u status 404");
         } else if (res.status === 500) {
-          this.alertFailServer = true;
-          this.alertFail = false;
+          //this.alertFailServer = true;
+          this.alertFail = true;
           console.log("Usao u status 500");
         }
       }
