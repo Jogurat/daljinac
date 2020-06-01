@@ -84,7 +84,7 @@
               <v-row>
                 <v-col cols="4"></v-col>
                 <v-col>
-                  <v-btn @click="editRoom">Edit Room</v-btn>
+                  <v-btn @click="editRoom">Save Changes</v-btn>
                 </v-col>
               </v-row>
             </v-container>
@@ -199,6 +199,7 @@
             headers: { Authorization: `Bearer ${token}` },
           }
         );
+        this.dialog = false;
       },
     },
   };
