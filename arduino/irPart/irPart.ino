@@ -1,14 +1,24 @@
 #include <IRremote.h>
 #include <ArduinoJson.h>
 #include "WiFiEsp.h"
+//TempSensosr
+#include <Adafruit_Sensor.h>
+#include <DHT.h>
+#include <DHT_U.h>
 
 //Working on this!
 
-//Global
+//Global----------------------------------------------
 const int deviceID = 1;
 const int interruptPin = 20;
 unsigned long lastConnectionTime = 0;         // last time you connected to the server, in milliseconds
-const unsigned long postingInterval = 10000L; // delay between updates, in milliseconds
+const unsigned long postingInterval = 20000L; // delay between updates, in milliseconds
+
+//Sensor----------------------------------------------
+#define DHTPIN 4
+#define DHTTYPE    DHT11     // DHT 11
+DHT_Unified dht(DHTPIN, DHTTYPE);
+uint32_t delayMS;
 
 //IR--------------------------------------------------
 int RECV_PIN = 2;
@@ -24,50 +34,26 @@ int RECV_PIN_POWER = 10;
 //Boolean for getting codes
 boolean irRecieve = false;
 
-//WIFI-----------------------------------------------
-char ssid[] = /*"My SBB"*/ "AndroidAP4bdb";            // your network SSID (name)
-char pass[] = /*"Nebojsa60"*/ "jumpjet98";        // your network password
+//WIFI------------------------------------------------
+char ssid[] = "My SBB"/*"AndroidAP4bdb"*/;            // your network SSID (name)
+char pass[] = "Nebojsa60"/*"jumpjet98"*/;        // your network password
 int status = WL_IDLE_STATUS;     // the Wifi radio's status
 char server[] = "daljinac-api.herokuapp.com";
 // Initialize the Ethernet client object
 WiFiEspClient client;
 
 void setup() {
-  
   // initialize serial for debugging
   Serial.begin(115200);
   // initialize serial for ESP module
   Serial1.begin(9600);
 
-  //Interrupt
+  //Interrupt--------------------------------
   pinMode(interruptPin,INPUT);
   attachInterrupt(digitalPinToInterrupt(interruptPin),toggleIrReceiveFlag,RISING);
 
-  //JSON-----------------------------------
- /* const char* input = "{\"idea\":\"data\",\"data\":[1,2,3,4,5,6,7,8,9]}";
-  StaticJsonDocument<200> doc;
-
-  DeserializationError err = deserializeJson(doc,input);
-  if(err){
-    Serial.println("ERROR");
-    Serial.println(err.c_str());
-    return;
-  }
-
-  //Ovo koristimo da izvucemo kod iz JSONA!
-  JsonArray array = doc["data"].as<JsonArray>();
-  Serial.println(array.size());
-  for(JsonVariant v : array) {
-    Serial.println(v.as<int>());
-  }
-
-  //doc["id"] = serialized("[100,200]");;
-
-  const char* sensor = doc["sensor"];
-  //int* num = doc["data"];
-
-  //Serial.println(sensor);
-  serializeJson(doc, Serial); */
+  //Sensor----------------------------------
+  dht.begin();
 
   //IR part---------------------------------
   irrecv.enableIRIn(); // Start the receiver
@@ -76,7 +62,7 @@ void setup() {
   //WIFI part-------------------------------
   // initialize ESP module
   WiFi.init(&Serial1);
-
+  
   // check for the presence of the shield
   if (WiFi.status() == WL_NO_SHIELD) {
     Serial.println("WiFi shield not present");
@@ -84,12 +70,16 @@ void setup() {
     while (true);
   }
 
+  WiFi.disconnect();
+  Serial.println(WiFi.status());
+
   // attempt to connect to WiFi network
   while ( status != WL_CONNECTED) {
     Serial.print("Attempting to connect to WPA SSID: ");
     Serial.println(ssid);
     // Connect to WPA/WPA2 network
     status = WiFi.begin(ssid, pass);
+    delay(5);
   }
 
   Serial.println("You're connected to the network");
@@ -200,7 +190,7 @@ boolean recieve(){
   return returnVal;
 }
 
-//JSON---------------------------------------------------------------------------------------
+//WIFI-JSON---------------------------------------------------------------------------------------
 void sendJson(char* commandName){
   // close any connection before send a new request
   // this will free the socket on the WiFi shield
@@ -248,20 +238,34 @@ void sendJson(char* commandName){
 void receiveJson(){
   // close any connection before send a new request
   // this will free the socket on the WiFi shield
-  client.stop();
+  //client.stop();
+
+
+   // Get temperature event and print its value.
+  sensors_event_t event;
+  dht.temperature().getEvent(&event);
+  if (isnan(event.temperature)) {
+    Serial.println(F("Error reading temperature!"));
+  }
+  else {
+    Serial.print(F("Temperature: "));
+    Serial.print(event.temperature);
+    Serial.println(F("°C"));
+  }
   
   // Make a HTTP request
-  String headerPart = "GET /api/actions/firstUnprocessed/" + String(deviceID) + " HTTP/1.1";
+  String headerPart = "GET /api/actions/firstUnprocessed/" + String(deviceID) + "?temp=" + String(event.temperature) +" HTTP/1.1";
+
+  // note the time that the connection was made
+    lastConnectionTime = millis();
   
   if(client.connect(server, 80)){
     Serial.println("Connecting...");
+    Serial.println(headerPart);
     client.println(headerPart);
     client.println(F("Host: daljinac-api.herokuapp.com"));
-    //client.println("Connection: close");
+    client.println("Connection: close"); //Moze bez ovoga
     client.println();
-
-    // note the time that the connection was made
-    lastConnectionTime = millis();
   }else {
     // if you couldn't make a connection
     Serial.println("Connection failed");
@@ -288,11 +292,14 @@ void receiveJson(){
       writeChar = false;
     }
   }
+  // close any connection before send a new request
+  // this will free the socket on the WiFi shield
+  client.stop();
+
   //Serial.println("inputStream: " + inputStream);
 
-
   //JsonDocument
-  size_t capacity = JSON_ARRAY_SIZE(255) + JSON_OBJECT_SIZE(8);
+  //size_t capacity = JSON_ARRAY_SIZE(255) + JSON_OBJECT_SIZE(8);
   DynamicJsonDocument doc(1730);
   
   deserializeJson(doc, inputStream);
@@ -328,10 +335,6 @@ void toggleIrReceiveFlag(){
   Serial.println("Started to receive!");
 }
 
-void clearRawCodeBuffer(){
-  for(int i = 0; i < RAWBUF; i++)
-    rawCodes[i] = 0;
-}
 
 void printWifiStatus(){
   // print the SSID of the network you're attached to
