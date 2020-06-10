@@ -12,7 +12,7 @@
 const int deviceID = 1;
 const int interruptPin = 20;
 unsigned long lastConnectionTime = 0;         // last time you connected to the server, in milliseconds
-const unsigned long postingInterval = 20000L; // delay between updates, in milliseconds
+const unsigned long postingInterval = 10000L; // delay between updates, in milliseconds
 
 //Sensor----------------------------------------------
 #define DHTPIN 4
@@ -35,8 +35,8 @@ int RECV_PIN_POWER = 10;
 boolean irRecieve = false;
 
 //WIFI------------------------------------------------
-char ssid[] = "My SBB"/*"AndroidAP4bdb"*/;            // your network SSID (name)
-char pass[] = "Nebojsa60"/*"jumpjet98"*/;        // your network password
+char ssid[] = /*"My SBB"*/"AndroidAP4bdb";            // your network SSID (name)
+char pass[] = /*"Nebojsa60"*/"jumpjet98";        // your network password
 int status = WL_IDLE_STATUS;     // the Wifi radio's status
 char server[] = "daljinac-api.herokuapp.com";
 // Initialize the Ethernet client object
@@ -238,7 +238,7 @@ void sendJson(char* commandName){
 void receiveJson(){
   // close any connection before send a new request
   // this will free the socket on the WiFi shield
-  //client.stop();
+  client.stop();
 
 
    // Get temperature event and print its value.
@@ -264,7 +264,8 @@ void receiveJson(){
     Serial.println(headerPart);
     client.println(headerPart);
     client.println(F("Host: daljinac-api.herokuapp.com"));
-    client.println("Connection: close"); //Moze bez ovoga
+    client.println("Connection: Keep-Alive"); //Moze bez ovoga
+    client.println("Keep-Alive: timeout=5, max=20");
     client.println();
   }else {
     // if you couldn't make a connection
@@ -272,10 +273,11 @@ void receiveJson(){
   }
 
   //IMPORTANT!
-  delay(10);
+  //delay(5);
 
   String inputStream;
   boolean writeChar = false;
+  while(!client.available()){}
   while (client.available()) {
     char c = client.read();
     if(c == '{'){
@@ -292,9 +294,6 @@ void receiveJson(){
       writeChar = false;
     }
   }
-  // close any connection before send a new request
-  // this will free the socket on the WiFi shield
-  client.stop();
 
   //Serial.println("inputStream: " + inputStream);
 
