@@ -21,7 +21,7 @@
     "jsonwebtoken": "^8.5.1",
     "mdbvue": "^6.6.0",
     "mongoose": "^5.9.2",
-    "nodemailer": "^6.4.6",
+    "nodemailer": "^6.4.16",
     "serve-static": "^1.14.1",
     "vue": "^2.6.11"
   },
